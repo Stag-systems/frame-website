@@ -286,7 +286,7 @@
 <a id="top"></a>
 <section class="hero">
   <div class="heroframe">
-    <video class="herovid" autoplay muted loop playsinline aria-hidden="true" poster=""><source src="frame-studio.mp4" type="video/mp4"></video>
+    <video id="herovid" class="herovid" autoplay muted loop playsinline aria-hidden="true"></video>
     <div class="herograd"></div>
     <div class="heroover">
       <div class="kick">THE FRAME &middot; WIEN 1070</div>
@@ -446,6 +446,7 @@
 </footer>
 
 <script>
+  (function(){var v=document.getElementById('herovid');if(!v)return;v.src=window.matchMedia('(max-width:700px)').matches?'frame-studio-hoch.mp4':'frame-studio.mp4';v.load();var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){});})();
   function toggleLang(){document.body.classList.toggle('en');document.documentElement.lang=document.body.classList.contains('en')?'en':'de';}
   function toggleMenu(){document.getElementById('mnav').classList.toggle('open');}
   function toggleCat(b){b.classList.toggle('on'); if(window._mtoggle) window._mtoggle(b.getAttribute('data-cat'), b.classList.contains('on'));}
