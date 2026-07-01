@@ -102,12 +102,14 @@
   .locgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:34px;max-width:820px}
   .locblk .glab{margin-bottom:8px}
   .locblk p{font-size:14px;color:#444;line-height:1.6;font-weight:300}
-  .pricelist{margin-top:42px;border-top:1px solid var(--line)}
-  .pricerow{display:grid;grid-template-columns:210px 1fr auto;gap:30px;align-items:baseline;padding:30px 0;border-bottom:1px solid var(--line)}
-  .pricerow .pname{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
-  .pricerow .pdesc{font-size:14px;color:#444;line-height:1.6;font-weight:300}
-  .pricerow .pprice{font-family:var(--display);font-weight:400;font-size:clamp(26px,2.8vw,42px);white-space:nowrap;text-align:right;letter-spacing:-.01em}
-  .pricerow .pprice small{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mut);letter-spacing:.04em;display:block;margin-top:5px}
+  .pricetiles{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,20px);margin-top:42px}
+  .ptile{position:relative;aspect-ratio:3/4;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:26px;color:#fff;isolation:isolate}
+  .ptile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:grayscale(1) contrast(1.06)}
+  .ptile::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.26) 46%,rgba(0,0,0,.44) 100%)}
+  .ptile .pname{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.4)}
+  .ptile .pprice{font-family:var(--display);font-weight:400;font-size:clamp(30px,3vw,46px);letter-spacing:-.01em;line-height:1}
+  .ptile .pprice small{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;display:block;margin-top:6px;color:rgba(255,255,255,.82)}
+  .ptile .pdesc{font-size:13px;line-height:1.55;font-weight:300;color:rgba(255,255,255,.86);margin:0 0 12px}
   .kontaktcols{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start;margin-top:30px}
   /* Fix im Studio — aufklappbare Quadrate */
   .fixwrap{margin-top:64px}
@@ -129,7 +131,7 @@
   .fixcta{display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
   .fixcta:hover{color:var(--ink)}
   @media(max-width:520px){.fixcard{width:72vw}}
-  @media(max-width:820px){.locgrid{grid-template-columns:1fr 1fr}.kontaktcols{grid-template-columns:1fr;gap:32px}.pricerow{grid-template-columns:1fr auto;gap:6px 24px}.pricerow .pdesc{grid-column:1/-1;order:3}}
+  @media(max-width:820px){.locgrid{grid-template-columns:1fr 1fr}.kontaktcols{grid-template-columns:1fr;gap:32px}.pricetiles{grid-template-columns:1fr;gap:12px}.ptile{aspect-ratio:16/11;padding:22px}}
   @media(max-width:520px){.locgrid{grid-template-columns:1fr}}
   @media(max-width:900px){.studiotop{grid-template-columns:1fr;gap:28px} .stats5{grid-template-columns:repeat(2,1fr)} .stats4{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.stats5,.stats4,.stats3{grid-template-columns:1fr 1fr} .gcell{padding:20px}}
@@ -382,21 +384,30 @@
   <div class="wrap">
     <div class="kick"><span class="de">Preisliste</span><span class="en">Price list</span></div>
     <h2><span class="de">Studiomiete</span><span class="en">Studio rental</span></h2>
-    <div class="pricelist">
-      <div class="pricerow">
+    <div class="pricetiles">
+      <div class="ptile">
+        <img src="plan-assets/price-werbung.jpg" alt="" loading="lazy">
         <div class="pname">Werbung / Commercial</div>
-        <div class="pdesc"><span class="de">1 Studiotag 09–18 · ½ Tag 09–14 oder 13–18 (nur im Sommer) · Kampagne, Lookbook, Stills</span><span class="en">Full day 09–18 · ½ day 09–14 or 13–18 (summer only) · campaign, lookbook, stills</span></div>
-        <div class="pprice">&euro; 500<small><span class="de">½ Tag &euro; 300</span><span class="en">½ day &euro; 300</span></small></div>
+        <div>
+          <div class="pdesc"><span class="de">1 Studiotag 09–18 · ½ Tag 09–14 oder 13–18 (nur im Sommer) · Kampagne, Lookbook, Stills</span><span class="en">Full day 09–18 · ½ day 09–14 or 13–18 (summer only) · campaign, lookbook, stills</span></div>
+          <div class="pprice">&euro; 500<small><span class="de">½ Tag &euro; 300</span><span class="en">½ day &euro; 300</span></small></div>
+        </div>
       </div>
-      <div class="pricerow">
+      <div class="ptile">
+        <img src="plan-assets/price-editorial.jpg" alt="" loading="lazy">
         <div class="pname">Editorial</div>
-        <div class="pdesc"><span class="de">Werktags · 1 Studiotag 09–18 · Editorial-Produktion</span><span class="en">Weekdays · full day 09–18 · editorial production</span></div>
-        <div class="pprice">&euro; 300<small><span class="de">/ Tag</span><span class="en">/ day</span></small></div>
+        <div>
+          <div class="pdesc"><span class="de">Werktags · 1 Studiotag 09–18 · Editorial-Produktion</span><span class="en">Weekdays · full day 09–18 · editorial production</span></div>
+          <div class="pprice">&euro; 300<small><span class="de">/ Tag</span><span class="en">/ day</span></small></div>
+        </div>
       </div>
-      <div class="pricerow">
+      <div class="ptile">
+        <img src="plan-assets/price-workshop.jpg" alt="" loading="lazy">
         <div class="pname">Workshop</div>
-        <div class="pdesc"><span class="de">1 Tag oder 2 Tage Wochenende (Sa + So) · dein Workshop, inkl. Setup</span><span class="en">1 day or 2-day weekend (Sat + Sun) · your workshop, incl. setup</span></div>
-        <div class="pprice">&euro; 350<small><span class="de">2 Tage &euro; 650</span><span class="en">2 days &euro; 650</span></small></div>
+        <div>
+          <div class="pdesc"><span class="de">1 Tag oder 2 Tage Wochenende (Sa + So) · dein Workshop, inkl. Setup</span><span class="en">1 day or 2-day weekend (Sat + Sun) · your workshop, incl. setup</span></div>
+          <div class="pprice">&euro; 350<small><span class="de">2 Tage &euro; 650</span><span class="en">2 days &euro; 650</span></small></div>
+        </div>
       </div>
     </div>
     <p class="note"><span class="de">Netto zzgl. 20% MwSt &middot; Vorbereitungstag (Vortag) &amp; Details auf Anfrage &middot; </span><span class="en">Net plus 20% VAT &middot; prep day &amp; details on request &middot; </span><a class="ulink" href="mailto:info@theframe.at?subject=FRAME%20Anfrage"><span class="de">Details anfragen</span><span class="en">Request details</span></a></p>
