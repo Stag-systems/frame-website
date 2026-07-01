@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FRAME — Studio Wien</title>
-<meta name="description" content="FRAME — 200 m² Loftstudio im 7. Wiener Bezirk. Foto, Video, Werbung. Tageslicht, voll abdunkelbar.">
+<title>FRAME · Studio Wien</title>
+<meta name="description" content="FRAME · 200 m² Loftstudio im 7. Wiener Bezirk. Foto, Video, Werbung. Tageslicht, voll abdunkelbar.">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE3IiBoZWlnaHQ9IjExNyIgdmlld0JveD0iMCAwIDExNyAxMTciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgZmlsbD0iYmxhY2siLz4KPHJlY3QgeD0iMjYiIHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgMjYgMCkiIGZpbGw9ImJsYWNrIi8+CjxyZWN0IHg9IjExNyIgeT0iMTE3IiB3aWR0aD0iOTEiIGhlaWdodD0iMjYiIHRyYW5zZm9ybT0icm90YXRlKC0xODAgMTE3IDExNykiIGZpbGw9ImJsYWNrIi8+CjxyZWN0IHg9IjkxIiB5PSIxMTciIHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDkxIDExNykiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
-  :root{--ink:#0a0a0a;--bg:#fff;--mut:#8a8a8a;--line:#e6e6e6}
+  @font-face{font-family:'Century Gothic';src:url('fonts/century-gothic.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'Century Gothic';src:url('fonts/century-gothic-bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+  :root{--ink:#0a0a0a;--bg:#fff;--mut:#8a8a8a;--line:#e6e6e6;--display:'Century Gothic','Helvetica Neue',Arial,sans-serif}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -20,8 +22,8 @@
   .wrap{max-width:1340px;margin:0 auto;padding:0 32px}
   .mono{font-family:'IBM Plex Mono',monospace}
   /* ---------- HEADER: FRAMƎ stretched, menu between letters ---------- */
-  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(7px);border-bottom:1px solid var(--line)}
-  .hbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:16px 34px}
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(7px)}
+  .hbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:16px clamp(10px,1.4vw,18px)}
   .L{font-family:'IBM Plex Sans';font-weight:700;font-size:clamp(22px,3.1vw,40px);line-height:1;letter-spacing:.01em}
   .L.mir{display:inline-block;transform:scaleX(-1)}
   .hnav{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:#222}
@@ -30,15 +32,19 @@
   .hbtn:hover{background:#fff;color:var(--ink)}
   .hlang{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;cursor:pointer;color:#222;white-space:nowrap}
   .hlang:hover{opacity:.5}
-  .favlogo{display:none;align-items:center} .favlogo svg{height:26px;width:auto}
-  .burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:34px;height:30px;background:none;border:0;cursor:pointer;padding:0}
-  .burger span{display:block;height:1.6px;width:26px;background:var(--ink)}
-  .mobile-nav{position:fixed;inset:0;background:#fff;z-index:60;display:none;flex-direction:column;justify-content:center;gap:24px;padding:44px}
+  .favlogo{display:none;align-items:center;color:var(--ink)} .favlogo svg{height:22px;width:auto;display:block}
+  .burger{display:none;flex-direction:column;justify-content:space-between;width:26px;height:15px;background:none;border:0;cursor:pointer;padding:0}
+  .burger span{display:block;height:1.5px;width:100%;background:var(--ink)}
+  .mobile-nav{position:fixed;inset:0;background:#fff;z-index:60;display:none;flex-direction:column;padding:18px 22px 28px}
   .mobile-nav.open{display:flex}
-  .mobile-nav a{font-family:'IBM Plex Sans';font-weight:300;font-size:clamp(30px,8vw,46px);letter-spacing:-.01em}
-  .mobile-nav .mclose{position:absolute;top:26px;right:32px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;cursor:pointer}
-  .mobile-nav .btn{align-self:flex-start;font-size:13px;margin-top:6px}
-  .mobile-nav .mlang{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;cursor:pointer;color:var(--mut)}
+  .mnav-top{display:flex;align-items:center;justify-content:space-between}
+  .mnav-top .mlogo{color:var(--ink);display:flex} .mnav-top .mlogo svg{height:22px;width:auto;display:block}
+  .mclose{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
+  .mnav-links{margin:auto 0;display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
+  .mnav-links a{display:flex;align-items:baseline;gap:18px;padding:20px 0;border-top:1px solid var(--line);font-family:var(--display);font-weight:400;font-size:clamp(30px,9vw,46px);letter-spacing:-.01em;color:var(--ink);line-height:1}
+  .mnav-links a .mn{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;color:var(--mut)}
+  .mnav-foot{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .mnav-foot .btn{font-size:13px}
   /* contact form */
   .cform{margin-top:36px;max-width:680px}
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:26px}
@@ -54,30 +60,100 @@
   .btn.lightfill{background:#fff;color:#000;border-color:#fff} .btn.lightfill:hover{background:transparent;color:#fff}
   .kick{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
   /* ---------- HERO ---------- */
-  .hero{position:relative;min-height:88vh;display:flex;align-items:center;color:#fff;background:#000;border-bottom:1px solid var(--line);overflow:hidden}
-  .herovid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.02) brightness(.95);z-index:0}
-  .heroveil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.32),rgba(0,0,0,.6));z-index:1}
-  .heromark{position:relative;z-index:2;width:100%}
-  .hero .kick{color:rgba(255,255,255,.7)}
-  .herostatement{font-weight:300;font-size:clamp(30px,5.2vw,66px);line-height:1.04;letter-spacing:-.015em;margin:18px 0 0;margin-left:-.04em;max-width:16ch}
-  .herosub{font-size:clamp(15px,1.6vw,19px);max-width:52ch;margin-top:20px;color:rgba(255,255,255,.85)}
-  .herocta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .hero{background:#fff;padding:0 clamp(10px,1.4vw,18px) clamp(10px,1.4vw,18px);border-bottom:0}
+  .heroframe{position:relative;height:clamp(380px,74vh,820px);overflow:hidden;border:1px solid var(--line);border-top:0;border-radius:0}
+  .herovid{width:100%;height:100%;object-fit:cover;display:block}
+  .herograd{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,0) 52%);z-index:1;pointer-events:none}
+  .heroover{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;color:#fff;padding:0 24px clamp(30px,6vh,68px)}
+  .heroover .kick{color:rgba(255,255,255,.75)}
+  .herohead{font-family:var(--display);font-weight:400;font-size:clamp(26px,4vw,52px);line-height:1.02;letter-spacing:-.01em;color:#fff;margin-top:12px;max-width:20ch}
+  .herosub{font-size:clamp(14px,1.4vw,18px);color:rgba(255,255,255,.9);margin-top:14px;max-width:46ch;font-weight:300;line-height:1.5}
+  .herocta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap;justify-content:center}
+  .intro{padding:clamp(56px,8vw,104px) 0 0;border-bottom:0}
+  #raum{padding-top:44px}
+  .introstate{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.6vw,54px);line-height:1.18;letter-spacing:-.01em;max-width:none;color:var(--ink)}
   /* ---------- SECTIONS ---------- */
   section{padding:96px 0;border-bottom:1px solid var(--line)}
-  h2{font-weight:300;font-size:clamp(34px,5.5vw,72px);letter-spacing:-.02em;line-height:1.02;margin:18px 0 0}
+  h2{font-family:var(--display);font-weight:400;font-size:clamp(30px,4.2vw,56px);letter-spacing:-.005em;line-height:1.04;margin:14px 0 0}
+  /* ===== modular grid (Vuna-style) ===== */
+  .gband{display:grid;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:42px}
+  .gcell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 28px;min-width:0}
+  .stat{display:flex;flex-direction:column;justify-content:space-between;min-height:210px}
+  .stat .num{font-family:var(--display);font-weight:700;font-size:clamp(38px,4.2vw,60px);line-height:.95;letter-spacing:-.01em}
+  .stat .num .u{font-family:'IBM Plex Mono',monospace;font-size:.3em;color:var(--mut);letter-spacing:.04em;margin-left:7px}
+  .stat .cap{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);line-height:1.5;max-width:24ch}
+  .stats5{grid-template-columns:repeat(5,1fr)} .stats4{grid-template-columns:repeat(4,1fr)} .stats3{grid-template-columns:repeat(3,1fr)} .stats2{grid-template-columns:repeat(2,1fr)}
+  .studiotop{display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:start;margin-top:6px}
+  .studiotop .photo{aspect-ratio:4/3;border:1px solid var(--line);overflow:hidden}
+  .studiotop .photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04);display:block}
+  .pcell{display:flex;flex-direction:column;justify-content:space-between;min-height:230px}
+  .pcell .pt{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+  .pcell .pnum{font-family:var(--display);font-weight:400;font-size:clamp(40px,4.4vw,58px);line-height:.95;margin-top:18px}
+  .pcell .pcap{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--mut);line-height:1.65;margin-top:14px}
+  .lagemap{border:1px solid var(--line);margin-top:36px}
+  .glab{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:10px}
+  .gcell p{font-size:14px;color:#444;line-height:1.55;font-weight:300}
+  .gcell.info{min-height:150px}
+  .kemail{font-family:var(--display);font-weight:400;font-size:clamp(22px,2.2vw,32px);word-break:break-word;line-height:1.1;margin:20px 0}
+  .kemail a:hover{opacity:.5}
+  .gcell .cform{margin-top:0}
+  @media(max-width:760px){.stats2{grid-template-columns:1fr}}
+  /* ===== Listen / Spalten (kein Kasten-Raster) ===== */
+  .locgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:34px;max-width:820px}
+  .locblk .glab{margin-bottom:8px}
+  .locblk p{font-size:14px;color:#444;line-height:1.6;font-weight:300}
+  .pricelist{margin-top:42px;border-top:1px solid var(--line)}
+  .pricerow{display:grid;grid-template-columns:210px 1fr auto;gap:30px;align-items:baseline;padding:30px 0;border-bottom:1px solid var(--line)}
+  .pricerow .pname{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+  .pricerow .pdesc{font-size:14px;color:#444;line-height:1.6;font-weight:300}
+  .pricerow .pprice{font-family:var(--display);font-weight:400;font-size:clamp(26px,2.8vw,42px);white-space:nowrap;text-align:right;letter-spacing:-.01em}
+  .pricerow .pprice small{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mut);letter-spacing:.04em;display:block;margin-top:5px}
+  .kontaktcols{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start;margin-top:30px}
+  /* Fix im Studio — aufklappbare Quadrate */
+  .fixwrap{margin-top:64px}
+  .fixwrap .el{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin-bottom:24px}
+  .fixnav{display:flex;justify-content:flex-end;gap:8px;margin-bottom:14px}
+  .fixarrow{width:36px;height:36px;border:1px solid var(--line);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);transition:.12s}
+  .fixarrow:hover{border-color:var(--ink)}
+  .fixarrow svg{width:15px;height:15px}
+  .fixarrow.left svg{transform:scaleX(-1)}
+  .fixslider{display:flex;align-items:flex-start;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;border:1px solid var(--line);border-right:0;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none}
+  .fixslider::-webkit-scrollbar{display:none}
+  @media(max-width:720px){.fixnav{display:none}}
+  .fixcard{flex:0 0 auto;width:clamp(198px,23vw,258px);min-height:clamp(198px,23vw,258px);border-right:1px solid var(--line);padding:22px;display:flex;flex-direction:column;scroll-snap-align:start}
+  .fixcard .fixcta{margin-top:auto;padding-top:14px}
+  .fc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .fc-t{font-size:16px;line-height:1.22;letter-spacing:-.01em}
+  .fc-n{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mut);letter-spacing:.08em;white-space:nowrap}
+  .fc-body{font-size:13px;color:#555;line-height:1.5;margin-top:14px;font-weight:300}
+  .fixcta{display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+  .fixcta:hover{color:var(--ink)}
+  @media(max-width:520px){.fixcard{width:72vw}}
+  @media(max-width:820px){.locgrid{grid-template-columns:1fr 1fr}.kontaktcols{grid-template-columns:1fr;gap:32px}.pricerow{grid-template-columns:1fr auto;gap:6px 24px}.pricerow .pdesc{grid-column:1/-1;order:3}}
+  @media(max-width:520px){.locgrid{grid-template-columns:1fr}}
+  @media(max-width:900px){.studiotop{grid-template-columns:1fr;gap:28px} .stats5{grid-template-columns:repeat(2,1fr)} .stats4{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.stats5,.stats4,.stats3{grid-template-columns:1fr 1fr} .gcell{padding:20px}}
   .lead{font-size:17px;max-width:46ch;margin-top:22px;color:#444}
   .lead + .lead{margin-top:18px}
   /* precision split */
   .precision{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:start;margin-top:8px}
   .visit{display:inline-block;margin-top:40px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;border-bottom:1.5px solid var(--ink);padding-bottom:5px}
   .visit:hover{opacity:.55}
-  .iarrow{width:.8em;height:.8em;display:inline-block;vertical-align:-.02em;margin-left:.5em}
+  .iarrow{width:1.05em;height:1.05em;display:inline-block;vertical-align:-.18em;margin-left:.45em}
   .specrow{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:20px;padding:30px 0;border-bottom:1px solid var(--line)}
   .specrow:first-child{border-top:1px solid var(--line)}
   .specrow .no{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;color:var(--mut)}
   .specrow .lab{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
   .specrow .val{font-weight:300;font-size:clamp(36px,4.6vw,62px);line-height:1;text-align:right;white-space:nowrap}
   .specrow .val .u{font-size:.4em;color:var(--mut);margin-left:5px;letter-spacing:.02em}
+  .specrows.compact{margin-top:0}
+  .specrows.compact .specrow{padding:12px 0}
+  .specrows.compact .val{font-size:clamp(22px,2.6vw,38px)}
+  .specrows.notop .specrow:first-child{border-top:0}
+  .factframe{position:relative;padding:18px clamp(22px,3vw,40px);margin:4px auto 0;max-width:640px}
+  .factframe .cnr{position:absolute;width:24px;height:24px;color:var(--ink)}
+  .factframe .cnr svg{width:100%;height:100%;display:block}
+  .factframe .tl{top:0;left:0}.factframe .br{right:0;bottom:0}
   /* Ausstattung — gerahmt */
   .equip{margin:64px auto 0;max-width:960px;display:grid;grid-template-columns:470px 1fr;gap:60px;align-items:center}
   .equipleft{min-width:0}
@@ -107,10 +183,18 @@
   .card .hours{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--mut);margin-top:12px}
   .card .p{font-family:'IBM Plex Mono',monospace;font-size:13px;margin-top:20px;letter-spacing:.05em}
   .note{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--mut);letter-spacing:.05em;margin-top:20px;text-transform:uppercase}
-  .mapfilters{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
-  .mfbtn{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1.4px solid var(--ink);background:#fff;color:var(--ink);padding:8px 13px;cursor:pointer;transition:.12s}
-  .mfbtn.on{background:var(--ink);color:#fff}
+  .mapfilters{display:flex;flex-wrap:wrap;gap:22px;margin-top:30px}
+  .mfbtn{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:0;background:none;color:var(--mut);padding:2px 0;cursor:pointer;border-bottom:1.5px solid transparent;transition:.12s}
+  .mfbtn:hover{color:var(--ink)}
+  .mfbtn.on{color:var(--ink);border-bottom-color:var(--ink)}
   .map{width:100%;height:440px;margin-top:14px;border:1px solid var(--ink)}
+  /* POI-Popups on-brand */
+  .leaflet-popup-content-wrapper{border-radius:0;border:1px solid var(--ink);box-shadow:0 3px 14px rgba(0,0,0,.12)}
+  .leaflet-popup-content{margin:13px 16px;font-family:'IBM Plex Sans',sans-serif}
+  .leaflet-popup-content b{font-weight:700;font-size:14px;display:block;letter-spacing:-.01em}
+  .leaflet-popup-content .poisub{display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;color:var(--mut);margin-top:6px;line-height:1.55;text-transform:uppercase}
+  .leaflet-popup-content .poilink{display:inline-block;margin-top:9px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--ink);color:var(--ink)}
+  .leaflet-popup-content .poilink:hover{opacity:.55}
   .favmark{width:24px;height:24px;background:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE3IiBoZWlnaHQ9IjExNyIgdmlld0JveD0iMCAwIDExNyAxMTciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgZmlsbD0iYmxhY2siLz4KPHJlY3QgeD0iMjYiIHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgMjYgMCkiIGZpbGw9ImJsYWNrIi8+CjxyZWN0IHg9IjExNyIgeT0iMTE3IiB3aWR0aD0iOTEiIGhlaWdodD0iMjYiIHRyYW5zZm9ybT0icm90YXRlKC0xODAgMTE3IDExNykiIGZpbGw9ImJsYWNrIi8+CjxyZWN0IHg9IjkxIiB5PSIxMTciIHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDkxIDExNykiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=) center/contain no-repeat}
   .poimark{width:14px;height:14px;background:#000;border:2px solid #fff;border-radius:50%;box-shadow:0 0 0 1px #000}
   .ulink{border-bottom:1.5px solid var(--ink)}
@@ -120,17 +204,20 @@
   .infoblk p{margin-top:6px;font-size:16px} .infoblk + .infoblk{margin-top:24px}
   .contactbig{font-weight:300;font-size:clamp(24px,3.4vw,40px);margin-top:12px}
   .contactbig a{border-bottom:1.5px solid var(--ink)}
-  footer{padding:50px 0}
-  .fbar{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
-  .fbar svg{height:22px;width:auto}
-  .fmeta{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);line-height:1.9;text-align:right}
+  footer{padding:90px 0 22px}
+  .fmark svg{width:100%;height:auto;display:block}
+  .flinks{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:34px;border-top:1px solid var(--line);padding-top:18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#222}
+  .flinks a:hover{opacity:.5}
+  .flinks .cpr{color:var(--mut)}
+  @media(max-width:720px){.flinks{gap:12px 20px;font-size:10px;justify-content:flex-start}}
   @media(max-width:1040px){
     .hfull{display:none!important} .favlogo{display:flex} .burger{display:flex}
+    .hbar{padding:18px 22px}
   }
   @media(max-width:860px){
     .precision{grid-template-columns:1fr;gap:30px} .cards{grid-template-columns:1fr} .twocol{grid-template-columns:1fr}
     .frow{grid-template-columns:1fr;gap:0}
-    section{padding:64px 0} .hero{min-height:80vh} .map{height:340px}
+    section{padding:64px 0} .hero{padding:0 10px 10px} .heroframe{height:84vh} .map{height:340px}
   }
 </style>
 </head>
@@ -139,14 +226,14 @@
 <!-- ===== LOADING-ANIMATION (Favicon → Header) ===== -->
 <style>
   #frmldr{position:fixed;inset:0;z-index:9999;background:#fff;overflow:hidden}
-  #frmldr .lblk{position:absolute;inset:0;will-change:transform}
+  #frmldr .lblk{position:absolute;inset:0;will-change:transform;opacity:0}
   #frmldr .lbar{position:absolute;left:0;right:0;background:#fff;opacity:0;z-index:1}
-  #frmldr .lg{position:absolute;font-family:'IBM Plex Sans';font-weight:700;color:var(--ink);line-height:1;transform:translate(-50%,-50%);z-index:3;will-change:left,opacity}
+  #frmldr .lg{position:absolute;left:0;top:0;font-family:'IBM Plex Sans';font-weight:700;color:var(--ink);line-height:1;z-index:3;will-change:transform,opacity}
   #frmldr .lg.mir>span{display:inline-block;transform:scaleX(-1)}
   #frmldr .ln{position:absolute;transform:translate(-50%,-50%);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#222;white-space:nowrap;opacity:0;z-index:3}
   #frmldr .lbtn{position:absolute;transform:translate(-50%,-50%);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;border:1.4px solid var(--ink);background:var(--ink);color:#fff;padding:8px 14px;white-space:nowrap;opacity:0;z-index:3}
   #frmldr .llang{position:absolute;transform:translate(-50%,-50%);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#222;white-space:nowrap;opacity:0;z-index:3}
-  #frmldr .lbrk{position:absolute;color:var(--ink);z-index:4} #frmldr .lbrk svg{width:100%;height:100%;display:block}
+  #frmldr .lbrk{position:absolute;left:0;top:0;color:var(--ink);z-index:4;will-change:transform,opacity} #frmldr .lbrk svg{width:100%;height:100%;display:block}
   #frmldr.done{opacity:0;transition:opacity .28s ease;pointer-events:none}
 </style>
 <div id="frmldr" aria-hidden="true">
@@ -154,7 +241,6 @@
     <div class="lbar" id="ldbar"></div>
     <span class="lg" data-i="0">F</span><span class="lg" data-i="1">R</span><span class="lg" data-i="2">A</span><span class="lg" data-i="3">M</span><span class="lg mir" data-i="4"><span>E</span></span>
     <span class="ln" data-k="0">Studio</span><span class="ln" data-k="1">Angebot</span><span class="ln" data-k="2">Lage</span><span class="ln" data-k="3">Kontakt</span>
-    <a class="lbtn" id="ldbtn">BUCHEN</a><span class="llang" id="ldlang">DE&middot;EN</span>
     <div class="lbrk" id="ldbL"><svg viewBox="0 0 117 117" fill="currentColor"><rect width="91" height="26"/><rect x="26" width="91" height="26" transform="rotate(90 26 0)"/></svg></div>
     <div class="lbrk" id="ldbR"><svg viewBox="0 0 117 117" fill="currentColor"><rect x="117" y="117" width="91" height="26" transform="rotate(-180 117 117)"/><rect x="91" y="117" width="91" height="26" transform="rotate(-90 91 117)"/></svg></div>
   </div>
@@ -162,11 +248,11 @@
 
 <header>
   <div class="hbar">
-    <a class="favlogo" href="#top" aria-label="FRAME"><svg viewBox="0 0 117 117" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="91" height="26" fill="black"/>
-<rect x="26" width="91" height="26" transform="rotate(90 26 0)" fill="black"/>
-<rect x="117" y="117" width="91" height="26" transform="rotate(-180 117 117)" fill="black"/>
-<rect x="91" y="117" width="91" height="26" transform="rotate(-90 91 117)" fill="black"/>
+    <a class="favlogo" href="#top" aria-label="FRAME"><svg viewBox="0 0 117 117" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<rect width="91" height="26"/>
+<rect x="26" width="91" height="26" transform="rotate(90 26 0)"/>
+<rect x="117" y="117" width="91" height="26" transform="rotate(-180 117 117)"/>
+<rect x="91" y="117" width="91" height="26" transform="rotate(-90 91 117)"/>
 </svg>
 </a>
     <span class="L hfull">F</span>
@@ -178,111 +264,132 @@
     <span class="L hfull">M</span>
     <a class="hnav hfull" href="#kontakt"><span class="de">Kontakt</span><span class="en">Contact</span></a>
     <span class="L mir hfull">E</span>
-    <a class="hbtn hfull" href="#kontakt"><span class="de">BUCHEN</span><span class="en">BOOK</span></a>
-    <span class="hlang hfull" onclick="toggleLang()"><b class="de">DE</b><span class="de">·EN</span><b class="en">EN</b><span class="en">·DE</span></span>
     <button class="burger" onclick="toggleMenu()" aria-label="Menü"><span></span><span></span><span></span></button>
   </div>
 </header>
 <nav class="mobile-nav" id="mnav">
-  <span class="mclose" onclick="toggleMenu()"><span class="de">SCHLIESSEN ✕</span><span class="en">CLOSE ✕</span></span>
-  <a href="#raum" onclick="toggleMenu()"><span class="de">Studio</span><span class="en">Space</span></a>
-  <a href="#angebot" onclick="toggleMenu()"><span class="de">Angebot</span><span class="en">Rates</span></a>
-  <a href="#lage" onclick="toggleMenu()"><span class="de">Lage</span><span class="en">Location</span></a>
-  <a href="#kontakt" onclick="toggleMenu()"><span class="de">Kontakt</span><span class="en">Contact</span></a>
-  <a class="btn" href="#kontakt" onclick="toggleMenu()"><span class="de">BUCHEN</span><span class="en">BOOK</span></a>
-  <span class="mlang" onclick="toggleLang()"><b class="de">DE</b><span class="de"> · EN</span><b class="en">EN</b><span class="en"> · DE</span></span>
+  <div class="mnav-top">
+    <a class="mlogo" href="#top" onclick="toggleMenu()" aria-label="FRAME"><svg viewBox="0 0 117 117" fill="currentColor" aria-hidden="true"><rect width="91" height="26"/><rect x="26" width="91" height="26" transform="rotate(90 26 0)"/><rect x="117" y="117" width="91" height="26" transform="rotate(-180 117 117)"/><rect x="91" y="117" width="91" height="26" transform="rotate(-90 91 117)"/></svg></a>
+    <span class="mclose" onclick="toggleMenu()"><span class="de">Schließen ✕</span><span class="en">Close ✕</span></span>
+  </div>
+  <div class="mnav-links">
+    <a href="#raum" onclick="toggleMenu()"><span class="mn">01</span><span class="de">Studio</span><span class="en">Space</span></a>
+    <a href="#lage" onclick="toggleMenu()"><span class="mn">02</span><span class="de">Lage</span><span class="en">Location</span></a>
+    <a href="#angebot" onclick="toggleMenu()"><span class="mn">03</span><span class="de">Preisliste</span><span class="en">Prices</span></a>
+    <a href="#kontakt" onclick="toggleMenu()"><span class="mn">04</span><span class="de">Kontakt</span><span class="en">Contact</span></a>
+  </div>
+  <div class="mnav-foot">
+    <a class="btn" href="#kontakt" onclick="toggleMenu()"><span class="de">STUDIO BUCHEN</span><span class="en">BOOK THE STUDIO</span></a>
+  </div>
 </nav>
 
 <a id="top"></a>
 <section class="hero">
-  <video class="herovid" autoplay muted loop playsinline aria-hidden="true" poster=""><source src="frame-studio.mp4" type="video/mp4"></video>
-  <div class="heroveil"></div>
-  <div class="wrap heromark">
-    <div class="kick">Studio &middot; Wien 1070</div>
-    <h1 class="herostatement"><span class="de">Studio für Foto, Video und Werbung.</span><span class="en">Studio for photo, film and advertising.</span></h1>
-    <p class="herosub"><span class="de">200&nbsp;m² Loft im 7. Wiener Bezirk, mitten im ViennaPhotoDistrict. Tageslicht, voll abdunkelbar. Verleih eine Gasse weiter — ernsthaft ausgestattet, ohne Insider-Code.</span><span class="en">200&nbsp;m² loft in Vienna's 7th district, in the ViennaPhotoDistrict. Daylight, fully blackout-capable. Rental one street over — seriously equipped, no insider code.</span></p>
-    <div class="herocta">
-      <a class="btn lightfill" href="mailto:info@theframe.at?subject=FRAME%20Anfrage"><span class="de">STUDIO BUCHEN</span><span class="en">BOOK THE STUDIO</span></a>
-      <a class="btn light" href="#raum"><span class="de">DER RAUM</span><span class="en">THE SPACE</span></a>
+  <div class="heroframe">
+    <video class="herovid" autoplay muted loop playsinline aria-hidden="true" poster=""><source src="frame-studio.mp4" type="video/mp4"></video>
+    <div class="herograd"></div>
+    <div class="heroover">
+      <div class="kick">THE FRAME &middot; WIEN 1070</div>
+      <p class="herohead"><span class="de">Studio für Foto, Video und Werbung.</span><span class="en">Studio for photo, film and advertising.</span></p>
+      <div class="herocta">
+        <a class="btn lightfill" href="#kontakt"><span class="de">STUDIO BUCHEN</span><span class="en">BOOK THE STUDIO</span></a>
+        <a class="btn light" href="#raum"><span class="de">DER RAUM</span><span class="en">THE SPACE</span></a>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="raum">
-  <div class="wrap precision">
-    <div class="prec-l">
-      <div class="kick">01 &middot; <span class="de">Das Studio</span><span class="en">The studio</span></div>
-      <h2><span class="de">Ein Raum, der mitarbeitet.</span><span class="en">A space that works with you.</span></h2>
-      <p class="lead"><span class="de">200 m² Loft in Wien-Neubau. Tageslicht, voll abdunkelbar über schwarze Vorhänge und Jalousien — du bestimmst das Licht.</span><span class="en">200 m² loft in Vienna's 7th. Daylight, fully blackout via black curtains and blinds — you control the light.</span></p>
-      <p class="lead"><span class="de">Aufnahmetisch, rollbares Laptop-Stativ, Schminkplatz. Was nicht im Haus ist, holst du beim Verleih eine Gasse weiter.</span><span class="en">Shooting table, rolling laptop stand, make-up station. What's not in-house is at the rental one street over.</span></p>
-    </div>
-    <div class="specrows">
-      <div class="specrow"><span class="no">001</span><span class="lab"><span class="de">Studiofläche</span><span class="en">Studio floor</span></span><span class="val">200<span class="u">m²</span></span></div>
-      <div class="specrow"><span class="no">002</span><span class="lab"><span class="de">Verleih ums Eck</span><span class="en">Rental next door</span></span><span class="val">5<span class="u">Min</span></span></div>
-      <div class="specrow"><span class="no">003</span><span class="lab"><span class="de">Bezirk</span><span class="en">District</span></span><span class="val">1070<span class="u">Wien</span></span></div>
-    </div>
+<section class="intro">
+  <div class="wrap">
+    <h1 class="introstate"><span class="de">200&nbsp;m² Loftstudio mitten im Vienna Photo District. Hell, wandelbar und bei Bedarf komplett dunkel.</span><span class="en">200&nbsp;m² loft studio in the heart of the Vienna Photo District. Bright, adaptable and fully dark when needed.</span></h1>
   </div>
-  <div class="wrap equip">
-    <div class="equipleft">
-    <div class="el"><span class="de">Fix im Studio</span><span class="en">Always in the studio</span></div>
-    <div class="framebox">
+</section>
+
+<section id="raum">
+  <div class="wrap">
+    <div class="factframe">
       <span class="cnr tl"><svg viewBox="0 0 117 117" fill="currentColor" aria-hidden="true"><rect width="91" height="26"/><rect x="26" width="91" height="26" transform="rotate(90 26 0)"/></svg></span>
       <span class="cnr br"><svg viewBox="0 0 117 117" fill="currentColor" aria-hidden="true"><rect x="117" y="117" width="91" height="26" transform="rotate(-180 117 117)"/><rect x="91" y="117" width="91" height="26" transform="rotate(-90 91 117)"/></svg></span>
-      <div class="featgrid">
-        <div class="feat2"><span class="n">Tageslicht</span><span class="d"><span class="de">große Fensterfront</span><span class="en">large window front</span></span></div>
-        <div class="feat2"><span class="n"><span class="de">Voll abdunkelbar</span><span class="en">Full blackout</span></span><span class="d"><span class="de">Vorhänge + Jalousien</span><span class="en">curtains + blinds</span></span></div>
-        <div class="feat2"><span class="n"><span class="de">Bis zu 3 Sets</span><span class="en">Up to 3 sets</span></span><span class="d"><span class="de">parallel aufgebaut</span><span class="en">in parallel</span></span></div>
-        <div class="feat2"><span class="n">Aufnahmetisch</span><span class="d"><span class="de">3 m, rollbar</span><span class="en">3 m, rolling</span></span></div>
-        <div class="feat2"><span class="n">Schminkplatz</span><span class="d"><span class="de">Spiegel + Licht</span><span class="en">mirror + light</span></span></div>
-        <div class="feat2"><span class="n"><span class="de">Steamer + Bügelbrett</span><span class="en">Steamer + iron</span></span><span class="d"><span class="de">Garderobe</span><span class="en">wardrobe</span></span></div>
-        <div class="feat2"><span class="n"><span class="de">Bad mit Dusche</span><span class="en">Bathroom + shower</span></span><span class="d"><span class="de">Teeküche + Sitzbereich</span><span class="en">kitchenette + lounge</span></span></div>
-        <div class="feat2"><span class="n">WLAN</span><span class="d"><span class="de">+ Musikanlage</span><span class="en">+ sound system</span></span></div>
-        <div class="feat2"><span class="n"><span class="de">Strom, Grip + Stative</span><span class="en">Power, grip + stands</span></span><span class="d"><span class="de">inklusive</span><span class="en">included</span></span></div>
+      <div class="specrows compact notop">
+      <div class="specrow"><span class="no">001</span><span class="lab"><span class="de">Studiofläche</span><span class="en">Studio floor</span></span><span class="val">200<span class="u">m²</span></span></div>
+      <div class="specrow"><span class="no">002</span><span class="lab"><span class="de">Sets parallel</span><span class="en">Sets in parallel</span></span><span class="val">3</span></div>
+      <div class="specrow"><span class="no">003</span><span class="lab"><span class="de">Abdunkeln</span><span class="en">Blackout</span></span><span class="val">100<span class="u">%</span></span></div>
+      <div class="specrow"><span class="no">004</span><span class="lab"><span class="de">Verleih ums Eck</span><span class="en">Rental next door</span></span><span class="val">5<span class="u">Min</span></span></div>
+      <div class="specrow"><span class="no">005</span><span class="lab"><span class="de">Bezirk</span><span class="en">District</span></span><span class="val">1070<span class="u">Wien</span></span></div>
       </div>
     </div>
-    </div>
-    <div class="equipnote">
-      <div class="el">Equipment</div>
-      <p><span class="de">Im Studio vorhandenes Equipment kann genutzt und teils gemietet werden. Eigenes ist willkommen — was fehlt, kommt vom Verleih eine Gasse weiter oder wird auf Anfrage für den Drehtag bereitgestellt.</span><span class="en">Equipment in the studio can be used and partly rented. Bring your own too — what's missing comes from the rental one street over, or we provide it for the shoot day on request.</span></p>
-      <a class="equiplink" href="#kontakt"><span class="de">Equipment anfragen</span><span class="en">Request equipment</span><svg class="iarrow" viewBox="0 0 141 141" fill="currentColor" aria-hidden="true"><rect x="140.694" y="70.0203" width="91" height="26" transform="rotate(135 140.694 70.0203)"/><rect x="122.309" y="88.405" width="91" height="26" transform="rotate(-135 122.309 88.405)"/><rect x="104" y="83.6736" width="91" height="26" transform="rotate(180 104 83.6736)"/></svg></a>
+
+    <div class="fixwrap">
+      <div class="fixnav">
+        <button class="fixarrow left" onclick="slideFix(-1)" aria-label="zurück"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button>
+        <button class="fixarrow" onclick="slideFix(1)" aria-label="weiter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button>
+      </div>
+      <div class="fixslider" id="fixslider">
+        <div class="fixcard">
+          <div class="fc-head"><span class="fc-t">Styling</span><span class="fc-n">01.</span></div>
+          <div class="fc-body"><span class="de">Tageslicht, Schminkplatz mit Spiegel &amp; Licht, Steamer, Bügelbrett &amp; Garderobe.</span><span class="en">Daylight, make-up station with mirror &amp; light, steamer, iron &amp; wardrobe.</span></div>
+        </div>
+        <div class="fixcard">
+          <div class="fc-head"><span class="fc-t">Equipment</span><span class="fc-n">02.</span></div>
+          <div class="fc-body"><span class="de">Aufnahmetisch 3 m rollbar &amp; Laptop-Stativ. Strom, Grip &amp; Stative inklusive. Vieles steht im Studio zur Miete bereit. Auf Wunsch liegt am Shootingtag alles für dich bereit.</span><span class="en">3 m rolling shooting table &amp; laptop stand. Power, grip &amp; stands included. Much is available to rent in-house. On request everything is ready for your shoot day.</span></div>
+          <a class="fixcta" href="#kontakt"><span class="de">Equipment anfragen</span><span class="en">Request equipment</span><svg class="iarrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></a>
+        </div>
+        <div class="fixcard">
+          <div class="fc-head"><span class="fc-t"><span class="de">Hintergründe</span><span class="en">Backdrops</span></span><span class="fc-n">03.</span></div>
+          <div class="fc-body"><span class="de">Papierhintergründe &amp; Sweeps, tageweise zur Miete. 15 €/lfm.</span><span class="en">Paper backdrops &amp; sweeps, rentable by the day. € 15/rm.</span></div>
+        </div>
+        <div class="fixcard">
+          <div class="fc-head"><span class="fc-t"><span class="de">Verleih ums Eck</span><span class="en">Rental next door</span></span><span class="fc-n">04.</span></div>
+          <div class="fc-body"><span class="de">Was fehlt, kommt vom Digitalkameraverleih eine Gasse weiter. Umfangreich, tageweise.</span><span class="en">What's missing comes from the camera rental one street over. Extensive, by the day.</span></div>
+        </div>
+        <div class="fixcard">
+          <div class="fc-head"><span class="fc-t"><span class="de">Pause &amp; Komfort</span><span class="en">Break &amp; comfort</span></span><span class="fc-n">05.</span></div>
+          <div class="fc-body"><span class="de">Teeküche &amp; Sitzbereich, Bad mit Dusche, WLAN &amp; Musikanlage.</span><span class="en">Kitchenette &amp; lounge, bathroom with shower, WiFi &amp; sound system.</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="lage">
   <div class="wrap">
-    <div class="kick">02 &middot; <span class="de">Lage</span><span class="en">Location</span></div>
+    <div class="kick"><span class="de">Lage</span><span class="en">Location</span></div>
     <h2>Neustiftgasse 107/2 &middot; 1070 Wien</h2>
     <div class="mapfilters">
       <button class="mfbtn on" data-cat="hotel" onclick="toggleCat(this)">Hotels</button>
       <button class="mfbtn on" data-cat="rental" onclick="toggleCat(this)"><span class="de">Verleih</span><span class="en">Rental</span></button>
+      <button class="mfbtn on" data-cat="food" onclick="toggleCat(this)"><span class="de">Restaurants &amp; Bars</span><span class="en">Food &amp; bars</span></button>
       <button class="mfbtn on" data-cat="shop" onclick="toggleCat(this)"><span class="de">Supermärkte</span><span class="en">Groceries</span></button>
-      <button class="mfbtn on" data-cat="parking" onclick="toggleCat(this)"><span class="de">Parkgaragen</span><span class="en">Parking</span></button>
       <button class="mfbtn on" data-cat="transit" onclick="toggleCat(this)"><span class="de">Öffis</span><span class="en">Transit</span></button>
     </div>
-    <div id="map" class="map"></div>
-    <p class="note"><span class="de">Billa, Bipa, Restaurants &amp; Bars, Equipmentverleih u.v.m. in unmittelbarer Nähe.</span><span class="en">Billa, Bipa, restaurants &amp; bars, equipment rental and more — all close by.</span></p>
-    <div class="twocol">
-      <div>
-        <div class="infoblk"><div class="l"><span class="de">Anreise</span><span class="en">Getting there</span></div><p><span class="de">Westbahnhof ~20 min &middot; Wien Mitte ~30 min &middot; Hauptbahnhof ~30 min &middot; Flughafen Schwechat ~1 Std<br>Tram 49 &amp; 5 &middot; Bus 48A &middot; U6 / U2 / U3</span><span class="en">Westbahnhof ~20 min &middot; Wien Mitte ~30 min &middot; Central Station ~30 min &middot; Airport ~1 hr<br>Tram 49 &amp; 5 &middot; Bus 48A &middot; U6 / U2 / U3</span></p></div>
-        <div class="infoblk"><div class="l"><span class="de">Parken</span><span class="en">Parking</span></div><p><span class="de">Hotel mit Garage Schottenfeldgasse (5 Min zu Fuß) &middot; öffentliche Garage Burggasse (5 min)</span><span class="en">Hotel with garage on Schottenfeldgasse (5 min walk) &middot; public garage Burggasse (5 min)</span></p></div>
-      </div>
-      <div>
-        <div class="infoblk"><div class="l"><span class="de">Zugang</span><span class="en">Access</span></div><p><span class="de">Hochparterre, ein paar Stufen.</span><span class="en">Raised ground floor, a few steps.</span></p></div>
-        <div class="infoblk"><div class="l">District</div><p><span class="de">Mitten im ViennaPhotoDistrict, innerhalb des Gürtels.</span><span class="en">In the ViennaPhotoDistrict, inside the Gürtel.</span></p></div>
-      </div>
+    <div id="map" class="map lagemap"></div>
+    <div class="locgrid">
+      <div class="locblk"><div class="glab"><span class="de">Anreise</span><span class="en">Getting there</span></div><p><span class="de">Westbahnhof ~20 min · Wien Mitte ~30 min · Hauptbahnhof ~30 min · Flughafen Schwechat ~1 Std · Tram 49 &amp; 5 · Bus 48A · U6 / U2 / U3</span><span class="en">Westbahnhof ~20 min · Wien Mitte ~30 min · Central Station ~30 min · Airport ~1 hr · Tram 49 &amp; 5 · Bus 48A · U6 / U2 / U3</span></p></div>
+      <div class="locblk"><div class="glab"><span class="de">Parken</span><span class="en">Parking</span></div><p><span class="de">Hotel mit Garage Schottenfeldgasse (5 Min zu Fuß) · öffentliche Garage Burggasse (5 min)</span><span class="en">Hotel with garage on Schottenfeldgasse (5 min walk) · public garage Burggasse (5 min)</span></p></div>
     </div>
   </div>
 </section>
 
 <section id="angebot">
   <div class="wrap">
-    <div class="kick">03 &middot; <span class="de">Was du buchst</span><span class="en">What you book</span></div>
-    <h2><span class="de">Preisliste Studiomiete</span><span class="en">Studio rental — price list</span></h2>
-    <div class="cards">
-      <div class="card"><div class="t">Werbung / Commercial</div><div class="d"><span class="de">Voller Studiotag für Kampagne, Lookbook, Stills.</span><span class="en">Full studio day for campaign, lookbook, stills.</span></div><div class="hours"><span class="de">1 Tag 09&ndash;18 &middot; &frac12; Tag 09&ndash;14 oder 13&ndash;18</span><span class="en">Full day 09&ndash;18 &middot; &frac12; day 09&ndash;14 or 13&ndash;18</span></div><div class="p">&euro; 500 / <span class="de">TAG</span><span class="en">DAY</span> &middot; &frac12; &euro; 300</div></div>
-      <div class="card"><div class="t">Editorial</div><div class="d"><span class="de">Werktags-Tarif für Editorial-Produktion.</span><span class="en">Weekday rate for editorial.</span></div><div class="hours"><span class="de">Werktags &middot; 1 Tag 09&ndash;18</span><span class="en">Weekdays &middot; full day 09&ndash;18</span></div><div class="p">&euro; 300 / <span class="de">TAG</span><span class="en">DAY</span></div></div>
-      <div class="card"><div class="t">Workshop</div><div class="d"><span class="de">Raum für deine eigenen Workshops — buchbar inkl. Setup.</span><span class="en">Space for your own workshops — bookable incl. setup.</span></div><div class="hours"><span class="de">1 Tag &middot; oder 2 Tage Wochenende (Sa + So)</span><span class="en">1 day &middot; or 2-day weekend (Sat + Sun)</span></div><div class="p">&euro; 350 / 1 <span class="de">TAG</span><span class="en">DAY</span> &middot; &euro; 650 / 2 <span class="de">TAGE</span><span class="en">DAYS</span></div></div>
+    <div class="kick"><span class="de">Preisliste</span><span class="en">Price list</span></div>
+    <h2><span class="de">Studiomiete</span><span class="en">Studio rental</span></h2>
+    <div class="pricelist">
+      <div class="pricerow">
+        <div class="pname">Werbung / Commercial</div>
+        <div class="pdesc"><span class="de">1 Studiotag 09–18 · ½ Tag 09–14 oder 13–18 (nur im Sommer) · Kampagne, Lookbook, Stills</span><span class="en">Full day 09–18 · ½ day 09–14 or 13–18 (summer only) · campaign, lookbook, stills</span></div>
+        <div class="pprice">&euro; 500<small><span class="de">½ Tag &euro; 300</span><span class="en">½ day &euro; 300</span></small></div>
+      </div>
+      <div class="pricerow">
+        <div class="pname">Editorial</div>
+        <div class="pdesc"><span class="de">Werktags · 1 Studiotag 09–18 · Editorial-Produktion</span><span class="en">Weekdays · full day 09–18 · editorial production</span></div>
+        <div class="pprice">&euro; 300<small><span class="de">/ Tag</span><span class="en">/ day</span></small></div>
+      </div>
+      <div class="pricerow">
+        <div class="pname">Workshop</div>
+        <div class="pdesc"><span class="de">1 Tag oder 2 Tage Wochenende (Sa + So) · dein Workshop, inkl. Setup</span><span class="en">1 day or 2-day weekend (Sat + Sun) · your workshop, incl. setup</span></div>
+        <div class="pprice">&euro; 350<small><span class="de">2 Tage &euro; 650</span><span class="en">2 days &euro; 650</span></small></div>
+      </div>
     </div>
     <p class="note"><span class="de">Netto zzgl. 20% MwSt &middot; Vorbereitungstag (Vortag) &amp; Details auf Anfrage &middot; </span><span class="en">Net plus 20% VAT &middot; prep day &amp; details on request &middot; </span><a class="ulink" href="mailto:info@theframe.at?subject=FRAME%20Anfrage"><span class="de">Details anfragen</span><span class="en">Request details</span></a></p>
   </div>
@@ -292,8 +399,13 @@
   <div class="wrap">
     <div class="kick">04 &middot; <span class="de">Kontakt</span><span class="en">Contact</span></div>
     <h2><span class="de">Studio ansehen oder direkt anfragen?</span><span class="en">See the studio or just ask?</span></h2>
-    <p class="lead"><span class="de">Schreib uns — wir melden uns mit Verfügbarkeit und Angebot.</span><span class="en">Drop us a line — we'll get back with availability and a quote.</span></p>
-    <p class="contactbig"><a href="mailto:info@theframe.at">info@theframe.at</a></p>
+    <div class="kontaktcols">
+    <div>
+      <p class="lead" style="margin-top:0"><span class="de">Schreib uns. Wir melden uns mit Verfügbarkeit und Angebot.</span><span class="en">Drop us a line. We'll get back with availability and a quote.</span></p>
+      <p class="kemail"><a href="mailto:info@theframe.at">info@theframe.at</a></p>
+      <p class="note" style="margin-top:0"><a class="ulink" href="https://instagram.com/theframe.vienna" target="_blank" rel="noopener">INSTAGRAM @theframe.vienna</a><br>NEUSTIFTGASSE 107/2 &middot; 1070 WIEN</p>
+    </div>
+    <div>
     <form class="cform" onsubmit="return sendForm(event)">
       <div class="frow">
         <label><span class="fl">Name</span><input name="name" required></label>
@@ -307,21 +419,29 @@
       <label><span class="fl"><span class="de">Nachricht</span><span class="en">Message</span></span><textarea name="msg" rows="4"></textarea></label>
       <button class="btn" type="submit"><span class="de">ANFRAGE SENDEN</span><span class="en">SEND INQUIRY</span></button>
     </form>
-    <p class="note"><a class="ulink" href="mailto:info@theframe.at">info@theframe.at</a> &middot; <a class="ulink" href="https://instagram.com/theframe.vienna" target="_blank" rel="noopener">INSTAGRAM @theframe.vienna</a></p>
+    </div>
+    </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap fbar">
-    <div><svg viewBox="0 0 801 138" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M707.215 8.34012e-05L800.458 9.15527e-05L800.458 137.019L707.215 137.019L707.215 110.518L770.62 110.518L770.62 82.4467L716.244 82.4467L716.244 56.1423L770.62 56.1423L770.62 26.5008L707.215 26.5008L707.215 8.34012e-05Z" fill="black"/>
-<path d="M505.154 137.018V0H536.759L555.015 34.9417L570.326 64.1906H570.719L585.834 34.9417L603.894 0H635.695V137.018H607.624V68.3129V47.1124H607.035L597.023 67.1351L570.326 115.622L544.218 67.3314L533.814 45.7382H533.225V68.3129V137.018H505.154Z" fill="black"/>
-<path d="M444.974 137.018H413.959L404.144 104.432H358.405L348.59 137.018H318.36L363.509 0H400.414L444.974 137.018ZM396.88 79.1095L388.44 50.6458L381.569 27.0896H380.587L373.913 50.6458L365.472 79.1095H396.88Z" fill="black"/>
-<path d="M185.89 86.7653V137.018H156.052V0H221.028C229.534 0 236.863 1.83215 243.014 5.49644C249.165 9.16074 253.941 14.2646 257.344 20.808C260.746 27.3513 262.448 35.0071 262.448 43.7752C262.448 52.936 260.354 61.0498 256.166 68.1166C252.109 75.0526 245.893 80.091 237.517 83.2318L264.411 137.018H231.236L207.287 86.7653H185.89ZM185.89 61.6387H217.298C220.308 61.6387 222.86 61.1152 224.954 60.0683C227.048 59.0213 228.684 57.5163 229.862 55.5533C231.039 53.4594 231.628 50.973 231.628 48.0939V39.4566C231.628 36.4466 231.039 33.9602 229.862 31.9971C228.684 30.0341 227.048 28.5292 224.954 27.4822C222.86 26.4353 220.308 25.9118 217.298 25.9118H185.89V61.6387Z" fill="black"/>
-<path d="M29.8379 137.018H0V0H90.8876V26.5007H29.8379V54.5718H81.8578V80.8762H29.8379V137.018Z" fill="black"/>
+  <div class="wrap">
+    <div class="fmark"><svg viewBox="0 0 1398 138" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="FRAME">
+<path d="M1303.97 8.34012e-05L1397.21 9.15527e-05L1397.21 137.019L1303.97 137.019L1303.97 110.518L1367.38 110.518L1367.38 82.4467L1313 82.4467L1313 56.1423L1367.38 56.1423L1367.38 26.5008L1303.97 26.5008L1303.97 8.34012e-05Z" fill="black"/>
+<path d="M952.722 137.018V0H984.326L1002.58 34.9417L1017.89 64.1906H1018.29L1033.4 34.9417L1051.46 0H1083.26V137.018H1055.19V68.3129V47.1124H1054.6L1044.59 67.1351L1017.89 115.622L991.786 67.3314L981.382 45.7382H980.793V68.3129V137.018H952.722Z" fill="black"/>
+<path d="M743.352 137.018H712.337L702.522 104.432H656.783L646.968 137.018H616.738L661.887 0H698.792L743.352 137.018ZM695.258 79.1095L686.817 50.6458L679.947 27.0896H678.965L672.291 50.6458L663.85 79.1095H695.258Z" fill="black"/>
+<path d="M335.079 86.7653V137.018H305.241V0H370.217C378.723 0 386.052 1.83215 392.203 5.49644C398.354 9.16074 403.13 14.2646 406.533 20.808C409.935 27.3513 411.637 35.0071 411.637 43.7752C411.637 52.936 409.543 61.0498 405.355 68.1166C401.298 75.0526 395.082 80.091 386.706 83.2318L413.6 137.018H380.425L356.476 86.7653H335.079ZM335.079 61.6387H366.487C369.497 61.6387 372.049 61.1152 374.143 60.0683C376.237 59.0213 377.873 57.5163 379.051 55.5533C380.228 53.4594 380.817 50.973 380.817 48.0939V39.4566C380.817 36.4466 380.228 33.9602 379.051 31.9971C377.873 30.0341 376.237 28.5292 374.143 27.4822C372.049 26.4353 369.497 25.9118 366.487 25.9118H335.079V61.6387Z" fill="black"/>
+<path d="M29.8378 137.018H0V0H90.8876V26.5007H29.8378V54.5718H81.8577V80.8762H29.8378V137.018Z" fill="black"/>
 </svg>
 </div>
-    <div class="fmeta">NEUSTIFTGASSE 107/2 &middot; 1070 WIEN<br>INFO@THEFRAME.AT &middot; THEFRAME.AT<br>INSTAGRAM @THEFRAME.VIENNA<br><span class="de">FRAME ist Stefan Baumanns Studio &middot; studiobaumann.com</span><span class="en">FRAME is Stefan Baumann's studio &middot; studiobaumann.com</span></div>
+    <div class="flinks">
+      <a href="#kontakt"><span class="de">Kontakt</span><span class="en">Contact</span></a>
+      <a href="mailto:info@theframe.at">info@theframe.at</a>
+      <a href="https://instagram.com/theframe.vienna" target="_blank" rel="noopener">Instagram</a>
+      <a href="#"><span class="de">Impressum &amp; Datenschutz</span><span class="en">Imprint &amp; Privacy</span></a>
+      <a href="https://studiobaumann.com" target="_blank" rel="noopener">Studio Baumann</a>
+      <span class="cpr">© FRAME 2026</span>
+    </div>
   </div>
 </footer>
 
@@ -329,6 +449,8 @@
   function toggleLang(){document.body.classList.toggle('en');document.documentElement.lang=document.body.classList.contains('en')?'en':'de';}
   function toggleMenu(){document.getElementById('mnav').classList.toggle('open');}
   function toggleCat(b){b.classList.toggle('on'); if(window._mtoggle) window._mtoggle(b.getAttribute('data-cat'), b.classList.contains('on'));}
+  function toggleFix(el){var open=el.classList.contains('open');document.querySelectorAll('.fixcell.open').forEach(function(c){c.classList.remove('open');});if(!open)el.classList.add('open');}
+  function slideFix(dir){var s=document.getElementById('fixslider');if(!s)return;var c=s.querySelector('.fixcard');var w=c?c.getBoundingClientRect().width:240;s.scrollBy({left:dir*w,behavior:'smooth'});}
   function sendForm(e){e.preventDefault();var f=e.target;
     var body='Name: '+f.name.value+'\nE-Mail: '+f.email.value+'\nArt: '+f.art.value+'\nWunschtermin: '+f.datum.value+'\nEquipment: '+f.equip.value+'\n\n'+f.msg.value;
     location.href='mailto:info@theframe.at?subject='+encodeURIComponent('FRAME · '+f.art.value+' · '+f.name.value)+'&body='+encodeURIComponent(body);
@@ -339,26 +461,29 @@
     var map=L.map('map',{scrollWheelZoom:false}).setView(FB,15);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap &copy; CARTO'}).addTo(map);
     var favIcon=L.divIcon({html:'<div class="favmark"></div>',className:'',iconSize:[24,24],iconAnchor:[12,12]});
-    var dotIcon=L.divIcon({html:'<div class="poimark"></div>',className:'',iconSize:[14,14],iconAnchor:[7,7]});
+    function poiIcon(cat){ return L.divIcon({html:'<div class="poimark"></div>',className:'',iconSize:[14,14],iconAnchor:[7,7]}); }
     var groups={};
-    ['hotel','rental','food','shop','parking','transit','loading'].forEach(function(c){ groups[c]=L.layerGroup().addTo(map); });
+    ['hotel','rental','shop','food','transit'].forEach(function(c){ groups[c]=L.layerGroup().addTo(map); });
     window._mtoggle=function(cat,on){ if(!groups[cat])return; if(on)groups[cat].addTo(map); else map.removeLayer(groups[cat]); };
-    function geo(q){ return fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q='+encodeURIComponent(q)).then(function(r){return r.json();}); }
-    /* Studio-Pin exakt über Adresse */
-    geo('Neustiftgasse 107, 1070 Wien').then(function(d){ var c=(d&&d[0])?[+d[0].lat,+d[0].lon]:FB; map.setView(c,15); L.marker(c,{icon:favIcon}).addTo(map).bindPopup('<b>FRAME</b><br>Neustiftgasse 107/2 · 1070 Wien'); }).catch(function(){ L.marker(FB,{icon:favIcon}).addTo(map); });
-    /* POIs — kuratiertes Starter-Set, je Adresse live geocodiert. Bitte prüfen/ergänzen. */
+    /* Studio-Pin (fixe Koordinate) */
+    var STUDIO=[48.2055397,16.3441726];
+    map.setView(STUDIO,15);
+    L.marker(STUDIO,{icon:favIcon}).addTo(map).bindPopup('<b>FRAME</b><span class="poisub">Neustiftgasse 107/2 · 1070 Wien</span>');
+    /* POIs mit fixen Koordinaten (geocodiert 24.6.2026) */
     var POIS=[
-      {name:'Hotel mit Garage (Schottenfeldgasse)',cat:'hotel',q:'Schottenfeldgasse 1070 Wien'},
-      {name:'Equipmentverleih',cat:'rental',q:'Digitalkameraverleih 1070 Wien'},
-      {name:'Billa',cat:'shop',q:'Billa Neustiftgasse 1070 Wien'},
-      {name:'Bipa',cat:'shop',q:'Bipa Neustiftgasse 1070 Wien'},
-      {name:'Öffentliche Garage Burggasse',cat:'parking',q:'Garage Burggasse 1070 Wien'},
-      {name:'U6 Burggasse-Stadthalle',cat:'transit',q:'Burggasse-Stadthalle U-Bahn Wien'},
-      {name:'Westbahnhof',cat:'transit',q:'Wien Westbahnhof'}
+      {name:'Max Brown Hotel 7th District',cat:'hotel',ll:[48.2048492,16.3435774],sub:'Hotel mit Garage · 5 Min zu Fuß · Garage ~26 €/Tag',url:'https://maxbrownhotels.com/7th-district-vienna/'},
+      {name:'Digitalkameraverleih',cat:'rental',ll:[48.2054878,16.3413226],sub:'Kameraverleih · eine Gasse weiter',url:'https://digitalkameraverleih.com/'},
+      {name:'Billa',cat:'shop',ll:[48.2060458,16.3429686],sub:'Supermarkt · Schottenfeldgasse 87'},
+      {name:'Spar',cat:'shop',ll:[48.2039536,16.3435715],sub:'Supermarkt · Schottenfeldgasse 66'},
+      {name:'U6 Burggasse-Stadthalle',cat:'transit',ll:[48.2032875,16.3372071],sub:'U-Bahn U6'},
+      {name:'Westbahnhof',cat:'transit',ll:[48.1965445,16.3362817],sub:'Bahnhof · U3/U6 · Tram'},
+      {name:'Seven North',cat:'food',ll:[48.2048492,16.34373],sub:'Restaurant · Eyal Shani · im Max Brown',url:'https://maxbrownhotels.com/7th-district-vienna/eat-drink/'},
+      {name:'ERICH',cat:'food',ll:[48.2051387,16.3527119],sub:'Café & Bar · Neustiftgasse 27',url:'https://erichwien.at/'},
+      {name:'WIRR',cat:'food',ll:[48.2045245,16.3472716],sub:'Café · Bar · Club · Burggasse 70',url:'https://wirr.at/'},
+      {name:'Café Kandl',cat:'food',ll:[48.202874,16.3442901],sub:'Restaurant · 2 Hauben · Kandlgasse 12'},
+      {name:'MAKA Ramen',cat:'food',ll:[48.2066001,16.3384372],sub:'Ramen & jap. Tapas · Wimbergergasse 41'}
     ];
-    var i=0;
-    (function next(){ if(i>=POIS.length) return; var p=POIS[i++];
-      geo(p.q).then(function(d){ if(d&&d[0]&&groups[p.cat]) L.marker([+d[0].lat,+d[0].lon],{icon:dotIcon}).addTo(groups[p.cat]).bindPopup('<b>'+p.name+'</b>'); }).catch(function(){}).then(function(){ setTimeout(next,1100); }); })();
+    POIS.forEach(function(p){ if(!groups[p.cat])return; var html='<b>'+p.name+'</b>'+(p.sub?'<span class="poisub">'+p.sub+'</span>':'')+(p.url?'<a class="poilink" href="'+p.url+'" target="_blank" rel="noopener">Website</a>':''); L.marker(p.ll,{icon:poiIcon(p.cat)}).addTo(groups[p.cat]).bindPopup(html); });
   })();
 </script>
 
@@ -378,63 +503,58 @@
   var blk=document.getElementById('ldblk'), bar=document.getElementById('ldbar');
   var glys=[].slice.call(ldr.querySelectorAll('.lg'));
   var lns=[].slice.call(ldr.querySelectorAll('.ln'));
-  var lbtn=document.getElementById('ldbtn'), llang=document.getElementById('ldlang');
   var bL=document.getElementById('ldbL'), bR=document.getElementById('ldbR');
 
-  var E=function(t){return t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;};
+  var E=function(t){return t<0.5?8*t*t*t*t:1-Math.pow(-2*t+2,4)/2;};
   var lerp=function(a,b,t){return a+(b-a)*t;}, cl=function(x){return Math.max(0,Math.min(1,x));};
-  // Timeline (ms)
-  var T={hold:300,form:620,expand:760,menu:460,pause:130,slide:540};
-  var total=T.hold+T.form+T.expand+T.menu+T.pause+T.slide;
+  // Timeline (ms) — eine durchgehende Bewegung
+  var T={hold:650,spread:2150,menu:620,pause:300,slide:850};
+  var total=T.hold+T.spread+T.menu+T.pause+T.slide;
 
   var C; // gemessene Werte
   function measure(){
     var navs=document.querySelectorAll('header .hnav.hfull');
-    var btn=document.querySelector('header .hbtn.hfull');
-    var lang=document.querySelector('header .hlang.hfull');
     var hbar=document.querySelector('header .hbar');
     var rc=function(el){var b=el.getBoundingClientRect();return {x:b.left+b.width/2,y:b.top+b.height/2,w:b.width,h:b.height};};
     var hf=parseFloat(getComputedStyle(letters[0]).fontSize);
     var hx=[].map.call(letters,function(el){return rc(el).x;});
     var nx=[].map.call(navs,function(el){return rc(el).x;});
-    var b=rc(btn), lg=rc(lang), hb=rc(hbar);
+    var hb=rc(hbar);
     var cx=window.innerWidth/2, cy=window.innerHeight/2;
     // Glyph-Breiten
-    var w=glys.map(function(g){g.style.fontSize=hf+'px';g.style.top=cy+'px';g.style.opacity='1';return g.getBoundingClientRect().width;});
+    var w=glys.map(function(g){g.style.fontSize=hf+'px';g.style.left='0';g.style.top='0';g.style.opacity='1';return g.getBoundingClientRect().width;});
     var gap=Math.max(3,Math.round(hf*0.16)), totW=w.reduce(function(a,c){return a+c;},0)+4*gap, cur=cx-totW/2, comp=[];
     w.forEach(function(ww,i){comp[i]=cur+ww/2;cur+=ww+gap;});
     // statische Header-Element-Positionen (vertikal auf cy)
     lns.forEach(function(el){el.style.left=nx[+el.dataset.k]+'px';el.style.top=cy+'px';});
-    lbtn.style.left=b.x+'px'; lbtn.style.top=cy+'px';
-    llang.style.left=lg.x+'px'; llang.style.top=cy+'px';
     bar.style.height=hb.h+'px'; bar.style.top=(cy-hb.h/2)+'px';
     C={hf:hf,hx:hx,w:w,comp:comp,cx:cx,cy:cy,barCenter:hb.y,bs:Math.max(12,Math.round(hf*0.62)),capHalf:0.35*hf};
+    bL.style.width=bL.style.height=bR.style.width=bR.style.height=C.bs+'px';
+    bL.style.left=bL.style.top=bR.style.left=bR.style.top='0';
   }
 
   function render(ms){
-    var hold=T.hold, form=T.form, exp=T.expand;
-    var formS=E(cl((ms-hold)/form));
-    var expS=E(cl((ms-(hold+form))/exp));
-    var tForm=cl((ms-hold)/form);
-    var rev=E(cl((tForm-0.30)/0.45));
-    var menuStart=hold+form+exp;
+    var hold=T.hold, sp=T.spread;
+    var tS=cl((ms-hold)/sp), s=E(tS);
+    var rev=E(cl((tS-0.16)/0.52));
+    var menuStart=hold+sp;
     var menuRev=E(cl((ms-menuStart)/T.menu));
     var slideStart=menuStart+T.menu+T.pause;
     var slideRev=E(cl((ms-slideStart)/T.slide));
     var bs=C.bs, ch=C.capHalf;
     glys.forEach(function(g){
       var i=+g.dataset.i;
-      var x=(ms<=hold+form)?lerp(C.cx,C.comp[i],formS):lerp(C.comp[i],C.hx[i],expS);
-      g.style.left=x+'px'; g.style.fontSize=C.hf+'px'; g.style.opacity=rev;
+      var x=lerp(C.cx,C.hx[i],s);
+      g.style.transform='translate('+x+'px,'+C.cy+'px) translate(-50%,-50%)'; g.style.opacity=rev;
     });
     var favX=C.cx-bs/2, favY=C.cy-bs/2;
-    var fX=C.comp[0]-C.w[0]/2, fY=C.cy-ch;
-    var eX=C.comp[4]+C.w[4]/2, eY=C.cy+ch;
-    bL.style.width=bL.style.height=bs+'px'; bL.style.left=lerp(favX,fX,formS)+'px'; bL.style.top=lerp(favY,fY,formS)+'px';
-    bR.style.width=bR.style.height=bs+'px'; bR.style.left=lerp(favX,eX-bs,formS)+'px'; bR.style.top=lerp(favY,eY-bs,formS)+'px';
+    var fX=C.hx[0]-C.w[0]/2, fY=C.cy-ch;
+    var eX=C.hx[4]+C.w[4]/2-bs, eY=C.cy+ch-bs;
+    bL.style.transform='translate('+lerp(favX,fX,s)+'px,'+lerp(favY,fY,s)+'px)';
+    bR.style.transform='translate('+lerp(favX,eX,s)+'px,'+lerp(favY,eY,s)+'px)';
     bL.style.opacity=bR.style.opacity=1-rev;
     lns.forEach(function(el){el.style.opacity=menuRev;});
-    lbtn.style.opacity=menuRev; llang.style.opacity=menuRev; bar.style.opacity=menuRev;
+    bar.style.opacity=menuRev;
     blk.style.transform='translateY('+lerp(0,C.barCenter-C.cy,slideRev)+'px)';
   }
 
@@ -447,7 +567,7 @@
     else { ldr.classList.add('done'); setTimeout(kill,300); }
   }
   (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){
-    measure(); render(0);
+    measure(); render(0); blk.style.opacity='1';
     requestAnimationFrame(frame);
   });
 })();
