@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>FRAME · Preisliste 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Century Gothic';src:url('../fonts/century-gothic.woff2') format('woff2');font-weight:400;font-style:normal}
+  @font-face{font-family:'Century Gothic';src:url('../fonts/century-gothic-bold.woff2') format('woff2');font-weight:700;font-style:normal}
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--ink:#0a0a0a;--mut:#8a8a8a;--line:#e6e6e6;--display:'Century Gothic','Helvetica Neue',Arial,sans-serif}
+  body{font-family:'IBM Plex Sans',sans-serif;font-weight:300;color:var(--ink);background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:296mm;padding:16mm 15mm 20mm;position:relative;page-break-after:always;overflow:hidden}
+  .page:last-child{page-break-after:auto}
+
+  .head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10mm}
+  .head img{height:7mm;display:block}
+  .head .tag{font-family:'IBM Plex Mono',monospace;font-size:8.5pt;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);padding-top:1mm}
+
+  h1{font-family:var(--display);font-weight:400;font-size:26pt;line-height:1.15;letter-spacing:0;margin-bottom:3mm}
+  h2{font-family:var(--display);font-weight:400;font-size:17pt;letter-spacing:0;margin-bottom:5mm}
+
+  .cat{font-family:'IBM Plex Mono',monospace;font-size:8.5pt;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:2mm;margin:7mm 0 2.5mm}
+  .cat:first-of-type{margin-top:0}
+  .catnote{font-family:'IBM Plex Mono',monospace;font-size:7pt;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:-1mm 0 2mm}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:0 10mm;align-items:start}
+
+  /* Preiszeilen */
+  .prow{display:flex;justify-content:space-between;align-items:baseline;gap:5mm;padding:1.9mm 0;border-bottom:1px solid var(--line)}
+  .prow .k{font-size:9pt}
+  .prow .k .q{font-family:'IBM Plex Mono',monospace;font-size:6.8pt;letter-spacing:.05em;color:var(--mut);text-transform:uppercase;margin-left:1.5mm;white-space:nowrap}
+  .prow .k .d{display:block;font-size:8pt;color:#666;margin-top:.4mm}
+  .prow .v{font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:.03em;color:var(--ink);white-space:nowrap;flex:none}
+  .prow .v .fn{color:var(--mut)}
+
+  .note{font-size:8.5pt;color:#444;line-height:1.55;margin-top:2.5mm}
+  .note b{font-weight:600}
+  .mono-note{font-family:'IBM Plex Mono',monospace;font-size:7pt;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);margin-top:2mm;line-height:1.6}
+
+  /* Amenities-Checkliste */
+  .amen{display:grid;grid-template-columns:1fr 1fr;gap:0 8mm;margin-top:1mm}
+  .amen div{font-size:8.5pt;color:#444;padding:1.2mm 0;border-bottom:1px solid var(--line)}
+
+  .brk{position:absolute;width:6mm;height:6mm;color:var(--ink)}
+  .brk svg{width:100%;height:100%;display:block}
+  .brk.ctr{top:16mm;right:15mm}
+  .brk.cbl{bottom:20mm;left:15mm;transform:rotate(180deg)}
+
+  .foot{position:absolute;left:15mm;right:15mm;bottom:10mm;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+
+  .cover{display:flex;flex-direction:column}
+  .cover .cbrand{margin-top:4mm}
+  .cover .cbrand img{height:9mm;display:block}
+  .cover .cmid{flex:1;display:flex;flex-direction:column;justify-content:center;padding-bottom:30mm}
+  .cover .ctag{font-family:'IBM Plex Mono',monospace;font-size:9pt;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin-bottom:6mm}
+  .cover h1{font-size:44pt;line-height:1.1;margin-bottom:8mm}
+  .cover .csub{font-size:12.5pt;font-weight:300;color:#444;max-width:110mm;line-height:1.6}
+  .cover .caddr{font-family:'IBM Plex Mono',monospace;font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-top:10mm}
+</style>
+</head>
+<body>
+
+<!-- ============ DECKBLATT ============ -->
+<div class="page cover">
+  <div class="brk ctr"><svg viewBox="0 0 117 117" fill="currentColor"><rect x="117" y="0" width="91" height="26" transform="rotate(180 117 13)"/><rect x="91" width="26" height="91"/></svg></div>
+  <div class="cbrand"><img src="FRAME_V2.svg" alt="FRAME"></div>
+  <div class="cmid">
+    <div class="ctag">Preisliste · 2026</div>
+    <h1>Studio &amp; Equipment.</h1>
+    <div class="csub">Studiomiete für Foto &amp; Video und der komplette Geräteverleih — Broncolor, Profoto, Aputure, Hintergründe, Stative &amp; mehr. Alle Verleih-Preise pro Stück und Tag.</div>
+    <div class="caddr">Neustiftgasse 107/2 · 1070 Wien · Vienna Photo District</div>
+  </div>
+  <div class="brk cbl"><svg viewBox="0 0 117 117" fill="currentColor"><rect x="117" y="0" width="91" height="26" transform="rotate(180 117 13)"/><rect x="91" width="26" height="91"/></svg></div>
+  <div class="foot"><span>The Frame · Studio für Foto, Video und Werbung</span><span>theframe.at</span></div>
+</div>
+
+<!-- ============ SEITE 2 · STUDIOMIETE ============ -->
+<div class="page">
+  <div class="head">
+    <img src="FRAME_V2.svg" alt="FRAME">
+    <div class="tag">Preisliste · 2026</div>
+  </div>
+
+  <h2>Studiomiete · Foto &amp; Video</h2>
+
+  <div class="twocol">
+    <div>
+      <div class="cat">Normaltarif</div>
+      <div class="prow"><span class="k">½ Studiotag<span class="q">nur Sommer · 09–14 oder 13–18</span></span><span class="v">€ 300,–</span></div>
+      <div class="prow"><span class="k">1 Studiotag *<span class="q">09–18</span></span><span class="v">€ 500,– <span class="fn">ab 2 Tagen −10%</span></span></div>
+
+      <div class="cat">Editorial-Tarif (werktags)</div>
+      <div class="prow"><span class="k">½ Studiotag<span class="q">nur Sommer · 09–14 oder 13–18</span></span><span class="v">€ 200,–</span></div>
+      <div class="prow"><span class="k">1 Studiotag *<span class="q">09–18</span></span><span class="v">€ 300,–</span></div>
+
+      <div class="cat">Wochenende &amp; Feiertage (kein Editorial)</div>
+      <div class="prow"><span class="k">½ Studiotag<span class="q">nur Sommer · 09–14 oder 13–18</span></span><span class="v">€ 380,–</span></div>
+      <div class="prow"><span class="k">1 Studiotag *<span class="q">09–18</span></span><span class="v">€ 600,–</span></div>
+
+      <div class="cat">Filmproduktionen</div>
+      <div class="prow"><span class="k">Studiokosten Filmproduktionen</span><span class="v">auf Anfrage</span></div>
+
+      <div class="note">* In den Wintermonaten werden <b>+ € 50,– pro Tag</b> für Heizkosten verrechnet.</div>
+    </div>
+    <div>
+      <div class="cat">Extras</div>
+      <div class="prow"><span class="k">Overtime<span class="q">pro Std.</span></span><span class="v">10% des Tagestarifs</span></div>
+      <div class="prow"><span class="k">Assistent<span class="q">1 Tag</span></span><span class="v">€ 250,–</span></div>
+      <div class="prow"><span class="k">Endreinigung<span class="q">ggf.</span></span><span class="v">€ 50,–</span></div>
+
+      <div class="cat">Inkludiert bei Fotoshootings</div>
+      <div class="note">Strom, Grip &amp; Hilfsmaterial, Stative (058er).<br>
+      Hintergründe und Rent-Equipment werden je nach Leistung/Aufwand/Verbrauch extra verrechnet.</div>
+      <div class="mono-note">Alle Preise netto zzgl. 20% MwSt.</div>
+
+      <div class="cat">Im Studio</div>
+      <div class="amen">
+        <div>Schminkplatz mit Tageslichtcharakter</div>
+        <div>Bar &amp; Essbereich, Tisch für 6–8 Personen</div>
+        <div>Musikanlage &amp; WLAN</div>
+        <div>Dusche · WC &amp; extra Badezimmer</div>
+        <div>Espressomaschine</div>
+        <div>Heiß- &amp; Kaltgetränke</div>
+        <div>Kühlschrank · Mikrowelle · Wasserkocher</div>
+        <div>Geschirrspüler</div>
+        <div>Küche + rollbarer Herd für Foodshootings</div>
+        <div>Bügelbrett · Bügeleisen · Haarföhn</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>The Frame · Studio für Foto, Video und Werbung</span><span>2 / 4</span></div>
+</div>
+
+<!-- ============ SEITE 3 · BLITZ ============ -->
+<div class="page">
+  <div class="head">
+    <img src="FRAME_V2.svg" alt="FRAME">
+    <div class="tag">Preisliste · 2026</div>
+  </div>
+
+  <h2>Geräteverleih · Blitz</h2>
+  <div class="mono-note" style="margin:-2mm 0 4mm">Preise gelten pro Stück / pro Tag</div>
+
+  <div class="twocol">
+    <div>
+      <div class="cat">Broncolor · Generatoren &amp; Blitzköpfe</div>
+      <div class="prow"><span class="k">Generator Grafit A4 RFS 3500Ws<span class="q">asym. · 3 Ausgänge</span></span><span class="v">€ 55,– <span class="fn">(40)</span></span></div>
+      <div class="prow"><span class="k">Generator Grafit A4 * 3500Ws<span class="q">asym. · 3 Ausgänge · 2 Stk.</span></span><span class="v">€ 55,– <span class="fn">(40)</span></span></div>
+      <div class="prow"><span class="k">Head Pulso<span class="q">6 Stk.</span></span><span class="v">€ 30,– <span class="fn">(20)</span></span></div>
+      <div class="prow"><span class="k">Kompaktblitz Minicom 80 RFS 600Ws<span class="q">4 Stk.</span></span><span class="v">€ 40,–</span></div>
+      <div class="prow"><span class="k">Set „MINICOM“<span class="d">3× Minicom 800Ws + RFS1</span></span><span class="v">€ 110,–</span></div>
+      <div class="prow"><span class="k">Kompaktblitz SIROS 800 RFS 800Ws</span><span class="v">€ 45,–</span></div>
+      <div class="prow"><span class="k">Kompaktblitz SIROS 400 RFS 400Ws<span class="q">2 Stk.</span></span><span class="v">€ 36,–</span></div>
+      <div class="prow"><span class="k">Set „SIROS“<span class="d">1× Siros 800Ws + 2× 400Ws + RFS2</span></span><span class="v">€ 110,–</span></div>
+      <div class="prow"><span class="k">Funksender RFS / RFS2<span class="q">Auslöser kameraseitig</span></span><span class="v">€ 15,–</span></div>
+
+      <div class="cat">Broncolor · Lichtformer</div>
+      <div class="prow"><span class="k">Normalreflektor / Topf</span><span class="v">€ –</span></div>
+      <div class="prow"><span class="k">Engstrahl-Reflektor P45</span><span class="v">€ 15,–</span></div>
+      <div class="prow"><span class="k">Para 88 (Bron/Profoto) 60cm<span class="d">inkl. Diffusor + Stativ Manfrotto 008</span></span><span class="v">€ 55,–</span></div>
+      <div class="prow"><span class="k">Softbox 60×60cm inkl. Diffusor<span class="q">2 Stk.</span></span><span class="v">€ 15,–</span></div>
+      <div class="prow"><span class="k">Hazylight 100×100<span class="d">auf Rollstativ mit Head Pulso</span></span><span class="v">€ 50,–</span></div>
+    </div>
+    <div>
+      <div class="cat">Profoto (slow)</div>
+      <div class="catnote">* ohne Funkverbindung · Sync optisch/Kabel</div>
+      <div class="prow"><span class="k">Generator Acute 2400Ws *<span class="q">asym. · 3 Ausgänge · 2×</span></span><span class="v">á € 40,–</span></div>
+      <div class="prow"><span class="k">Generator Acute 1200Ws *<span class="q">asym. · 3 Ausgänge · 3×</span></span><span class="v">á € 35,–</span></div>
+      <div class="prow"><span class="k">Generator Acute 600Ws *<span class="q">asym. · 3 Ausgänge</span></span><span class="v">€ 30,–</span></div>
+      <div class="prow"><span class="k">Blitzkopf D4</span><span class="v">á € 25,–</span></div>
+      <div class="prow"><span class="k">Pocket Wizard PlusII<span class="q">Funksender/Empfänger-Set</span></span><span class="v">€ 15,–</span></div>
+
+      <div class="cat">Profoto · Lichtformer</div>
+      <div class="prow"><span class="k">Beautydish 52cm weiß inkl. Wabe</span><span class="v">€ 30,–</span></div>
+      <div class="prow"><span class="k">Striplite 1×3′ inkl. Diffusor<span class="q">2 Stk.</span></span><span class="v">á € 15,–</span></div>
+      <div class="prow"><span class="k">Softbox 60×60cm inkl. Diffusor<span class="q">2 Stk.</span></span><span class="v">á € 15,–</span></div>
+      <div class="prow"><span class="k">ProBox A4<span class="q">3 Stk.</span></span><span class="v">á € 15,– <span class="fn">(25)</span></span></div>
+      <div class="prow"><span class="k">Umbrella big 5-feet silber<span class="q">2 Stk.</span></span><span class="v">á € 35,– <span class="fn">(25)</span></span></div>
+      <div class="prow"><span class="k">Umbrella Deep white S</span><span class="v">€ 15,–</span></div>
+      <div class="mono-note">Weitere Ausrüstung von Profoto gibt’s beim Digitalkameraverleih um’s Eck!</div>
+
+      <div class="cat">Lichtmessung</div>
+      <div class="prow"><span class="k">Sekonic Speedmaster L-478D</span><span class="v">€ 15,–</span></div>
+    </div>
+  </div>
+
+  <div class="foot"><span>The Frame · Studio für Foto, Video und Werbung</span><span>3 / 4</span></div>
+</div>
+
+<!-- ============ SEITE 4 · LED, LICHT & GRIP ============ -->
+<div class="page">
+  <div class="head">
+    <img src="FRAME_V2.svg" alt="FRAME">
+    <div class="tag">Preisliste · 2026</div>
+  </div>
+
+  <h2>Geräteverleih · LED, Licht &amp; Grip</h2>
+
+  <div class="twocol">
+    <div>
+      <div class="cat">Aputure · LED-Leuchten</div>
+      <div class="prow"><span class="k">LS 300D MkII inkl. Stativ<span class="q">2×</span></span><span class="v">á € 45,–</span></div>
+      <div class="prow"><span class="k">LS 120D MkII inkl. Stativ<span class="q">1×</span></span><span class="v">á € 35,–</span></div>
+      <div class="prow"><span class="k">LS 60D MkII inkl. Stativ<span class="q">4×</span></span><span class="v">á € 25,–</span></div>
+
+      <div class="cat">Aputure · Lichtformer</div>
+      <div class="prow"><span class="k">Light Dome II 34,8″ / 88cm<span class="q">2×</span></span><span class="v">á € 12,–</span></div>
+      <div class="prow"><span class="k">Light Dome Mini II 21,5″ / 55cm<span class="q">2×</span></span><span class="v">á € 10,–</span></div>
+      <div class="prow"><span class="k">Lantern 90</span><span class="v">á € 12,–</span></div>
+      <div class="prow"><span class="k">Fresnel 2×-Vorsatz<span class="q">2×</span></span><span class="v">á € 10,–</span></div>
+      <div class="prow"><span class="k">Reflektor mit 30°-Wabe &amp; Barndoors<span class="q">2×</span></span><span class="v">á € 10,–</span></div>
+      <div class="mono-note">Weitere Ausrüstung von Aputure gibt’s beim Digitalkameraverleih um’s Eck!</div>
+
+      <div class="cat">Kunstlicht · Halogen/Tungsten</div>
+      <div class="prow"><span class="k">Dedolight 3er-Set DLH4 mit Trafo<span class="q">inkl. Stative · 2 Stk.</span></span><span class="v">á € 50,–</span></div>
+
+      <div class="cat">Monitor</div>
+      <div class="prow"><span class="k">ASUS ProArt PA27JCV</span><span class="v">€ 60,–</span></div>
+
+      <div class="cat">Powerbanks &amp; Farbe</div>
+      <div class="prow"><span class="k">HyperJuice 1.5 222 Pro Akku<span class="q">f. MacBook bis 2015!</span></span><span class="v">&nbsp;</span></div>
+      <div class="prow"><span class="k">HyperJuice 245B USB-C 100 Wh<span class="q">f. MacBook ab 2016</span></span><span class="v">&nbsp;</span></div>
+      <div class="prow"><span class="k">X-Rite ColorChecker Passport</span><span class="v">&nbsp;</span></div>
+    </div>
+    <div>
+      <div class="cat">Hintergründe 2,75m</div>
+      <div class="prow"><span class="k">Nach Verbrauch<span class="q">pro Meter</span></span><span class="v">€ 15,–</span></div>
+      <div class="prow"><span class="k">Rolle 2,75m × 11m</span><span class="v">€ 80,–</span></div>
+      <div class="note">Neue Hintergründe besorgen wir gerne rechtzeitig bei CameraUnited oder Digitalkameraverleih — Farbübersicht &amp; Größen liegen im Studio auf.</div>
+      <div class="mono-note">Online-Farbpalette: bdbackgrounds.com</div>
+
+      <div class="cat">Hintergrund-Sets</div>
+      <div class="prow"><span class="k">2er-Set Autopole Manfrotto<span class="d">f. Hintergrund · inkl. Superclamps, Haken, Expander</span></span><span class="v">á € 30,–</span></div>
+      <div class="prow"><span class="k">2er-Set Stativ Manfrotto<span class="d">f. Hintergrund · inkl. Superclamps, Haken, Expander</span></span><span class="v">á € 15,–</span></div>
+
+      <div class="cat">Stative · Licht</div>
+      <div class="prow"><span class="k">Galgen Manfrotto Super Boom<span class="q">inkl. Stativ Manfrotto 008</span></span><span class="v">€ 15,–</span></div>
+      <div class="prow"><span class="k">Manfrotto 420 CSU</span><span class="v">á € 10,–</span></div>
+      <div class="prow"><span class="k">Autopole 2er-Set</span><span class="v">á € 10,–</span></div>
+
+      <div class="cat">Faltreflektoren &amp; Wind</div>
+      <div class="prow"><span class="k">Neewer 80×120cm 5in1<span class="q">Diffusion · Gold · Silber · Weiß · Schwarz</span></span><span class="v">€ 8,–</span></div>
+      <div class="prow"><span class="k">Neewer 60×80cm 5in1<span class="q">Diffusion · Gold · Silber · Weiß · Schwarz</span></span><span class="v">€ 5,–</span></div>
+      <div class="prow"><span class="k">Windmaschine<span class="q">small</span></span><span class="v">€ 10,–</span></div>
+
+      <div class="note" style="margin-top:5mm">Sonstige Stative, Klemmen, Kabel und Kleinteile findest du am Aufnahmeplatz — die Nutzung ist <b>inkludiert</b>. Fehlende Gegenstände werden zum Neuwert in Rechnung gestellt.</div>
+    </div>
+  </div>
+
+  <div class="brk cbl"><svg viewBox="0 0 117 117" fill="currentColor"><rect x="117" y="0" width="91" height="26" transform="rotate(180 117 13)"/><rect x="91" width="26" height="91"/></svg></div>
+  <div class="foot"><span>theframe.at · info@theframe.at · Neustiftgasse 107/2 · 1070 Wien</span><span>4 / 4</span></div>
+</div>
+
+</body>
+</html>
