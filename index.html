@@ -155,6 +155,8 @@
   .locbody{display:none}
   .locblk.open .locbody{display:block}
   .pricetiles{display:grid;grid-template-columns:var(--g12);gap:var(--gutter);margin-top:42px}
+  .pchev{display:none}
+  @media(min-width:821px){.pricetiles{padding:0 var(--heroPad,64px)}}
   .ptile{grid-column:span 3}
   .ptile.pidea{background:var(--ink)}
   .ptile .pprice.pfree{font-size:24px;line-height:1.2}
@@ -191,7 +193,17 @@
   .fixcta{display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
   .fixcta:hover{color:var(--ink)}
   @media(max-width:520px){.fixcard{width:82vw}}/* aspect-ratio hält das Quadrat */
-  @media(max-width:820px){.kontaktcols>div:first-child,.kontaktcols>div:last-child{grid-column:span 12}.ptile{grid-column:span 12;aspect-ratio:16/11;padding:22px}}
+  @media(max-width:820px){.kontaktcols>div:first-child,.kontaktcols>div:last-child{grid-column:span 12}
+  .pricetiles{gap:10px}
+  .ptile{grid-column:span 12;aspect-ratio:auto;padding:0;display:flex;flex-direction:column;background:var(--ink)}
+  .ptile .pname{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px var(--frame);cursor:pointer;background:var(--ink);position:relative;z-index:2}
+  .pchev{display:block;width:14px;height:14px;flex:none;transform:rotate(90deg);transition:transform .2s}
+  .ptile.open .pchev{transform:rotate(-90deg)}
+  .ptile:not(.open) img,.ptile:not(.open)::after,.ptile:not(.open) .pbot{display:none}
+  .ptile.open{min-height:320px}
+  .ptile.open img{top:50px}
+  .ptile.open::after{top:50px}
+  .ptile.open .pbot{margin-top:auto;padding:26px var(--frame) 22px}}
   @media(max-width:520px){.locgrid .locblk{grid-column:span 12}}
   @media(max-width:900px){.studiotop{grid-template-columns:1fr;gap:28px} .stats5{grid-template-columns:repeat(2,1fr)} .stats4{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.stats5,.stats4,.stats3{grid-template-columns:1fr 1fr} .gcell{padding:20px}}
@@ -597,7 +609,7 @@
         <div class="pricetiles">
       <div class="ptile">
         <img src="plan-assets/price-werbung.jpg" alt="" loading="lazy">
-        <div class="pname">Commercial</div>
+        <div class="pname" onclick="pToggle(this)"><span>Commercial</span><svg class="pchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></div>
         <div class="pbot">
           <div class="pdesc"><span class="de">Kampagnen · Lookbooks · Stills</span><span class="en">Campaigns · lookbooks · stills</span></div>
           <div class="pprice">&euro; 500<span class="punit"><span class="de">/ Studiotag</span><span class="en">/ studio day</span></span></div>
@@ -606,7 +618,7 @@
       </div>
       <div class="ptile">
         <img src="plan-assets/price-editorial.jpg" alt="" loading="lazy">
-        <div class="pname">Editorial</div>
+        <div class="pname" onclick="pToggle(this)"><span>Editorial</span><svg class="pchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></div>
         <div class="pbot">
           <div class="pdesc"><span class="de">Magazine · Stories · freie Arbeiten</span><span class="en">Magazines · stories · personal work</span></div>
           <div class="pprice">&euro; 300<span class="punit"><span class="de">/ Tag</span><span class="en">/ day</span></span></div>
@@ -615,7 +627,7 @@
       </div>
       <div class="ptile">
         <img src="plan-assets/price-workshop.jpg" alt="" loading="lazy">
-        <div class="pname">Workshops</div>
+        <div class="pname" onclick="pToggle(this)"><span>Workshops</span><svg class="pchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></div>
         <div class="pbot">
           <div class="pdesc"><span class="de">Kurse · Talks · kreative Formate</span><span class="en">Classes · talks · creative formats</span></div>
           <div class="pprice">&euro; 350<span class="punit"><span class="de">/ Tag</span><span class="en">/ day</span></span></div>
@@ -623,7 +635,7 @@
         </div>
       </div>
       <div class="ptile pidea">
-        <div class="pname"><span class="de">…oder deine Idee</span><span class="en">…or your idea</span></div>
+        <div class="pname" onclick="pToggle(this)"><span><span class="de">…oder deine Idee</span><span class="en">…or your idea</span></span><svg class="pchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></div>
         <div class="pbot">
           <div class="pdesc"><span class="de">Ausstellung · Pop-up · Event</span><span class="en">Exhibition · pop-up · event</span></div>
           <div class="pprice pfree"><span class="de">auf Anfrage</span><span class="en">on request</span></div>
@@ -631,10 +643,11 @@
         </div>
       </div>
     </div>
+    <div class="wrap bookfoot">
     <p class="note"><span class="de">Alle Preise verstehen sich netto zzgl. 20&nbsp;% MwSt. &middot; </span><span class="en">All prices net plus 20% VAT &middot; </span><a class="ulink" href="mailto:info@theframe.at?subject=FRAME%20Anfrage"><span class="de">Details anfragen</span><span class="en">Request details</span></a></p>
     <div class="bextra"><span class="bextit"><span class="de">Zubuchbar: Office &amp; Production Space</span><span class="en">Bookable add-on: office &amp; production space</span></span><div class="bexbody"><span class="de">Bei Bedarf buchbar: ein separater Raum mit Bildschirmen, Besprechungstisch und Klimaanlage – ideal für Vorbereitungen, Kundentermine, Postproduktion oder Pausen zwischen den Sets. Am besten direkt bei der Anfrage mit einplanen.</span><span class="en">Bookable on demand: a separate room with screens, meeting table and air conditioning – ideal for prep, client meetings, post-production or breaks between sets. Best planned in with your enquiry.</span></div></div>
     <p class="pricehint"><span class="de">Der Mietpreis umfasst die Nutzung der Studiofläche. Zusatzleistungen und Equipment können nach Bedarf ergänzt werden. Bei mehrtägigen Buchungen erstellen wir gerne ein individuelles Angebot.</span><span class="en">The rental price covers use of the studio space. Additional services and equipment can be added as needed. For multi-day bookings we're happy to prepare an individual offer.</span></p>
-  </div>
+    </div>
 </section>
 
 <section id="lage">
@@ -746,6 +759,7 @@
   function toggleLang(){document.body.classList.toggle('en');var en=document.body.classList.contains('en');document.documentElement.lang=en?'en':'de';try{localStorage.setItem('flang',en?'en':'de')}catch(e){}}
   (function(){try{var p=localStorage.getItem('flang');if(p==='en'||(!p&&!/^de/i.test(navigator.language||'de'))){document.body.classList.add('en');document.documentElement.lang='en';}}catch(e){}})();
   function toggleMenu(){document.getElementById('mnav').classList.toggle('open');}
+  function pToggle(el){if(window.matchMedia('(max-width:820px)').matches){el.parentNode.classList.toggle('open');}}
   function gearSwitch(b){document.querySelectorAll('.geartabs .mfbtn').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
     var v=b.getAttribute('data-gc');document.querySelectorAll('.gearcard').forEach(function(c){c.classList.toggle('gcon',c.classList.contains(v));});}
   function fpSwitch(b){document.querySelectorAll('.fptabs .mfbtn').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
