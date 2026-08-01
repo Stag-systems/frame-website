@@ -24,7 +24,7 @@
   body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   body.en .de{display:none} body:not(.en) .en{display:none}
-  .wrap{max-width:none;margin:0;padding:0 var(--frame)}
+  .wrap{max-width:none;margin:0;padding:0 var(--heroPad,var(--frame))}
   .mono{font-family:'IBM Plex Mono',monospace}
   /* ---------- HEADER: FRAMƎ stretched, menu between letters ---------- */
   header{position:sticky;top:0;z-index:50;background:#fff;transition:background .25s ease}
@@ -96,7 +96,7 @@
   .sectitle{grid-column:1/span 6;display:flex;align-items:baseline;gap:clamp(22px,3vw,40px);font-family:var(--display);font-weight:400;font-size:clamp(24px,2.5vw,34px);line-height:1.2;letter-spacing:.02em;text-transform:uppercase;color:var(--ink)}
   .sechead{margin-bottom:clamp(28px,4vw,52px)}
   .seclead{grid-column:7/-1;margin-top:0;font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:#444}
-  @media(max-width:820px){.sectitle{grid-column:1/-1}.seclead{grid-column:1/-1;margin-top:18px}.hero{padding:0 var(--frame) var(--frame)}.heroframe{height:84svh}.hbar{padding:16px var(--frame)}}
+  @media(max-width:820px){.sectitle{grid-column:1/-1}.seclead{grid-column:1/-1;margin-top:18px}.hero{padding:0 var(--frame) var(--frame)}.heroframe{height:84svh}.hbar{padding:16px var(--frame)}.wrap{padding:0 var(--frame)}}
   /* ---------- SECTIONS ---------- */
   section{padding:96px 0;border-bottom:1px solid var(--line)}
   h2{font-family:var(--display);font-weight:400;font-size:clamp(28px,3.6vw,48px);letter-spacing:-.005em;line-height:1.06;margin:14px 0 0}
@@ -198,15 +198,15 @@
   .visit{display:inline-block;margin-top:40px;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase;border-bottom:1.5px solid var(--ink);padding-bottom:5px}
   .visit:hover{opacity:.55}
   .iarrow{width:1.05em;height:1.05em;display:inline-block;vertical-align:-.18em;margin-left:.45em}
-  .specrow{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .specrow{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:17px 0;border-bottom:1px solid var(--line)}
   .specrow:first-child{border-top:1px solid var(--line)}
   .specrow .no{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.16em;color:var(--mut)}
-  .specrow .lab{font-size:16px;font-weight:300;color:#222}
-  .specrow .val{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.04em;line-height:1.4;text-align:right;white-space:nowrap}
+  .specrow .lab{font-size:18px;font-weight:300;color:#222}
+  .specrow .val{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:16px;letter-spacing:.04em;line-height:1.4;text-align:right;white-space:nowrap}
   .specrow .val .u{font-size:inherit;color:var(--ink);margin-left:0;letter-spacing:inherit}
   .specrows.compact{margin-top:0}
-  .specrows.compact .specrow{padding:13px 0}
-  .specrows.compact .val{font-size:14px}
+  .specrows.compact .specrow{padding:17px 0}
+  .specrows.compact .val{font-size:16px}
   .specrows.notop .specrow:first-child{border-top:0}
   .factframe{position:relative;padding:18px clamp(22px,3vw,40px);margin:4px auto 0;max-width:640px}
   .factframe .cnr{position:absolute;width:24px;height:24px;color:var(--ink);transition:transform .95s cubic-bezier(.22,1,.36,1)}
@@ -239,7 +239,10 @@
   .studiorow .studioimg{grid-column:span 6}
   .studiorow .factpanel{grid-column:span 6}
   .factpanel{width:100%}
-  .fptabs{display:flex;gap:7px;margin-bottom:18px}
+  .fptabs{display:flex;gap:10px;margin-bottom:26px}
+  .fptabs .mfbtn{font-size:12px;letter-spacing:.16em;padding:11px 18px 10px;min-height:38px;border:1.4px solid var(--ink);color:var(--ink)}
+  .fptabs .mfbtn:hover{background:var(--ink);color:#fff}
+  .fptabs .mfbtn.on{background:var(--ink);border-color:var(--ink);color:#fff}
   .fpviews{display:grid}
   .fpview{grid-area:1/1}
   .fpview.off{visibility:hidden;pointer-events:none}
