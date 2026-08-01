@@ -275,6 +275,14 @@
   a.primary:hover{background:#fff;color:var(--ink)}
   a.secondary{display:inline-block;white-space:nowrap;background:none;color:var(--ink);border:1.4px solid var(--ink);padding:11px 18px;text-transform:uppercase;letter-spacing:.14em;font-size:var(--fs-label);transition:.15s}
   a.secondary:hover{background:var(--ink);color:#fff}
+  .langfab{display:none}
+  @media(min-width:821px){
+    .hlang.hfull{display:none}
+    .langfab{display:flex;position:fixed;right:22px;bottom:22px;z-index:900}
+    .langfab .lf{background:#fff}
+    .langfab .lf+.lf{margin-left:-1.4px}
+    .langfab .lf.on{background:var(--ink);color:#fff}
+  }
   .fptabs.geartabs{display:none}
   @media(min-width:821px){.sechead .seclead{margin-top:16px}#gear .sechead{margin-bottom:52px}}
   @media(max-width:820px){
@@ -473,6 +481,10 @@
     <button class="hlang hfull" onclick="toggleLang()" aria-label="Switch language"><span class="de">EN</span><span class="en">DE</span></button>
   </div>
 </header>
+<div class="langfab" aria-label="Sprache / Language">
+  <button class="mfbtn lf" data-l="de" onclick="setLang('de')">DE</button>
+  <button class="mfbtn lf" data-l="en" onclick="setLang('en')">EN</button>
+</div>
 <nav class="mobile-nav" id="mnav">
   <div class="mnav-top">
     <button class="mlangtop" onclick="toggleLang()"><span class="de">EN</span><span class="en">DE</span></button>
@@ -800,8 +812,10 @@
     function chk(){var hb=hero.offsetTop+hero.offsetHeight; hd.classList.toggle('inv', window.scrollY > hb - hd.offsetHeight);}
     window.addEventListener('scroll',chk,{passive:true}); window.addEventListener('resize',chk); chk();
   })();
-  function toggleLang(){document.body.classList.toggle('en');var en=document.body.classList.contains('en');document.documentElement.lang=en?'en':'de';try{localStorage.setItem('flang',en?'en':'de')}catch(e){}}
-  (function(){try{var p=localStorage.getItem('flang');if(p==='en'||(!p&&!/^de/i.test(navigator.language||'de'))){document.body.classList.add('en');document.documentElement.lang='en';}}catch(e){}})();
+  function updLangFab(){var en=document.body.classList.contains('en');document.querySelectorAll('.langfab .lf').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-l')===(en?'en':'de'));});}
+  function toggleLang(){document.body.classList.toggle('en');var en=document.body.classList.contains('en');document.documentElement.lang=en?'en':'de';try{localStorage.setItem('flang',en?'en':'de')}catch(e){}updLangFab();}
+  function setLang(l){document.body.classList.toggle('en',l==='en');document.documentElement.lang=l;try{localStorage.setItem('flang',l)}catch(e){}updLangFab();}
+  (function(){try{var p=localStorage.getItem('flang');if(p==='en'||(!p&&!/^de/i.test(navigator.language||'de'))){document.body.classList.add('en');document.documentElement.lang='en';}}catch(e){}updLangFab();})();
   function toggleMenu(){document.getElementById('mnav').classList.toggle('open');}
   function eqPbot(){var bs=document.querySelectorAll('.ptile .pbot');if(!bs.length)return;
     if(window.matchMedia('(max-width:820px)').matches){bs.forEach(function(b){b.style.minHeight='';});return;}
