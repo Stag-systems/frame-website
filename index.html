@@ -377,7 +377,7 @@
   .poirow{padding:16px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:.14s}
   .poirow:hover{padding-left:8px}
   .poin{font-weight:600;font-size:var(--fs-body);letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
-  .poistar{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--ink);padding:3px 6px 2px;flex:none}
+  .poistar{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--ink);padding:4px 5px 4px 7px;line-height:1;display:inline-flex;align-items:center;justify-content:center;flex:none}
   .pois{font-size:var(--fs-body);color:#444;margin-top:4px;font-weight:300}
   .poim{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.05em;color:var(--mut);margin-top:6px;text-transform:uppercase}
   .poim a{color:inherit}
@@ -707,7 +707,7 @@
   <div class="wrap">
     <div class="sechead">
       <h2 class="sectitle"><span class="sword">Location</span></h2>
-      <p class="seclead">Neustiftgasse 107/2 &middot; 1070 Wien &middot; Vienna Photo District</p>
+      <p class="seclead"><span class="de">Neustiftgasse 107/2 &middot; 1070 Wien &middot; Vienna Photo District.<br>Bestens gelegen mitten im Siebten: Kameraverleih, Fotolabore, Hotels und gute Lokale liegen ums Eck.<br>Alles, was die Produktionsplanung leichter macht — unten auf der Karte markiert.</span><span class="en">Neustiftgasse 107/2 &middot; 1070 Vienna &middot; Vienna Photo District.<br>Perfectly placed in the 7th district: camera rental, photo labs, hotels and great food are all around the corner.<br>Everything that makes production planning easier — marked on the map below.</span></p>
     </div>
     <div class="locgrid">
       <div class="locblk">
@@ -894,14 +894,16 @@
       {name:'Tabak Trafik',cat:'praktisch',ll:[48.206393,16.3430473],sub:'Schottenfeldgasse 91',note:'Parkscheine hier kaufen!',star:1},
       {name:'Bankomat',cat:'praktisch',ll:[48.2057136,16.3433582],sub:'Neustiftgasse 113',note:'Cash-Behebung auch bei Billa & BIPA möglich'},
       /* Öffis (OSM/Overpass 31.7.2026, fußläufige Auswahl) */
-      {name:'Zieglergasse/Neustiftgasse',cat:'transit',ll:[48.2057348,16.3450427],sub:'Bus 48A · Richtung Ring/Volkstheater · 1 Min vom Studio',star:1},
-      {name:'Zieglergasse/Burggasse',cat:'transit',ll:[48.204304,16.3453317],sub:'Bus 48A · Richtung U6 — 3 Stationen zur U6 Burggasse-Stadthalle',star:1},
-      {name:'Kaiserstraße/Neustiftgasse',cat:'transit',ll:[48.2062503,16.3396621],sub:'Tram 5 · Praterstern ↔ Westbahnhof'},
-      {name:'Kaiserstraße/Burggasse',cat:'transit',ll:[48.2045649,16.3399747],sub:'Tram 5 · Praterstern ↔ Westbahnhof'},
+      /* 48A-Studioverbindung — Hinweg (U6 · Neustiftgasse) */
+      {name:'U6 Burggasse-Stadthalle · 48A',cat:'transit',ll:[48.2042025,16.3371972],sub:'Start und Ziel der Studioverbindung · Bus 48A ab hier, zu Fuß ~10 Min',star:1},
+      {name:'Kaiserstraße/Neustiftgasse',cat:'transit',ll:[48.2060622,16.3393553],sub:'Hinweg: 48A von der U6 · Zwischenstation · auch Tram 5'},
+      {name:'Zieglergasse/Neustiftgasse',cat:'transit',ll:[48.2057348,16.3450427],sub:'Hinweg: 48A von der U6 · Ausstieg fürs Studio · 1 Min',star:1},
+      /* 48A-Studioverbindung — Rückweg (Burggasse) */
+      {name:'Zieglergasse/Burggasse',cat:'transit',ll:[48.204304,16.3453317],sub:'Rückweg: 48A Richtung U6 Burggasse-Stadthalle · Einstieg 2 Min vom Studio',star:1},
+      {name:'Kaiserstraße/Burggasse',cat:'transit',ll:[48.2043266,16.3403323],sub:'Rückweg: 48A Richtung U6 · Zwischenstation · auch Tram 5'},
       {name:'Westbahnstraße/Zieglergasse',cat:'transit',ll:[48.2018059,16.3444932],sub:'Tram 49 · Ring/Volkstheater ↔ Hütteldorf'},
       {name:'Schottenfeldgasse',cat:'transit',ll:[48.2074177,16.3442013],sub:'Tram 46 · Lerchenfelder Straße · Ring ↔ Joachimsthalerplatz'},
       {name:'Neubaugasse/Burggasse',cat:'transit',ll:[48.2039009,16.3489529],sub:'Bus 13A · Hauptbahnhof ↔ Skodagasse'},
-      {name:'U6 Burggasse-Stadthalle',cat:'transit',ll:[48.2032875,16.3372071],sub:'U-Bahn U6 · ~10 Min zu Fuß'},
       {name:'U3 Zieglergasse',cat:'transit',ll:[48.197145,16.3462979],sub:'U-Bahn U3 · Mariahilfer Straße · ~12 Min zu Fuß'},
       {name:'U2/U3 Volkstheater',cat:'transit',ll:[48.2054338,16.3577903],sub:'U-Bahn U2 &amp; U3 · Bus 48A Endstation Ring/Volkstheater'},
       {name:'Westbahnhof',cat:'transit',ll:[48.1965445,16.3362817],sub:'Bahnhof · U3/U6 · Tram · Fernverkehr'}
