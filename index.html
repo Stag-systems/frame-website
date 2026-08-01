@@ -56,7 +56,8 @@
   .mobile-nav.open{display:flex}
   .mnav-top{display:flex;align-items:center;justify-content:space-between}
   .mnav-top .mlogo{color:var(--ink);display:flex} .mnav-top .mlogo svg{height:17px;width:auto;display:block}
-  .mclose{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
+  .mlangtop{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;color:var(--ink);background:none;border:0;padding:0;cursor:pointer}
+  .mclose{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
   .mnav-links{margin:auto 0;display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
   .mnav-links a{display:flex;align-items:baseline;gap:18px;padding:20px 0;border-top:1px solid var(--line);font-family:var(--display);font-weight:400;font-size:clamp(30px,9vw,46px);letter-spacing:-.01em;color:var(--ink);line-height:1}
   .mnav-links a .mn{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;color:var(--mut)}
@@ -90,14 +91,14 @@
   .herocta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap;justify-content:center}
   @media(min-width:821px){.herocta .btn{font-size:14px;padding:15px 26px;letter-spacing:.16em}}
   .intro{padding:calc(var(--frame)*2) 0 0;border-bottom:0}
-  #raum{padding-top:44px}
+  #raum{padding-top:0}
   .introstate{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.6vw,54px);line-height:1.18;letter-spacing:-.01em;max-width:none;color:var(--ink)}
   .introsub{font-family:var(--display);font-size:clamp(18px,1.8vw,24px);letter-spacing:0;color:#666;margin-top:14px}
   /* Section-Header: grosse Nummern-Headline links, kleine Copy rechts */
   .sechead{display:grid;grid-template-columns:var(--g12);gap:var(--gutter)}
   .sectitle{grid-column:1/span 6;display:flex;align-items:baseline;gap:clamp(22px,3vw,40px);font-family:var(--display);font-weight:400;font-size:clamp(24px,2.5vw,34px);line-height:1.2;letter-spacing:.02em;text-transform:uppercase;color:var(--ink)}
-  .sechead{margin-bottom:clamp(28px,4vw,52px)}
-  .seclead{grid-column:7/-1;margin-top:0;font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:#444}
+  .sechead{margin-bottom:clamp(18px,2.6vw,34px)}
+  .seclead{grid-column:7/-1;margin-top:0;font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:17.5px;line-height:1.6;color:#444}
   @media(max-width:820px){.sectitle{grid-column:1/-1}.seclead{grid-column:1/-1;margin-top:18px}.hero{padding:0 var(--frame) var(--frame)}.heroframe{height:84svh}.hbar{padding:16px var(--frame)}.wrap{padding:0 var(--frame)}}
   /* ---------- SECTIONS ---------- */
   section{padding:96px 0;border-bottom:1px solid var(--line)}
@@ -237,7 +238,7 @@
   .gearlinks .secondary:hover{background:var(--ink);color:#fff}
   @media(max-width:820px){.gearrow .polaroids,.gearrow .geartext{grid-column:span 12}}
   .studioimg{position:relative;aspect-ratio:3/2;overflow:hidden}
-  .studiorow{display:grid;grid-template-columns:var(--g12);gap:var(--gutter);align-items:start;margin-top:26px}
+  .studiorow{display:grid;grid-template-columns:var(--g12);gap:var(--gutter);align-items:start;margin-top:0}
   .studiorow .studioimg{grid-column:span 6}
   .studiorow .factpanel{grid-column:span 6}
   .factpanel{width:100%}
@@ -348,7 +349,7 @@
   .flinks .cpr{color:var(--mut)}
   @media(max-width:720px){.flinks{gap:12px 20px;font-size:var(--fs-micro);justify-content:flex-start}}
   @media(max-width:1040px){
-    .hfull{display:none!important} .favlogo{display:none} .wordlogo{display:flex;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)} .hlang{display:block!important;position:static;transform:none;order:-1;padding:6px 8px 6px 0} .burger{display:flex;margin-left:auto} .burger span{height:2.5px}
+    .hfull{display:none!important} .favlogo{display:none} .wordlogo{display:flex;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)} .hlang{display:block!important;position:static;transform:none;order:-1;padding:6px 8px 6px 0;font-size:13px;letter-spacing:.08em;color:var(--ink)} .burger{display:flex;margin-left:auto;width:auto;height:auto;align-items:center} .burger span{display:none} .burger::after{content:"MENU";font-family:IBM Plex Mono,monospace;font-size:13px;letter-spacing:.08em;color:var(--ink)} header.inv .burger::after{color:#fff}
   }
   @media(max-width:860px){
     .precision{grid-template-columns:1fr;gap:30px} .cards{grid-template-columns:1fr} .twocol{grid-template-columns:1fr}
@@ -407,7 +408,7 @@
 </header>
 <nav class="mobile-nav" id="mnav">
   <div class="mnav-top">
-    <a class="mlogo" href="#top" onclick="toggleMenu()" aria-label="FRAME"><svg viewBox="0 0 117 117" fill="currentColor" aria-hidden="true"><rect width="91" height="26"/><rect x="26" width="91" height="26" transform="rotate(90 26 0)"/><rect x="117" y="117" width="91" height="26" transform="rotate(-180 117 117)"/><rect x="91" y="117" width="91" height="26" transform="rotate(-90 91 117)"/></svg></a>
+    <button class="mlangtop" onclick="toggleLang()"><span class="de">EN</span><span class="en">DE</span></button>
     <span class="mclose" onclick="toggleMenu()"><span class="de">Schließen ✕</span><span class="en">Close ✕</span></span>
   </div>
   <div class="mnav-links">
@@ -418,7 +419,6 @@
     <a href="#kontakt" onclick="toggleMenu()"><span class="mn">05</span><span class="de">Kontakt</span><span class="en">Contact</span></a>
   </div>
   <div class="mnav-foot">
-    <button class="mlang" onclick="toggleLang()"><span class="de">Switch to English</span><span class="en">Auf Deutsch wechseln</span></button>
     <a class="btn" href="#kontakt" onclick="toggleMenu()"><span class="de">STUDIO BUCHEN</span><span class="en">BOOK THE STUDIO</span></a>
   </div>
 </nav>
