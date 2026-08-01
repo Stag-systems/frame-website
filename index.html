@@ -27,7 +27,7 @@
   .wrap{max-width:none;margin:0;padding:0 var(--heroPad,var(--frame))}
   .mono{font-family:'IBM Plex Mono',monospace}
   /* ---------- HEADER: FRAMƎ stretched, menu between letters ---------- */
-  header{position:sticky;top:0;z-index:50;background:#fff;transition:background .25s ease}
+  header{position:sticky;top:0;z-index:1001;background:#fff;transition:background .25s ease}
   header.inv{background:var(--ink)}
   header.inv .L,header.inv .hnav,header.inv .hlang{color:#fff}
   header.inv .burger span{background:#fff}
@@ -52,7 +52,7 @@
   .favlogo{display:none;align-items:center;color:var(--ink)} .favlogo svg{height:17px;width:auto;display:block}
   .burger{display:none;flex-direction:column;justify-content:space-between;width:26px;height:15px;background:none;border:0;cursor:pointer;padding:0}
   .burger span{display:block;height:1.5px;width:100%;background:var(--ink)}
-  .mobile-nav{position:fixed;inset:0;background:#fff;z-index:60;display:none;flex-direction:column;padding:18px 22px 28px}
+  .mobile-nav{position:fixed;inset:0;background:#fff;z-index:1002;display:none;flex-direction:column;padding:18px 22px 28px}
   .mobile-nav.open{display:flex}
   .mnav-top{display:flex;align-items:center;justify-content:space-between}
   .mnav-top .mlogo{color:var(--ink);display:flex} .mnav-top .mlogo svg{height:17px;width:auto;display:block}
@@ -395,7 +395,7 @@
   .flinks .cpr{color:var(--mut)}
   @media(max-width:720px){.flinks{gap:12px 20px;font-size:var(--fs-micro);justify-content:flex-start}}
   @media(max-width:1040px){
-    .hfull{display:none!important} .favlogo{display:none} .wordlogo{display:flex;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)} .hlang{display:block!important;position:static;transform:none;order:-1;padding:6px 8px 6px 0;font-size:13px;letter-spacing:.08em;color:var(--ink)} .burger{display:flex;margin-left:auto;width:auto;height:auto;align-items:center} .burger span{display:none} .burger::after{content:"MENU";font-family:IBM Plex Mono,monospace;font-size:13px;letter-spacing:.08em;color:var(--ink)} header.inv .burger::after{color:#fff}
+    .hfull{display:none!important} .favlogo{display:none} .wordlogo{display:flex;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)} .hlang{display:block!important;position:static;transform:none;order:-1;padding:6px 8px 6px 0;font-size:13px;letter-spacing:.08em;color:var(--ink)} .burger{display:flex;margin-left:auto;width:auto;height:auto;align-items:center} .burger span{display:none} .burger::after{content:"MENU";font-family:IBM Plex Mono,monospace;font-size:13px;letter-spacing:.08em;color:var(--ink)} header.inv .burger::after{color:#fff} header.inv .wordlogo img{filter:invert(1)} header.inv .hlang{color:#fff}
   }
   @media(max-width:860px){
     .precision{grid-template-columns:1fr;gap:30px} .cards{grid-template-columns:1fr} .twocol{grid-template-columns:1fr}
