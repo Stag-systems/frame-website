@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Pin 2 · Facts & Preise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Century Gothic';src:url('../fonts/century-gothic.woff2') format('woff2');font-weight:400}
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--ink:#0a0a0a;--mut:#8a8a8a;--line:#e6e6e6}
+  body{width:1080px;height:1350px;background:#fff;color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-weight:300;position:relative;padding:84px 84px 100px;display:flex;flex-direction:column}
+  .top{display:flex;justify-content:space-between;align-items:flex-start}
+  .top img{height:52px;display:block}
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:20px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);padding-top:8px}
+  h1{font-family:'Century Gothic','Helvetica Neue',Arial,sans-serif;font-weight:400;font-size:88px;line-height:1.08;margin:100px 0 64px}
+  .row{display:flex;justify-content:space-between;align-items:baseline;gap:40px;padding:21px 0;border-bottom:1.5px solid var(--line)}
+  .row .k{font-size:31px}
+  .row .k .q{font-family:'IBM Plex Mono',monospace;font-size:17px;letter-spacing:.05em;color:var(--mut);text-transform:uppercase;margin-left:12px}
+  .row .v{font-family:'IBM Plex Mono',monospace;font-size:27px;letter-spacing:.02em;white-space:nowrap}
+  .inc{font-size:26px;color:#444;line-height:1.55;margin-top:44px;max-width:830px}
+  .rentline{font-family:'IBM Plex Mono',monospace;font-size:19px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-top:26px}
+  .foot{position:absolute;left:84px;right:84px;bottom:56px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:19px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  .brk{position:absolute;width:56px;height:56px;color:var(--ink)}
+  .brk svg{width:100%;height:100%;display:block}
+  .brk.tr{top:84px;right:84px;display:none}
+  .brk.bl{bottom:100px;right:84px;transform:rotate(180deg)}
+</style>
+</head>
+<body>
+  <div class="top">
+    <img src="FRAME_V2.svg" alt="FRAME">
+    <div class="tag">Preise · 2026</div>
+  </div>
+
+  <h1>Studio &amp;<br>Equipment.</h1>
+
+  <div>
+    <div class="row"><span class="k">Studiofläche</span><span class="v">220 m²</span></div>
+    <div class="row"><span class="k">Aufnahmeplätze</span><span class="v">bis zu 3</span></div>
+    <div class="row"><span class="k">Raumhöhe</span><span class="v">3,40–3,70 m</span></div>
+    <div class="row"><span class="k">Studiotag<span class="q">09–18</span></span><span class="v">€ 500,–</span></div>
+    <div class="row"><span class="k">Editorial-Tag<span class="q">werktags</span></span><span class="v">€ 300,–</span></div>
+    <div class="row"><span class="k">½ Studiotag<span class="q">Sommer</span></span><span class="v">ab € 200,–</span></div>
+  </div>
+
+  <div class="inc">Inklusive: Strom, Grip &amp; Hilfsmaterial, Stative, Schminkplatz mit Tageslicht, Küche für Foodshootings.</div>
+  <div class="rentline">Verleih im Haus: Broncolor · Profoto · Aputure · Dedolight</div>
+
+  <div class="brk bl"><svg viewBox="0 0 117 117" fill="currentColor"><rect x="117" y="0" width="91" height="26" transform="rotate(180 117 13)"/><rect x="91" width="26" height="91"/></svg></div>
+  <div class="foot"><span>Alle Preise netto</span><span>theframe.at</span></div>
+</body>
+</html>

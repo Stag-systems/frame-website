@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Pin 3 · Buchen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Century Gothic';src:url('../fonts/century-gothic.woff2') format('woff2');font-weight:400}
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--ink:#0a0a0a;--mut:#8a8a8a;--line:#e6e6e6}
+  body{width:1080px;height:1350px;background:#fff;color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-weight:300;position:relative;padding:84px 84px 100px;display:flex;flex-direction:column}
+  .top{display:flex;justify-content:space-between;align-items:flex-start}
+  .top img{height:52px;display:block}
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:20px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);padding-top:8px}
+  .mid{flex:1;display:flex;flex-direction:column;justify-content:center}
+  h1{font-family:'Century Gothic','Helvetica Neue',Arial,sans-serif;font-weight:400;font-size:92px;line-height:1.12;margin-bottom:80px}
+  .mail{font-family:'Century Gothic','Helvetica Neue',Arial,sans-serif;font-size:52px;border-bottom:3px solid var(--ink);display:inline-block;align-self:flex-start;padding-bottom:6px}
+  .row{display:flex;justify-content:space-between;align-items:baseline;gap:40px;padding:22px 0;border-bottom:1.5px solid var(--line)}
+  .rows{margin-top:78px}
+  .row .k{font-size:30px}
+  .row .v{font-family:'IBM Plex Mono',monospace;font-size:22px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);white-space:nowrap}
+  .foot{position:absolute;left:84px;right:84px;bottom:56px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:19px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  .brk{position:absolute;width:56px;height:56px;color:var(--ink)}
+  .brk svg{width:100%;height:100%;display:block}
+  .brk.tr{top:84px;right:84px}
+  .brk.bl{bottom:100px;left:84px;transform:rotate(180deg)}
+</style>
+</head>
+<body>
+  <div class="top">
+    <img src="FRAME_V2.svg" alt="FRAME">
+    <div class="tag">Booking</div>
+  </div>
+
+  <div class="mid">
+    <h1>Studio ansehen<br>oder direkt<br>anfragen?</h1>
+    <div class="mail">info@theframe.at</div>
+    <div class="rows">
+      <div class="row"><span class="k">Neustiftgasse 107/2 · 1070 Wien</span><span class="v">Vienna Photo District</span></div>
+      <div class="row"><span class="k">Termin &amp; Verfügbarkeit</span><span class="v">Link in Bio</span></div>
+      <div class="row"><span class="k">Kamera-Verleih</span><span class="v">Ums Eck</span></div>
+    </div>
+  </div>
+
+  <div class="brk bl"><svg viewBox="0 0 117 117" fill="currentColor"><rect x="117" y="0" width="91" height="26" transform="rotate(180 117 13)"/><rect x="91" width="26" height="91"/></svg></div>
+  <div class="foot"><span>Studio für Foto, Video und Werbung</span><span>theframe.at</span></div>
+</body>
+</html>
