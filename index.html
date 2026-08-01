@@ -133,8 +133,8 @@
   .locblk p{font-size:var(--fs-body);color:#444;line-height:1.6;font-weight:300}
   /* Anreise/Parken als scanbare Zeilen: Label links, Wert rechts in Mono */
   .locrow{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:7px 0;border-bottom:1px solid var(--line)}
-  .locrow .k{font-size:15px;font-weight:300;color:#222}
-  .locrow .v{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.05em;color:var(--mut);text-transform:uppercase;text-align:right;white-space:nowrap;flex:none}
+  .locrow .k{font-size:16px;font-weight:300;color:#444}
+  .locrow .v{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;text-align:right;flex:none}
   /* Grundriss: kompakt unter den Fakten, schliesst den Slider-Block ab */
   svg.plan{width:100%;height:auto;display:block;overflow:visible}
   .plan .poche{fill:var(--ink)}
@@ -346,8 +346,8 @@
   .poirow{padding:16px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:.14s}
   .poirow:hover{padding-left:8px}
   .poin{font-weight:600;font-size:15px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
-  .poistar{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--ink);padding:3px 6px 2px;flex:none}
-  .pois{font-size:14px;color:#444;margin-top:4px;font-weight:300}
+  .poistar{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--ink);padding:3px 6px 2px;flex:none}
+  .pois{font-size:15px;color:#444;margin-top:4px;font-weight:300}
   .poim{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.05em;color:var(--mut);margin-top:6px;text-transform:uppercase}
   .poim a{color:inherit}
   .poinote{color:var(--ink)}
@@ -359,7 +359,7 @@
   /* POI-Popups on-brand */
   .leaflet-popup-content-wrapper{border-radius:0;border:1px solid var(--ink);box-shadow:0 3px 14px rgba(0,0,0,.12)}
   .leaflet-popup-content{margin:13px 16px;font-family:'IBM Plex Sans',sans-serif}
-  .leaflet-popup-content b{font-weight:700;font-size:14px;display:block;letter-spacing:-.01em}
+  .leaflet-popup-content b{font-weight:600;font-size:15px;display:block;letter-spacing:-.01em}
   .leaflet-popup-content .poisub{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.04em;color:var(--mut);margin-top:6px;line-height:1.55;text-transform:uppercase}
   .leaflet-popup-content .poilink{display:inline-block;margin-top:9px;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--ink);color:var(--ink)}
   .leaflet-popup-content .poilink:hover{opacity:.55}
