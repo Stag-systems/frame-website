@@ -228,19 +228,21 @@
   .pol{position:absolute;width:70%;height:auto;display:block}
   .pol-back{left:0;bottom:0;transform:rotate(-5deg)}
   .pol-front{right:0;top:0;transform:rotate(3.5deg);z-index:2}
-  .gearinc{margin-top:24px}
-  .gearinc .el{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.2em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:8px}
-  .inctags{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:#333;line-height:1.9}
-  .gearbody{font-size:15px;color:#444;line-height:1.55;font-weight:300;margin-top:18px}
+  .gearcards{display:grid;grid-template-columns:1fr 1fr;gap:var(--gutter);margin-top:30px}
+  .gearcard{border:1px solid var(--line);padding:24px;display:flex;flex-direction:column;min-height:320px}
+  .gearcard .gc-body{font-size:15px;color:#444;line-height:1.55;font-weight:300;margin-top:16px}
+  .gearcard .primary,.gearcard .secondary{margin-top:auto;align-self:flex-start}
+  .gearcard .gc-cta{margin-top:auto;padding-top:18px}
+  @media(max-width:820px){.gearcards{grid-template-columns:1fr}.gearcard{min-height:0}}
   .geartext h2{margin-top:8px}
   #gear{padding-top:36px;border-bottom:0}
   .gearlinks{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:11px;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.06em}
   .gearsoon{color:var(--mut)}
   /* Zwei gleichrangige Buttons: PDF gefüllt, Verleih als Outline */
-  .gearlinks .primary{background:var(--ink);color:#fff;border:1.4px solid var(--ink);padding:11px 18px;text-transform:uppercase;letter-spacing:.14em;font-size:var(--fs-label);transition:.15s}
-  .gearlinks .primary:hover{background:#fff;color:var(--ink)}
-  .gearlinks .secondary{background:none;color:var(--ink);border:1.4px solid var(--ink);padding:11px 18px;text-transform:uppercase;letter-spacing:.14em;font-size:var(--fs-label);transition:.15s}
-  .gearlinks .secondary:hover{background:var(--ink);color:#fff}
+  a.primary{display:inline-block;white-space:nowrap;background:var(--ink);color:#fff;border:1.4px solid var(--ink);padding:11px 18px;text-transform:uppercase;letter-spacing:.14em;font-size:var(--fs-label);transition:.15s}
+  a.primary:hover{background:#fff;color:var(--ink)}
+  a.secondary{display:inline-block;white-space:nowrap;background:none;color:var(--ink);border:1.4px solid var(--ink);padding:11px 18px;text-transform:uppercase;letter-spacing:.14em;font-size:var(--fs-label);transition:.15s}
+  a.secondary:hover{background:var(--ink);color:#fff}
   @media(max-width:820px){.gearrow .polaroids,.gearrow .geartext{grid-column:span 12}}
   .studioimg{position:relative;aspect-ratio:3/2;overflow:hidden}
   .studiorow{display:grid;grid-template-columns:var(--g12);gap:var(--gutter);align-items:start;margin-top:0}
@@ -532,7 +534,7 @@
       <div class="fixcard"><div class="fc-head"><span class="fc-t">Get ready</span><span class="fc-n">01.</span></div><div class="fc-tags"><span class="de">Styling &amp; Vorbereitung</span><span class="en">Styling &amp; prep</span></div><div class="fc-body"><span class="de">Perfekt vorbereitet ins Shooting: Tageslicht-Schminkplatz mit Spiegel für zwei, Steamer, Bügelbrett und eine erweiterbare Garderobe stehen direkt im Studio zur Verfügung.</span><span class="en">Perfectly prepped for the shoot: a daylight make-up station with mirror for two, steamer, iron and an expandable wardrobe are right in the studio.</span></div></div>
       <div class="fixcard"><div class="fc-head"><span class="fc-t">Take a break</span><span class="fc-n">02.</span></div><div class="fc-tags"><span class="de">Pause &amp; Komfort</span><span class="en">Break &amp; comfort</span></div><div class="fc-body"><span class="de">Zwischen den Sets Platz nehmen, durchatmen und weiterarbeiten: Sitzbereich, Küche mit Espressomaschine, Toaster, Mikrowelle und Milchschäumer, WLAN und Bluetooth-Musikanlage sorgen für eine angenehme Studioatmosphäre.</span><span class="en">Take a seat between sets, breathe and keep going: lounge, kitchen with espresso machine, toaster, microwave and milk frother, WiFi and a Bluetooth sound system make for a relaxed studio atmosphere.</span></div></div>
       <div class="fixcard"><div class="fc-head"><span class="fc-t">Feel at home</span><span class="fc-n">03.</span></div><div class="fc-tags"><span class="de">Bad &amp; Refresh</span><span class="en">Bath &amp; refresh</span></div><div class="fc-body"><span class="de">Für längere Produktionen und entspannte Shootingtage gibt es für Models ein Badezimmer mit Dusche zur freien Nutzung.</span><span class="en">For longer productions and relaxed shoot days, models have a bathroom with shower at their free disposal.</span></div></div>
-      <div class="fixcard"><div class="fc-head"><span class="fc-t">Create</span><span class="fc-n">04.</span></div><div class="fc-tags"><span class="de">Equipment &amp; Verleih</span><span class="en">Equipment &amp; rental</span></div><div class="fc-body"><span class="de">Alles, was du für den Start brauchst, ist vor Ort – und was darüber hinaus fehlt, lässt sich unkompliziert direkt im Studio dazumieten.</span><span class="en">Everything you need to get started is on site – and whatever else is missing can easily be rented right in the studio.</span></div><a class="fixcta" href="#gear" style="margin-top:12px"><span class="de">Zur Equipmentliste</span><span class="en">To the equipment list</span></a></div>
+      <div class="fixcard"><div class="fc-head"><span class="fc-t">Create</span><span class="fc-n">04.</span></div><div class="fc-tags"><span class="de">Equipment &amp; Verleih</span><span class="en">Equipment &amp; rental</span></div><div class="fc-body"><span class="de">Alles, was du für den Start brauchst, ist vor Ort – und was darüber hinaus fehlt, lässt sich unkompliziert direkt im Studio dazumieten.</span><span class="en">Everything you need to get started is on site – and whatever else is missing can easily be rented right in the studio.</span></div><a class="primary" href="#gear" style="margin-top:14px;align-self:flex-start"><span class="de">Zur Equipmentliste</span><span class="en">To the equipment list</span></a></div>
       <div class="fixcard"><div class="fc-head"><span class="fc-t">Focus</span><span class="fc-n">05.</span></div><div class="fc-tags"><span class="de">Office &amp; Production Space</span><span class="en">Office &amp; production space</span></div><div class="fc-body"><span class="de">Bei Bedarf buchbar: ein separater Raum mit Bildschirmen, Besprechungstisch und Klimaanlage – ideal für Vorbereitungen, Kundentermine, Postproduktion oder Pausen zwischendurch.</span><span class="en">Bookable on demand: a separate room with screens, meeting table and air conditioning – ideal for prep, client meetings, post-production or breaks in between.</span></div></div>
       </div>
     </div>
@@ -550,23 +552,23 @@
         <img class="pol pol-front" src="plan-assets/polaroid02.png" alt="FRAME Studio – Aufnahmetisch" loading="lazy">
       </div>
       <div class="geartext">
-        <p class="lead" style="margin-top:0"><span class="de">Du möchtest, dass am Shootingtag alles bereitsteht? Wir kümmern uns darum.</span><span class="en">Want everything ready on shoot day? We'll take care of it.</span></p>
-        <div class="gearinc">
-          <span class="el"><span class="de">Basis — inklusive</span><span class="en">Basics — included</span></span>
-          <div class="inctags"><span class="de">Aufnahmetisch 3&nbsp;m &middot; Backofen/Herd rollbar &middot; Starkstrom &middot; Grip &amp; Stative</span><span class="en">Shooting table 3&nbsp;m &middot; Rollable oven/stove &middot; High-voltage power &middot; Grip &amp; stands</span></div>
-          <p class="gearbody" style="margin-top:10px"><span class="de">Papierhintergründe nach Verbrauch (15&nbsp;€/lfm).</span><span class="en">Paper backdrops charged by usage (€&nbsp;15/rm).</span></p>
-        </div>
-        <div class="gearinc">
-          <span class="el"><span class="de">Zusatz — mietbar im Studio</span><span class="en">Extras — for rent in the studio</span></span>
-          <div class="inctags">Broncolor &middot; Profoto &middot; Aputure &middot; Dedolight &middot; Powerbanks</div>
-          <p class="gearbody" style="margin-top:10px"><span class="de">Tagespreise in der Preisliste. Kameras und Spezialtechnik organisieren wir über den Digitalkameraverleih gleich ums Eck.</span><span class="en">Day rates in the price list. Cameras and specialty gear are sourced via Digitalkameraverleih around the corner.</span></p>
-        </div>
-        <div class="gearlinks">
-          <a class="primary" href="preisliste-2026.pdf" target="_blank" rel="noopener"><span class="de">Preisliste Studio &amp; Equipment (PDF)</span><span class="en">Price list studio &amp; equipment (PDF)</span></a>
-          <a class="secondary" href="https://www.digitalkameraverleih.com" target="_blank" rel="noopener"><span class="de">Zum Digitalkameraverleih</span><span class="en">To Digitalkameraverleih</span></a>
-        </div>
+        <p class="lead" style="margin-top:0"><span class="de">Du möchtest, dass am Shootingtag alles bereitsteht? Wir kümmern uns darum. Das Studio verfügt über umfangreiches Basis-Equipment – und was fehlt, kann unkompliziert über den Digitalkameraverleih gleich ums Eck organisiert werden.</span><span class="en">Want everything ready on shoot day? We'll take care of it. The studio comes with extensive basic equipment – and whatever is missing can easily be sourced from Digitalkameraverleih around the corner.</span></p>
       </div>
     </div>
+    <div class="gearcards">
+          <div class="gearcard">
+            <div class="fc-head"><span class="fc-t"><span class="de">Basis-Equipment</span><span class="en">Basic equipment</span></span></div>
+            <div class="fc-tags"><span class="de">Inklusive</span><span class="en">Included</span></div>
+            <p class="gc-body"><span class="de">Rollbarer 3-Meter-Aufnahmetisch, rollbarer Backofen/Herd für Foodshootings, Strom inklusive Starkstromanschluss sowie Grip- und Stativequipment sind im Studiopreis enthalten. Papierhintergründe werden nach Verbrauch verrechnet (15&nbsp;€/lfm).</span><span class="en">A rollable 3-metre shooting table, a rollable oven/stove for food shoots, power including a high-voltage outlet plus grip and stand equipment are part of the studio rate. Paper backdrops are charged by usage (€&nbsp;15/rm).</span></p>
+            <div class="gc-cta"><a class="primary" href="preisliste-2026.pdf" target="_blank" rel="noopener"><span class="de">Preisliste Studio &amp; Equipment (PDF)</span><span class="en">Price list studio &amp; equipment (PDF)</span></a></div>
+          </div>
+          <div class="gearcard">
+            <div class="fc-head"><span class="fc-t"><span class="de">Verleih &amp; Zusatz</span><span class="en">Rental &amp; extras</span></span></div>
+            <div class="fc-tags"><span class="de">Mietbar im Studio</span><span class="en">For rent in the studio</span></div>
+            <p class="gc-body"><span class="de">Blitz- und Dauerlicht von Broncolor, Profoto, Aputure und Dedolight sowie Powerbanks stehen direkt im Studio bereit – Tagespreise findest du in der Preisliste. Kameras und Spezialtechnik organisieren wir über den Digitalkameraverleih gleich ums Eck.</span><span class="en">Flash and continuous light by Broncolor, Profoto, Aputure and Dedolight plus powerbanks are ready right in the studio – day rates are in the price list. Cameras and specialty gear are sourced via Digitalkameraverleih around the corner.</span></p>
+            <div class="gc-cta"><a class="secondary" href="https://www.digitalkameraverleih.com" target="_blank" rel="noopener"><span class="de">Zum Digitalkameraverleih</span><span class="en">To Digitalkameraverleih</span></a></div>
+          </div>
+        </div>
   </div>
 </section>
 
