@@ -255,7 +255,7 @@
   a.secondary{display:inline-block;white-space:nowrap;background:none;color:var(--ink);border:1.4px solid var(--ink);padding:11px 18px;text-transform:uppercase;letter-spacing:.14em;font-size:var(--fs-label);transition:.15s}
   a.secondary:hover{background:var(--ink);color:#fff}
   .fptabs.geartabs{display:none}
-  @media(min-width:821px){#gear .seclead{margin-top:16px}#gear .sechead{margin-bottom:52px}}
+  @media(min-width:821px){.sechead .seclead{margin-top:16px}#gear .sechead{margin-bottom:52px}}
   @media(max-width:820px){
     #gear .sechead,#gear .gearrow{display:contents}
     #gear .wrap{display:flex;flex-direction:column}
@@ -335,10 +335,10 @@
   .note{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);color:var(--mut);letter-spacing:.14em;margin-top:20px;text-transform:uppercase}
   .bextra{margin-top:28px;padding:24px;border:1px solid var(--line)}
   .pricehint{font-size:var(--fs-body);color:#444;line-height:1.55;margin-top:14px;font-weight:300;max-width:54ch}
-  .mapfilters{display:flex;flex-wrap:wrap;gap:7px;margin-top:26px}
+  .mapfilters{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
   /* Chip-Filter: gerahmt, gefüllt/invertiert wenn aktiv, großzügige Tap-Ziele */
-  .mfbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);background:none;color:var(--mut);padding:6px 10px 5px;min-height:26px;line-height:1;cursor:pointer;transition:.14s}
-  .mfbtn:hover{border-color:var(--ink);color:var(--ink)}
+  .mfbtn{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase;border:1.4px solid var(--ink);background:none;color:var(--ink);padding:11px 18px 10px;min-height:38px;line-height:1;cursor:pointer;transition:.14s}
+  .mfbtn:hover{background:var(--ink);color:#fff}
   .mfbtn.on{background:var(--ink);border-color:var(--ink);color:#fff}
   /* POI-Liste: gekoppelt an die Karte, zeigt Details der aktiven Kategorie */
   .poilist{display:grid;grid-template-columns:var(--g12);gap:0 var(--gutter);margin-top:22px}
