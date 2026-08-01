@@ -96,10 +96,10 @@
   .introsub{font-family:var(--display);font-size:clamp(18px,1.8vw,24px);letter-spacing:0;color:#666;margin-top:14px}
   /* Section-Header: grosse Nummern-Headline links, kleine Copy rechts */
   .sechead{display:grid;grid-template-columns:var(--g12);gap:var(--gutter)}
-  .sectitle{grid-column:1/span 6;display:flex;align-items:baseline;gap:clamp(22px,3vw,40px);font-family:var(--display);font-weight:400;font-size:clamp(24px,2.5vw,34px);line-height:1.2;letter-spacing:.02em;text-transform:uppercase;color:var(--ink)}
+  .sectitle{grid-column:1/span 6;display:flex;align-items:baseline;gap:clamp(22px,3vw,40px);font-family:var(--display);font-weight:400;font-size:34px;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;color:var(--ink)}
   .sechead{margin-bottom:clamp(18px,2.6vw,34px)}
   .seclead{grid-column:7/-1;margin-top:0;font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:16px;line-height:1.6;color:#444}
-  @media(max-width:820px){.sechead{row-gap:0;margin-bottom:44px}.sectitle{grid-column:1/-1}.seclead{grid-column:1/-1;margin-top:12px}.hero{padding:0 var(--frame) var(--frame)}.heroframe{height:84svh}.hbar{padding:16px var(--frame)}.wrap{padding:0 var(--frame)}}
+  @media(max-width:820px){.sechead{row-gap:0;margin-bottom:44px}.sectitle{grid-column:1/-1;font-size:28px}.seclead{grid-column:1/-1;margin-top:12px}.hero{padding:0 var(--frame) var(--frame)}.heroframe{height:84svh}.hbar{padding:16px var(--frame)}.wrap{padding:0 var(--frame)}}
   /* ---------- SECTIONS ---------- */
   section{padding:96px 0;border-bottom:1px solid var(--line)}
   h2{font-family:var(--display);font-weight:400;font-size:clamp(28px,3.6vw,48px);letter-spacing:-.005em;line-height:1.06;margin:14px 0 0}
@@ -186,7 +186,8 @@
   .fc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
   .fc-t{font-family:var(--display);font-size:21px;line-height:1.2;letter-spacing:.02em;font-weight:400;text-transform:uppercase}
   .fc-n{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);color:var(--mut);letter-spacing:.08em;white-space:nowrap}
-  .fc-body{font-size:15px;color:#444;line-height:1.55;margin-top:12px;font-weight:300}
+  .fc-body{font-size:15px;color:#444;line-height:1.55;margin-top:14px;font-weight:300}
+  .fc-tags{margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--mut);line-height:1.9}
   .fixcta{display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
   .fixcta:hover{color:var(--ink)}
   @media(max-width:520px){.fixcard{width:82vw}}/* aspect-ratio hält das Quadrat */
@@ -524,9 +525,9 @@
         <button class="fixarrow" onclick="slideFix(1)" aria-label="weiter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button>
       </div>
       <div class="fixslider" id="fixslider">
-      <div class="fixcard"><div class="fc-head"><span class="fc-t">Get ready</span><span class="fc-n">01.</span></div><div class="fc-body"><span class="de">Perfekt vorbereitet ins Shooting: Tageslicht-Schminkplatz mit Spiegel für zwei, Steamer, Bügelbrett und eine erweiterbare Garderobe stehen direkt im Studio zur Verfügung.</span><span class="en">Perfectly prepped for the shoot: a daylight make-up station with mirror for two, steamer, iron and an expandable wardrobe are right in the studio.</span></div></div>
-      <div class="fixcard"><div class="fc-head"><span class="fc-t">Take a break</span><span class="fc-n">02.</span></div><div class="fc-body"><span class="de">Zwischen den Sets Platz nehmen, durchatmen und weiterarbeiten: Sitzbereich, Küche mit Espressomaschine, Toaster, Mikrowelle &amp; Milchschäumer, WLAN und Bluetooth-Musikanlage sorgen für eine angenehme Studioatmosphäre.</span><span class="en">Take a seat between sets, breathe and keep going: lounge, kitchen with espresso machine, toaster, microwave &amp; milk frother, WiFi and a Bluetooth sound system make for a relaxed studio atmosphere.</span></div></div>
-      <div class="fixcard"><div class="fc-head"><span class="fc-t">Feel at home</span><span class="fc-n">03.</span></div><div class="fc-body"><span class="de">Für längere Produktionen und entspannte Shootingtage gibt es für Models ein Badezimmer mit Dusche zur freien Nutzung.</span><span class="en">For longer productions and relaxed shoot days, models have a bathroom with shower at their free disposal.</span></div></div>
+      <div class="fixcard"><div class="fc-head"><span class="fc-t">Get ready</span><span class="fc-n">01.</span></div><div class="fc-tags"><span class="de">Schminkplatz &times;2 &middot; Steamer &middot; B&uuml;gelbrett &middot; Garderobe</span><span class="en">Make-up station &times;2 &middot; Steamer &middot; Iron &middot; Wardrobe</span></div><div class="fc-body"><span class="de">Perfekt vorbereitet ins Shooting: Tageslicht-Schminkplatz mit Spiegel für zwei, Steamer, Bügelbrett und eine erweiterbare Garderobe stehen direkt im Studio zur Verfügung.</span><span class="en">Perfectly prepped for the shoot: a daylight make-up station with mirror for two, steamer, iron and an expandable wardrobe are right in the studio.</span></div></div>
+      <div class="fixcard"><div class="fc-head"><span class="fc-t">Take a break</span><span class="fc-n">02.</span></div><div class="fc-tags"><span class="de">Espressomaschine &middot; Toaster &middot; Mikrowelle &middot; Milchsch&auml;umer &middot; WLAN &middot; Bluetooth-Anlage</span><span class="en">Espresso machine &middot; Toaster &middot; Microwave &middot; Milk frother &middot; WiFi &middot; Bluetooth sound</span></div><div class="fc-body"><span class="de">Zwischen den Sets Platz nehmen, durchatmen und weiterarbeiten: Sitzbereich und voll ausgestattete Küche sorgen für eine angenehme Studioatmosphäre.</span><span class="en">Take a seat between sets, breathe and keep going: lounge and a fully equipped kitchen make for a relaxed studio atmosphere.</span></div></div>
+      <div class="fixcard"><div class="fc-head"><span class="fc-t">Feel at home</span><span class="fc-n">03.</span></div><div class="fc-tags"><span class="de">Badezimmer &middot; Dusche</span><span class="en">Bathroom &middot; Shower</span></div><div class="fc-body"><span class="de">Für längere Produktionen und entspannte Shootingtage gibt es für Models ein Badezimmer mit Dusche zur freien Nutzung.</span><span class="en">For longer productions and relaxed shoot days, models have a bathroom with shower at their free disposal.</span></div></div>
       </div>
     </div>
   </div>
