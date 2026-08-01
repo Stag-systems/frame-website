@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>if('scrollRestoration' in history){history.scrollRestoration='manual';}window.scrollTo(0,0);</script>
 <title>THE FRAME Studio Vienna — Creative Studio Space für Foto, Video & Content · 1070 Wien</title>
 <meta name="description" content="THE FRAME Studio Vienna — 220 m² Loftstudio im Vienna Photo District, 1070 Wien. Mieten für Foto, Video & Content: bis zu 3 Sets, Broncolor & Profoto im Haus, Tageslicht, voll abdunkelbar.">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE3IiBoZWlnaHQ9IjExNyIgdmlld0JveD0iMCAwIDExNyAxMTciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgZmlsbD0iYmxhY2siLz4KPHJlY3QgeD0iMjYiIHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgMjYgMCkiIGZpbGw9ImJsYWNrIi8+CjxyZWN0IHg9IjExNyIgeT0iMTE3IiB3aWR0aD0iOTEiIGhlaWdodD0iMjYiIHRyYW5zZm9ybT0icm90YXRlKC0xODAgMTE3IDExNykiIGZpbGw9ImJsYWNrIi8+CjxyZWN0IHg9IjkxIiB5PSIxMTciIHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDkxIDExNykiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=">
@@ -24,7 +25,7 @@
   body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   body.en .de{display:none} body:not(.en) .en{display:none}
-  .wrap{max-width:none;margin:0;padding:0 var(--heroPad,var(--frame))}
+  .wrap{max-width:none;margin:0;padding:0 var(--frame)}
   .mono{font-family:'IBM Plex Mono',monospace}
   /* ---------- HEADER: FRAMƎ stretched, menu between letters ---------- */
   header{position:sticky;top:0;z-index:50;background:#fff;transition:background .25s ease}
@@ -34,8 +35,6 @@
   .hbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:16px var(--heroPad,var(--frame));position:relative}
   .L{font-family:'IBM Plex Sans';font-weight:700;font-size:clamp(22px,3.1vw,40px);line-height:1;letter-spacing:.01em}
   .L.mir{display:inline-block;transform:scaleX(-1)}
-  .wordlogo{display:none;align-items:center}
-  .wordlogo img{height:20px;display:block}
   .hnav{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:#222}
   .hnav:hover{opacity:.5}
   .navgrp{position:relative;display:inline-flex}
@@ -49,13 +48,13 @@
   .hlang:hover{color:var(--ink)}
   .mlang{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);background:none;border:0;padding:18px 0;text-align:left;cursor:pointer}
   .hlang:hover{opacity:.5}
-  .favlogo{display:none;align-items:center;color:var(--ink)} .favlogo svg{height:17px;width:auto;display:block}
+  .favlogo{display:none;align-items:center;color:var(--ink)} .favlogo svg{height:22px;width:auto;display:block}
   .burger{display:none;flex-direction:column;justify-content:space-between;width:26px;height:15px;background:none;border:0;cursor:pointer;padding:0}
   .burger span{display:block;height:1.5px;width:100%;background:var(--ink)}
   .mobile-nav{position:fixed;inset:0;background:#fff;z-index:60;display:none;flex-direction:column;padding:18px 22px 28px}
   .mobile-nav.open{display:flex}
   .mnav-top{display:flex;align-items:center;justify-content:space-between}
-  .mnav-top .mlogo{color:var(--ink);display:flex} .mnav-top .mlogo svg{height:17px;width:auto;display:block}
+  .mnav-top .mlogo{color:var(--ink);display:flex} .mnav-top .mlogo svg{height:22px;width:auto;display:block}
   .mclose{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
   .mnav-links{margin:auto 0;display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
   .mnav-links a{display:flex;align-items:baseline;gap:18px;padding:20px 0;border-top:1px solid var(--line);font-family:var(--display);font-weight:400;font-size:clamp(30px,9vw,46px);letter-spacing:-.01em;color:var(--ink);line-height:1}
@@ -98,7 +97,7 @@
   .sectitle{grid-column:1/span 6;display:flex;align-items:baseline;gap:clamp(22px,3vw,40px);font-family:var(--display);font-weight:400;font-size:clamp(24px,2.5vw,34px);line-height:1.2;letter-spacing:.02em;text-transform:uppercase;color:var(--ink)}
   .sechead{margin-bottom:clamp(28px,4vw,52px)}
   .seclead{grid-column:7/-1;margin-top:0;font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:#444}
-  @media(max-width:820px){.sectitle{grid-column:1/-1}.seclead{grid-column:1/-1;margin-top:18px}.hero{padding:0 var(--frame) var(--frame)}.heroframe{height:84svh}.hbar{padding:16px var(--frame)}.wrap{padding:0 var(--frame)}}
+  @media(max-width:820px){.sectitle{grid-column:1/-1}.seclead{grid-column:1/-1;margin-top:18px}.hero{padding:0 var(--frame) var(--frame)}.heroframe{height:84svh}.hbar{padding:16px var(--frame)}}
   /* ---------- SECTIONS ---------- */
   section{padding:96px 0;border-bottom:1px solid var(--line)}
   h2{font-family:var(--display);font-weight:400;font-size:clamp(28px,3.6vw,48px);letter-spacing:-.005em;line-height:1.06;margin:14px 0 0}
@@ -200,15 +199,15 @@
   .visit{display:inline-block;margin-top:40px;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase;border-bottom:1.5px solid var(--ink);padding-bottom:5px}
   .visit:hover{opacity:.55}
   .iarrow{width:1.05em;height:1.05em;display:inline-block;vertical-align:-.18em;margin-left:.45em}
-  .specrow{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:17px 0;border-bottom:1px solid var(--line)}
+  .specrow{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:13px 0;border-bottom:1px solid var(--line)}
   .specrow:first-child{border-top:1px solid var(--line)}
   .specrow .no{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.16em;color:var(--mut)}
-  .specrow .lab{font-size:18px;font-weight:300;color:#222}
-  .specrow .val{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:16px;letter-spacing:.04em;line-height:1.4;text-align:right;white-space:nowrap}
+  .specrow .lab{font-size:16px;font-weight:300;color:#222}
+  .specrow .val{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.04em;line-height:1.4;text-align:right;white-space:nowrap}
   .specrow .val .u{font-size:inherit;color:var(--ink);margin-left:0;letter-spacing:inherit}
   .specrows.compact{margin-top:0}
-  .specrows.compact .specrow{padding:17px 0}
-  .specrows.compact .val{font-size:16px}
+  .specrows.compact .specrow{padding:13px 0}
+  .specrows.compact .val{font-size:14px}
   .specrows.notop .specrow:first-child{border-top:0}
   .factframe{position:relative;padding:18px clamp(22px,3vw,40px);margin:4px auto 0;max-width:640px}
   .factframe .cnr{position:absolute;width:24px;height:24px;color:var(--ink);transition:transform .95s cubic-bezier(.22,1,.36,1)}
@@ -241,10 +240,7 @@
   .studiorow .studioimg{grid-column:span 6}
   .studiorow .factpanel{grid-column:span 6}
   .factpanel{width:100%}
-  .fptabs{display:flex;gap:10px;margin-bottom:26px}
-  .fptabs .mfbtn{font-size:12px;letter-spacing:.16em;padding:11px 18px 10px;min-height:38px;border:1.4px solid var(--ink);color:var(--ink)}
-  .fptabs .mfbtn:hover{background:var(--ink);color:#fff}
-  .fptabs .mfbtn.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  .fptabs{display:flex;gap:7px;margin-bottom:18px}
   .fpviews{display:grid}
   .fpview{grid-area:1/1}
   .fpview.off{visibility:hidden;pointer-events:none}
@@ -348,7 +344,7 @@
   .flinks .cpr{color:var(--mut)}
   @media(max-width:720px){.flinks{gap:12px 20px;font-size:var(--fs-micro);justify-content:flex-start}}
   @media(max-width:1040px){
-    .hfull{display:none!important} .favlogo{display:none} .wordlogo{display:flex;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)} .hlang{display:block!important;position:static;transform:none;order:-1;padding:6px 8px 6px 0} .burger{display:flex;margin-left:auto} .burger span{height:2.5px}
+    .hfull{display:none!important} .favlogo{display:flex} .burger{display:flex}
   }
   @media(max-width:860px){
     .precision{grid-template-columns:1fr;gap:30px} .cards{grid-template-columns:1fr} .twocol{grid-template-columns:1fr}
@@ -391,7 +387,6 @@
 <rect x="91" y="117" width="91" height="26" transform="rotate(-90 91 117)"/>
 </svg>
 </a>
-    <a class="wordlogo" href="#top" aria-label="FRAME"><img src="plan-assets/FRAME_V2.svg" alt="FRAME"></a>
     <span class="L hfull">F</span>
     <span class="navgrp hfull"><a class="hnav hfull" href="#raum"><span class="de">Studio</span><span class="en">Space</span></a><span class="navsub"><a href="#raum"><span class="de">Der Raum</span><span class="en">The space</span></a><a href="#gear">Equipment</a></span></span>
     <span class="L hfull">R</span>
@@ -493,7 +488,7 @@
         <div class="specrows notop">
       <div class="specrow"><span class="lab"><span class="de">Fläche</span><span class="en">Floor space</span></span><span class="val">220 m²</span></div>
       <div class="specrow"><span class="lab">Sets</span><span class="val"><span class="de">bis zu 3</span><span class="en">up to 3</span></span></div>
-      <div class="specrow"><span class="lab"><span class="de">Raumhöhe</span><span class="en">Ceiling height</span></span><span class="val"><span class="de">3,40 – 3,70 m</span><span class="en">3.40 – 3.70 m</span></span></div>
+      <div class="specrow"><span class="lab"><span class="de">Raumhöhe</span><span class="en">Ceiling height</span></span><span class="val">3,40–3,70 m</span></div>
       <div class="specrow"><span class="lab"><span class="de">Equipment-Verleih</span><span class="en">Equipment rental</span></span><span class="val">5 Min</span></div>
       <div class="specrow"><span class="lab">Location</span><span class="val">1070 Wien</span></div>
         </div>
@@ -846,17 +841,16 @@
   if('scrollRestoration' in history){history.scrollRestoration='manual';}
   var ldr=document.getElementById('frmldr');
   if(!ldr) return;
-  function kill(){ if(ldr&&ldr.parentNode){ldr.parentNode.removeChild(ldr);} document.documentElement.style.overflow=''; document.body.style.overflow=''; }
+  function kill(){ if(ldr&&ldr.parentNode){ldr.parentNode.removeChild(ldr);} document.documentElement.style.overflow=''; window.scrollTo({top:0,left:0,behavior:'instant'}); }
   // Lokal (file:// oder localhost) -> Loader ueberspringen, damit Aenderungen sofort sichtbar sind
   if(location.protocol==='file:'||location.hostname==='localhost'||location.hostname==='127.0.0.1'){ kill(); return; }
   // Mobile (Header = Burger) oder reduced-motion -> ueberspringen
   var letters=document.querySelectorAll('header .L.hfull');
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function visible(el){ return el && el.getClientRects().length>0 && el.getBoundingClientRect().width>0; }
-  if(reduce || letters.length<5 || !visible(letters[0]) || window.matchMedia('(max-width:820px)').matches){ kill(); return; }
+  if(reduce || letters.length<5 || !visible(letters[0])){ kill(); return; }
 
   document.documentElement.style.overflow='hidden';
-  document.body.style.overflow='hidden';
   var blk=document.getElementById('ldblk'), bar=document.getElementById('ldbar');
   var glys=[].slice.call(ldr.querySelectorAll('.lg'));
   var lns=[].slice.call(ldr.querySelectorAll('.ln'));
@@ -974,5 +968,14 @@
   track.addEventListener('scroll',function(){var i=Math.round(track.scrollLeft/w());if(cur)cur.textContent=(i+1);});
 })();
 </script>
-</body>
+<script>
+var LOGS=[];
+function snap(tag){LOGS.push(tag+':y='+Math.round(window.scrollY));}
+setInterval(function(){snap('t'+Math.round(performance.now()/500)*500)},500);
+window.addEventListener('load',function(){snap('load');});
+setTimeout(function(){
+  var el=document.elementFromPoint(200,100);
+  document.title='FINAL y='+Math.round(window.scrollY)+' top-el='+(el?el.tagName+'.'+String(el.className).split(' ')[0]:'?')+' || '+LOGS.filter(function(v,i,a){return a.indexOf(v)===i}).slice(-14).join(' ');
+},7000);
+</script></body>
 </html>

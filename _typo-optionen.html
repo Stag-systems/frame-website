@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FRAME · Typo-Systeme Section 1</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Century Gothic';src:url('fonts/century-gothic.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Century Gothic';src:url('fonts/century-gothic-bold.woff2') format('woff2');font-weight:700}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a0a0a;--mut:#8a8a8a;--line:#e6e6e6;--cg:'Century Gothic','Helvetica Neue',Arial,sans-serif;--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif}
+body{font-family:var(--sans);font-weight:300;color:var(--ink);background:#fff}
+.opt{padding:64px clamp(24px,4vw,64px) 80px;border-bottom:6px solid var(--ink)}
+.optlabel{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;background:var(--ink);color:#fff;display:inline-block;padding:8px 14px;margin-bottom:6px}
+.optnote{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mut);margin-bottom:44px;text-transform:uppercase;max-width:900px;line-height:1.8}
+.hd{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:42px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:12px 0;border-bottom:1px solid var(--line)}
+.rows{margin-top:26px;max-width:560px}
+.val{font-family:var(--mono);font-size:14px;letter-spacing:.04em}
+.card{border:1px solid var(--line);padding:22px;width:340px;margin-top:34px}
+.chead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.cnum{font-family:var(--mono);font-size:11px;color:var(--mut);letter-spacing:.08em}
+.cbody{margin-top:11px;font-size:14px;color:#444;line-height:1.5;font-weight:400}
+/* ---------- A: Mono fuehrt ---------- */
+.a .st{font-family:var(--mono);font-weight:500;font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.a .ld{font-family:var(--cg);font-weight:700;font-size:17px;line-height:1.55}
+.a .lab{font-size:16px;font-weight:300;color:#222}
+.a .ct{font-family:var(--mono);font-weight:500;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+/* ---------- B: Century fuehrt ---------- */
+.b .st{font-family:var(--cg);font-weight:400;font-size:34px;letter-spacing:-.005em}
+.b .ld{font-family:var(--sans);font-weight:300;font-size:17px;color:#444;line-height:1.6}
+.b .lab{font-size:16px;font-weight:300;color:#222}
+.b .ct{font-family:var(--cg);font-weight:400;font-size:22px}
+/* ---------- C: Sans fuehrt ---------- */
+.c .st{font-family:var(--sans);font-weight:600;font-size:24px;letter-spacing:-.01em}
+.c .ld{font-family:var(--sans);font-weight:300;font-size:17px;color:#444;line-height:1.6}
+.c .lab{font-size:16px;font-weight:300;color:#222}
+.c .ct{font-family:var(--sans);font-weight:600;font-size:19px;letter-spacing:-.01em}
+/* ---------- D: Ist-Zustand ---------- */
+.d .st{font-family:var(--mono);font-weight:500;font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.d .ld{font-family:var(--cg);font-weight:700;font-size:17px;line-height:1.55}
+.d .lab{font-size:16px;font-weight:300;color:#222}
+.d .ct{font-family:var(--sans);font-weight:600;font-size:20px;letter-spacing:-.01em}
+</style></head><body>
+
+<div class="opt d">
+  <div class="optlabel">D — IST-ZUSTAND</div>
+  <div class="optnote">Mono-Sectionkopf · Century-Bold-Lead · Sans-Semibold-Kartentitel — drei Schriften in drei Titelrollen (das „nicht einheitlich"-Gefühl)</div>
+  <div class="hd"><div class="st">Studio</div><div class="ld">220 m² Loftstudio mitten im Vienna Photo District. Hell, wandelbar und bei Bedarf komplett dunkel.<br>Der Raum für Produktionen, Workshops und kreative Projekte.</div></div>
+  <div class="rows"><div class="row"><span class="lab">Fläche</span><span class="val">220 m²</span></div><div class="row"><span class="lab">Raumhöhe</span><span class="val">3,40–3,70 m</span></div></div>
+  <div class="card"><div class="chead"><span class="ct">Get ready</span><span class="cnum">01.</span></div><div class="cbody">Perfekt vorbereitet ins Shooting: Tageslicht-Schminkplatz mit Spiegel für zwei, Steamer, Bügelbrett und eine erweiterbare Garderobe.</div></div>
+</div>
+
+<div class="opt a">
+  <div class="optlabel">A — MONO FÜHRT</div>
+  <div class="optnote">Regel: Mono = Struktur (alle Titel, Labels, Werte) · Sans = Fließtext · Century nur Hero + Leads — konsequente Fortführung des jetzigen Kopfs</div>
+  <div class="hd"><div class="st">Studio</div><div class="ld">220 m² Loftstudio mitten im Vienna Photo District. Hell, wandelbar und bei Bedarf komplett dunkel.<br>Der Raum für Produktionen, Workshops und kreative Projekte.</div></div>
+  <div class="rows"><div class="row"><span class="lab">Fläche</span><span class="val">220 m²</span></div><div class="row"><span class="lab">Raumhöhe</span><span class="val">3,40–3,70 m</span></div></div>
+  <div class="card"><div class="chead"><span class="ct">Get ready</span><span class="cnum">01.</span></div><div class="cbody">Perfekt vorbereitet ins Shooting: Tageslicht-Schminkplatz mit Spiegel für zwei, Steamer, Bügelbrett und eine erweiterbare Garderobe.</div></div>
+</div>
+
+<div class="opt b">
+  <div class="optlabel">B — CENTURY FÜHRT</div>
+  <div class="optnote">Regel: Century = alle Headlines (Section + Karten) · Sans Light = Text · Mono nur Daten/Labels — wärmer, editorialer</div>
+  <div class="hd"><div class="st">Studio</div><div class="ld">220 m² Loftstudio mitten im Vienna Photo District. Hell, wandelbar und bei Bedarf komplett dunkel.<br>Der Raum für Produktionen, Workshops und kreative Projekte.</div></div>
+  <div class="rows"><div class="row"><span class="lab">Fläche</span><span class="val">220 m²</span></div><div class="row"><span class="lab">Raumhöhe</span><span class="val">3,40–3,70 m</span></div></div>
+  <div class="card"><div class="chead"><span class="ct">Get ready</span><span class="cnum">01.</span></div><div class="cbody">Perfekt vorbereitet ins Shooting: Tageslicht-Schminkplatz mit Spiegel für zwei, Steamer, Bügelbrett und eine erweiterbare Garderobe.</div></div>
+</div>
+
+<div class="opt c">
+  <div class="optlabel">C — SANS FÜHRT</div>
+  <div class="optnote">Regel: Plex Sans 600 = alle Titel · Sans 300 = Text · Century nur im Hero als Markenstimme · Mono nur Daten — am nüchternsten, sehr Glyphic</div>
+  <div class="hd"><div class="st">Studio</div><div class="ld">220 m² Loftstudio mitten im Vienna Photo District. Hell, wandelbar und bei Bedarf komplett dunkel.<br>Der Raum für Produktionen, Workshops und kreative Projekte.</div></div>
+  <div class="rows"><div class="row"><span class="lab">Fläche</span><span class="val">220 m²</span></div><div class="row"><span class="lab">Raumhöhe</span><span class="val">3,40–3,70 m</span></div></div>
+  <div class="card"><div class="chead"><span class="ct">Get ready</span><span class="cnum">01.</span></div><div class="cbody">Perfekt vorbereitet ins Shooting: Tageslicht-Schminkplatz mit Spiegel für zwei, Steamer, Bügelbrett und eine erweiterbare Garderobe.</div></div>
+</div>
+
+</body></html>
