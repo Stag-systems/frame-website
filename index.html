@@ -918,7 +918,7 @@
         var el=document.createElement('div'); el.className='poirow';
         var meta=[];
         if(p.hours)meta.push(p.hours);
-        if(p.tel)meta.push('<a href="tel:'+p.tel.replace(/[^+0-9]/g,'')+'">'+p.tel+'</a>');
+        if(p.tel)meta.push(p.tel);
         el.innerHTML='<div class="poin">'+p.name+(p.star?'<span class="poistar">Tipp</span>':'')+'</div>'
           +(p.sub?'<div class="pois">'+p.sub+'</div>':'')
           +(meta.length?'<div class="poim">'+meta.join(' · ')+'</div>':'')
