@@ -357,6 +357,15 @@
   .poiinfo{grid-column:1/-1;padding:16px 0 18px;border-bottom:1px solid var(--ink)}
   .poiinfo p{margin-top:6px;font-size:15px;font-weight:300;max-width:70ch}
   @media (max-width:700px){ .poilist .poirow{grid-column:span 12} }
+  .poimore{display:none}
+  @media(max-width:820px){
+    .poilist:not(.expanded) .poirow:nth-of-type(n+3){display:none}
+    .poimore{display:block;width:100%;margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase;border:1.4px solid var(--ink);background:none;color:var(--ink);padding:11px 18px 10px;min-height:38px;cursor:pointer;transition:.14s}
+    .poimore:active{background:var(--ink);color:#fff}
+    .poimore .pm-less{display:none}
+    .poimore.less .pm-more{display:none}
+    .poimore.less .pm-less{display:inline}
+  }
   .map{width:100%;height:440px;margin-top:14px;border:1px solid var(--ink)}
   @media(min-width:821px){
     .maprow{display:grid;grid-template-columns:var(--g12);gap:var(--gutter);margin-top:14px;align-items:stretch}
@@ -698,6 +707,7 @@
     <div class="maprow">
       <div id="map" class="map lagemap"></div>
       <div id="poilist" class="poilist"></div>
+      <button class="poimore" onclick="document.getElementById('poilist').classList.toggle('expanded');this.classList.toggle('less')"><span class="pm-more"><span class="de">Mehr anzeigen</span><span class="en">Show more</span></span><span class="pm-less"><span class="de">Weniger anzeigen</span><span class="en">Show less</span></span></button>
     </div>
   </div>
 </section>
@@ -861,6 +871,9 @@
     var list=document.getElementById('poilist');
     function renderList(cat){
       list.innerHTML='';
+      list.classList.remove('expanded');
+      var pm=document.querySelector('.poimore');
+      if(pm){pm.classList.remove('less');pm.style.display=(POIS.filter(function(p){return p.cat===cat;}).length>2)?'':'none';}
       POIS.filter(function(p){return p.cat===cat;}).forEach(function(p){
         var el=document.createElement('div'); el.className='poirow';
         var meta=[];
