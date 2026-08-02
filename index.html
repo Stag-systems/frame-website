@@ -288,6 +288,13 @@
     .langfab .lf+.lf{margin-left:-1.4px}
     .langfab .lf.on{background:var(--ink);color:#fff}
   }
+  img.plan{cursor:zoom-in}
+  .planbox{position:fixed;inset:0;background:rgba(255,255,255,.98);z-index:1200;display:none;overflow:auto;-webkit-overflow-scrolling:touch}
+  .planbox.open{display:block}
+  .planbox img{display:block;margin:0 auto;width:min(92vw,1100px);padding:64px 0;cursor:zoom-in}
+  .planbox.zoomed img{width:230vw;max-width:none;padding:64px 4vw;cursor:zoom-out}
+  @media(min-width:821px){.planbox.zoomed img{width:1900px}}
+  .planbox .pbclose{position:fixed;top:16px;right:18px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:#fff;border:0;padding:10px 16px;cursor:pointer;z-index:2}
   .fptabs.geartabs{display:none}
   @media(min-width:821px){.sechead .seclead{margin-top:16px}#gear .sechead{margin-bottom:52px}}
   @media(max-width:820px){
@@ -587,7 +594,7 @@
         </div>
       </div>
       <div class="fpview off" id="fp-plan">
-        <img class="plan" src="plan-assets/floorplan-2026.svg" alt="Grundriss FRAME – 220 m² Loftstudio, 3 Sets, Styling, Büro, Teeküche" loading="lazy">
+        <img class="plan" onclick="pbOpen()" src="plan-assets/floorplan-2026.svg" alt="Grundriss FRAME – 220 m² Loftstudio, 3 Sets, Styling, Büro, Teeküche" loading="lazy">
       </div>
       </div>
     </div>
@@ -823,6 +830,10 @@
     var m=0;bs.forEach(function(b){b.style.minHeight='';m=Math.max(m,b.getBoundingClientRect().height);});
     bs.forEach(function(b){b.style.minHeight=m+'px';});}
   window.addEventListener('load',eqPbot);window.addEventListener('resize',eqPbot);
+  function pbOpen(){document.getElementById('planbox').classList.add('open');document.body.style.overflow='hidden';}
+  function pbClose(e){if(e)e.stopPropagation();var b=document.getElementById('planbox');b.classList.remove('open');b.classList.remove('zoomed');document.body.style.overflow='';}
+  function pbToggle(e){var b=document.getElementById('planbox');if(e.target.tagName==='IMG'){b.classList.toggle('zoomed');}else{pbClose(e);}}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')pbClose();});
   function pToggle(el){if(window.matchMedia('(max-width:820px)').matches){el.parentNode.classList.toggle('open');}}
   function gearSwitch(b){document.querySelectorAll('.geartabs .mfbtn').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
     var v=b.getAttribute('data-gc');document.querySelectorAll('.gearcard').forEach(function(c){c.classList.toggle('gcon',c.classList.contains(v));});}
@@ -1094,5 +1105,9 @@
   track.addEventListener('scroll',function(){var i=Math.round(track.scrollLeft/w());if(cur)cur.textContent=(i+1);});
 })();
 </script>
+<div class="planbox" id="planbox" onclick="pbToggle(event)">
+  <button class="pbclose" onclick="pbClose(event)"><span class="de">Schlie&szlig;en</span><span class="en">Close</span></button>
+  <img src="plan-assets/floorplan-2026.svg" alt="Grundriss FRAME – vergr&ouml;&szlig;erte Ansicht">
+</div>
 </body>
 </html>
