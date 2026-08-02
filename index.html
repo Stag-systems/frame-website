@@ -422,7 +422,11 @@
   .twocol{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:34px}
   .infoblk .l{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
   .infoblk p{margin-top:6px;font-size:var(--t-lead)} .infoblk + .infoblk{margin-top:24px}
-  footer{padding:90px 0 22px}
+  footer{padding:90px 0 22px;background:var(--ink)}
+  footer .fmark svg path{fill:#fff}
+  footer .flinks{border-top-color:rgba(255,255,255,.22);color:rgba(255,255,255,.85)}
+  footer .flinks a{color:rgba(255,255,255,.85)}
+  footer .flinks .cpr{color:rgba(255,255,255,.4)}
   .fmark svg{width:100%;height:auto;display:block}
   .flinks{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:34px;border-top:1px solid var(--line);padding-top:18px;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.14em;text-transform:uppercase;color:#222}
   .flinks a:hover{opacity:.5}
