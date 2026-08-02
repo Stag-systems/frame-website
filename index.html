@@ -188,6 +188,7 @@
   .ptile{position:relative;aspect-ratio:3/4;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:26px;color:#fff;isolation:isolate}
   .ptile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:grayscale(1) contrast(1.06)}
   .ptile::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.26) 46%,rgba(0,0,0,.44) 100%)}
+  .ptile .aitag{position:absolute;bottom:12px;right:14px;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);pointer-events:none}
   .ptile .pname{font-family:var(--display);font-weight:400;font-size:22px;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.4)}
   .ptile .pdesc{font-family:'IBM Plex Mono',monospace;font-size:var(--t-data);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75);margin:0 0 14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.22)}
   .ptile .pprice{font-family:var(--display);font-weight:400;font-size:40px;letter-spacing:-.01em;line-height:1}
@@ -649,6 +650,7 @@
         <div class="pricetiles">
       <div class="ptile">
         <img src="plan-assets/price-werbung.jpg" alt="" loading="lazy">
+        <span class="aitag"><span class="de">Symbolbild (KI)</span><span class="en">AI-generated image</span></span>
         <div class="pname" onclick="pToggle(this)"><span>Commercial</span><svg class="pchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></div>
         <div class="pbot">
           <div class="pdesc"><span class="de">Kampagnen · Lookbooks · Stills</span><span class="en">Campaigns · lookbooks · stills</span></div>
@@ -658,6 +660,7 @@
       </div>
       <div class="ptile">
         <img src="plan-assets/price-editorial.jpg" alt="" loading="lazy">
+        <span class="aitag"><span class="de">Symbolbild (KI)</span><span class="en">AI-generated image</span></span>
         <div class="pname" onclick="pToggle(this)"><span>Editorial</span><svg class="pchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></div>
         <div class="pbot">
           <div class="pdesc"><span class="de">Magazine · Stories · freie Arbeiten</span><span class="en">Magazines · stories · personal work</span></div>
@@ -667,6 +670,7 @@
       </div>
       <div class="ptile">
         <img src="plan-assets/price-workshop.jpg" alt="" loading="lazy">
+        <span class="aitag"><span class="de">Symbolbild (KI)</span><span class="en">AI-generated image</span></span>
         <div class="pname" onclick="pToggle(this)"><span>Workshops</span><svg class="pchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></div>
         <div class="pbot">
           <div class="pdesc"><span class="de">Kurse · Talks · kreative Formate</span><span class="en">Classes · talks · creative formats</span></div>
@@ -763,7 +767,7 @@
       </div>
       <label><span class="fl"><span class="de">Equipment benötigt?</span><span class="en">Equipment needed?</span></span><input name="equip" placeholder="Profoto-Set, Hintergrund, Tether …"></label>
       <label><span class="fl"><span class="de">Nachricht</span><span class="en">Message</span></span><textarea name="msg" rows="4"></textarea></label>
-      <p class="agbnote"><span class="de">Mit dem Absenden akzeptierst du unsere <a href="agb.html">AGB</a>.</span><span class="en">By submitting you accept our <a href="agb.html">terms</a>.</span></p>
+      <p class="agbnote"><a href="agb.html"><span class="de">Zu den AGB</span><span class="en">Terms &amp; conditions</span></a></p>
       <button class="btn" type="submit"><span class="de">ANFRAGE SENDEN</span><span class="en">SEND INQUIRY</span></button>
     </form>
     </div>
