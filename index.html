@@ -70,6 +70,10 @@
   .cform{margin-top:36px;max-width:680px}
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:26px}
   .cform label{display:block;margin-bottom:24px}
+  .agbnote{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.08em;color:var(--mut);margin:4px 0 14px}
+  .agbnote a{color:inherit;text-decoration:underline}
+  #kontakt .agbnote a{color:rgba(255,255,255,.7)}
+  #kontakt .agbnote{color:rgba(255,255,255,.45)}
   .fl{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
   .cform input,.cform select,.cform textarea{width:100%;border:0;border-bottom:1.5px solid var(--ink);background:none;font-family:'IBM Plex Sans';font-size:var(--t-lead);font-weight:300;padding:9px 0;color:var(--ink)}
   .cform textarea{resize:vertical}
@@ -759,6 +763,7 @@
       </div>
       <label><span class="fl"><span class="de">Equipment benötigt?</span><span class="en">Equipment needed?</span></span><input name="equip" placeholder="Profoto-Set, Hintergrund, Tether …"></label>
       <label><span class="fl"><span class="de">Nachricht</span><span class="en">Message</span></span><textarea name="msg" rows="4"></textarea></label>
+      <p class="agbnote"><span class="de">Mit dem Absenden akzeptierst du unsere <a href="agb.html">AGB</a>.</span><span class="en">By submitting you accept our <a href="agb.html">terms</a>.</span></p>
       <button class="btn" type="submit"><span class="de">ANFRAGE SENDEN</span><span class="en">SEND INQUIRY</span></button>
     </form>
     </div>
@@ -780,6 +785,7 @@
       <a href="#kontakt"><span class="de">Kontakt</span><span class="en">Contact</span></a>
       <a href="mailto:info@theframe.at">info@theframe.at</a>
       <a href="https://instagram.com/theframe.vienna" target="_blank" rel="noopener">Instagram</a>
+      <a href="agb.html">AGB</a>
       <a href="#"><span class="de">Impressum &amp; Datenschutz</span><span class="en">Imprint &amp; Privacy</span></a>
       <a href="https://studiobaumann.com" target="_blank" rel="noopener">Studio Baumann</a>
       <span class="cpr">© FRAME 2026</span>
