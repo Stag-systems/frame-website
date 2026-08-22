@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FRAME · Around the Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Century Gothic';src:url('../fonts/century-gothic.woff2') format('woff2');font-weight:400;font-style:normal}
+  @font-face{font-family:'Century Gothic';src:url('../fonts/century-gothic-bold.woff2') format('woff2');font-weight:700;font-style:normal}
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--ink:#0a0a0a;--mut:#8a8a8a;--line:#e6e6e6;--display:'Century Gothic','Helvetica Neue',Arial,sans-serif}
+  body{font-family:'IBM Plex Sans',sans-serif;font-weight:300;color:var(--ink);background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:296mm;padding:16mm 15mm 20mm;position:relative;page-break-after:always;overflow:hidden}
+  .page:last-child{page-break-after:auto}
+  .head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10mm}
+  .head img{height:5.5mm;display:block}
+  .head .tag{font-family:'IBM Plex Mono',monospace;font-size:8.5pt;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);padding-top:1mm}
+  h1{font-family:var(--display);font-weight:400;font-size:26pt;line-height:1.15;letter-spacing:0;margin-bottom:3mm}
+  .cat{font-family:'IBM Plex Mono',monospace;font-size:8.5pt;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:2mm;margin:8mm 0 4mm}
+  .cat:first-of-type{margin-top:0}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10mm}
+  .e{padding:3mm 0;border-bottom:1px solid var(--line);break-inside:avoid}
+  .n{font-weight:600;font-size:10.5pt;letter-spacing:-.01em}
+  .tip{font-family:'IBM Plex Mono',monospace;font-size:6.5pt;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--ink);padding:.8mm 1.6mm .5mm;margin-left:2mm;position:relative;top:-.5mm}
+  .s{font-size:9.5pt;color:#444;margin-top:.8mm}
+  .m{font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:.05em;color:var(--mut);text-transform:uppercase;margin-top:1.2mm}
+  .m b{color:var(--ink);font-weight:500}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:0 10mm}
+  .locrow{display:flex;justify-content:space-between;align-items:baseline;gap:6mm;padding:2.2mm 0;border-bottom:1px solid var(--line)}
+  .locrow .k{font-size:9.5pt}
+  .locrow .v{font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:.05em;color:var(--mut);text-transform:uppercase;white-space:nowrap}
+  .foot{position:absolute;left:15mm;right:15mm;bottom:10mm;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+  .cover{display:flex;flex-direction:column}
+  .cover .cbrand{margin-top:4mm}
+  .cover .cbrand img{height:6mm;display:block}
+  .cover .cmid{flex:1;display:flex;flex-direction:column;justify-content:center;padding-bottom:30mm}
+  .cover .ctag{font-family:'IBM Plex Mono',monospace;font-size:9pt;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin-bottom:6mm}
+  .cover h1{font-size:44pt;line-height:1.1;margin-bottom:8mm}
+  .cover .csub{font-size:12.5pt;font-weight:300;color:#444;max-width:110mm;line-height:1.6}
+  .cover .caddr{font-family:'IBM Plex Mono',monospace;font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-top:10mm}
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div class="page cover">
+  <div class="cbrand"><img src="FRAME_V2.svg" alt="FRAME"></div>
+  <div class="cmid">
+    <div class="ctag">Guide for production teams &middot; 2026</div>
+    <h1>Around the Studio.</h1>
+    <div class="csub">Addresses, directions &amp; services around The Frame &mdash; camera rental, photo labs, restaurants, hotels, parking and public transport. For production teams to take along.</div>
+    <div class="caddr">Neustiftgasse 107/2 &middot; 1070 Vienna &middot; Vienna Photo District</div>
+  </div>
+  <div class="foot"><span>The Frame &middot; Studio for photo, video and advertising</span><span>Version 08/2026 &middot; theframe.at</span></div>
+</div>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="page">
+  <div class="head">
+    <img src="FRAME_V2.svg" alt="FRAME">
+    <div class="tag">Around the Studio &middot; 2026</div>
+  </div>
+
+  <div class="twocol">
+    <div>
+      <div class="cat">Getting Here</div>
+      <div class="locrow"><span class="k">Public transport</span><span class="v">Tram 49 &amp; 5 &middot; Bus 48A &middot; U6/U2/U3</span></div>
+      <div class="locrow"><span class="k">Westbahnhof</span><span class="v">~20 min</span></div>
+      <div class="locrow"><span class="k">Wien Mitte</span><span class="v">~30 min</span></div>
+      <div class="locrow"><span class="k">Central Station</span><span class="v">~30 min</span></div>
+      <div class="locrow"><span class="k">Vienna Airport (VIE)</span><span class="v">~1 hr</span></div>
+    </div>
+    <div>
+      <div class="cat">Parking</div>
+      <div class="locrow"><span class="k">Garage Burggasse 85</span><span class="v">APCOA &middot; 5 min</span></div>
+      <div class="locrow"><span class="k">Hotel garage Schottenfeldgasse</span><span class="v">5 min walk</span></div>
+      <div class="locrow"><span class="k">Parking vouchers</span><span class="v">Tobacconist &middot; Schottenfeldgasse 91</span></div>
+      <div class="locrow"><span class="k">ATM</span><span class="v">Neustiftgasse 113</span></div>
+    </div>
+  </div>
+
+  <div class="cat">Photo Services &middot; Rental, Retail, Lab</div>
+  <div class="grid">
+    <div class="e"><div class="n">Digitalkameraverleih<span class="tip">Tip</span></div><div class="s">Camera &amp; equipment rental &middot; Halbgasse 25 &middot; one street over</div><div class="m">Mon&ndash;Fri 9&ndash;18 &middot; +43 1 585 12 09 &middot; digitalkameraverleih.com</div></div>
+    <div class="e"><div class="n">Digitalstore Vienna</div><div class="s">Photo &amp; video rental &middot; Stiftgasse 21</div><div class="m">Mon&ndash;Fri 9:30&ndash;18 &middot; Sat 9:30&ndash;12 &middot; +43 1 523 53 33-0 &middot; digitalstore.at</div></div>
+    <div class="e"><div class="n">United Camera</div><div class="s">Photo &amp; video retail &middot; Westbahnstra&szlig;e 23</div><div class="m">059 311 4990 &middot; united-camera.at</div></div>
+    <div class="e"><div class="n">Leica Camera Classics</div><div class="s">Leica retail &middot; Westbahnstra&szlig;e 40</div><div class="m">01 523 56 59</div></div>
+    <div class="e"><div class="n">Photo B&ouml;rse</div><div class="s">Photo retail &middot; Lerchenfelder Stra&szlig;e 62&ndash;64</div><div class="m">01 961 09 64</div></div>
+    <div class="e"><div class="n">CYBERLAB</div><div class="s">Photo lab &middot; Schottenfeldgasse 51</div><div class="m">Mon&ndash;Fri 11&ndash;18 &middot; 01 522 400 400 &middot; cyberlab.at</div></div>
+    <div class="e"><div class="n">FOTOSPEED</div><div class="s">Photo lab &middot; Lerchenfelder Stra&szlig;e 66&ndash;68</div><div class="m">Mon&ndash;Fri 10&ndash;18 &middot; 01 406 16 61 &middot; fotospeed.at</div></div>
+    <div class="e"><div class="n">WestLicht</div><div class="s">Photography exhibition space &middot; Westbahnstra&szlig;e 40</div><div class="m">Opening hours vary &middot; westlicht.com</div></div>
+  </div>
+
+  <div class="foot"><span>The Frame &middot; Studio for photo, video and advertising</span><span>Version 08/2026 &middot; 2 / 4</span></div>
+</div>
+
+<!-- ============ PAGE 2 ============ -->
+<div class="page">
+  <div class="head">
+    <img src="FRAME_V2.svg" alt="FRAME">
+    <div class="tag">Around the Studio &middot; 2026</div>
+  </div>
+
+  <div class="cat">Food &amp; Bars</div>
+  <div class="grid">
+    <div class="e"><div class="n">MARKS Restaurant<span class="tip">Tip</span></div><div class="s">Restaurant &middot; Neustiftgasse 82 &middot; across from the studio</div><div class="m">Tue&ndash;Sat 10&ndash;24 &middot; 01 522 32 90</div></div>
+    <div class="e"><div class="n">Schreiners Gastwirtschaft<span class="tip">Tip</span></div><div class="s">Viennese restaurant &middot; Westbahnstra&szlig;e 42</div><div class="m">Tue&ndash;Fri 18&ndash;24 &middot; 0676 475 40 60 &middot; <b>Reservation by phone only &middot; cash only</b></div></div>
+    <div class="e"><div class="n">Hausmair&rsquo;s Gastst&auml;tte</div><div class="s">Traditional restaurant &middot; Lerchenfelder Stra&szlig;e 73</div><div class="m">Mon&ndash;Thu 11:30&ndash;23 &middot; 0676 754 60 18 &middot; hausmair.at</div></div>
+    <div class="e"><div class="n">Pizzeria LANA</div><div class="s">Pizzeria &middot; Zieglergasse 96</div><div class="m">Mon&ndash;Fri 11&ndash;22 &middot; Sat 16&ndash;22 &middot; 01 523 12 78</div></div>
+    <div class="e"><div class="n">Sterneck</div><div class="s">Restaurant &amp; pizzeria &middot; Burggasse 102</div><div class="m">Daily 11&ndash;23 &middot; 01 522 47 37</div></div>
+    <div class="e"><div class="n">Gastwirtschaft Schilling</div><div class="s">Traditional Viennese tavern &middot; Burggasse 103</div><div class="m">Daily 11:30&ndash;23 &middot; 01 524 17 75 &middot; schilling-wirt.at</div></div>
+    <div class="e"><div class="n">Zur Stadt Krems</div><div class="s">Traditional tavern with bowling alley &middot; Zieglergasse 37</div><div class="m">Mon&ndash;Fri 11:30&ndash;22 &middot; Kitchen 11:30&ndash;15 &amp; 17:30&ndash;21 &middot; 01 523 72 00</div></div>
+    <div class="e"><div class="n">Chili &amp; Pfeffer</div><div class="s">Chinese &amp; international &middot; Schottenfeldgasse 86</div><div class="m">Tue&ndash;Fri 11:30&ndash;14:30 &amp; 17&ndash;23 &middot; Sat 12&ndash;23 &middot; Sun 12&ndash;22 &middot; 01 944 090</div></div>
+    <div class="e"><div class="n">Saint George Cocktail Bar</div><div class="s">Cocktail bar &middot; Neustiftgasse 84</div><div class="m">&nbsp;</div></div>
+    <div class="e"><div class="n">Oreno Ramen</div><div class="s">Ramen &middot; Lerchenfelder Stra&szlig;e 74</div><div class="m">Tue&ndash;Sat 17&ndash;22 &middot; Sun 12&ndash;16 &amp; 17&ndash;22 &middot; 01 890 12 48</div></div>
+    <div class="e"><div class="n">Seven North</div><div class="s">Restaurant by Eyal Shani &middot; at the Max Brown Hotel</div><div class="m">maxbrownhotels.com</div></div>
+    <div class="e"><div class="n">ERICH</div><div class="s">Caf&eacute; &amp; bar &middot; Neustiftgasse 27</div><div class="m">erichwien.at</div></div>
+    <div class="e"><div class="n">WIRR</div><div class="s">Caf&eacute; &middot; bar &middot; club &middot; Burggasse 70</div><div class="m">wirr.at</div></div>
+    <div class="e"><div class="n">Caf&eacute; Kandl</div><div class="s">Restaurant &middot; 2 toques (Gault&amp;Millau) &middot; Kandlgasse 12</div><div class="m">&nbsp;</div></div>
+    <div class="e"><div class="n">MAKA Ramen</div><div class="s">Ramen &amp; Japanese tapas &middot; Wimbergergasse 41</div><div class="m">&nbsp;</div></div>
+    <div class="e"><div class="n">GEIER. Die B&auml;ckerei</div><div class="s">Bakery &middot; Lerchenfelder Stra&szlig;e 112</div><div class="m">Mon&ndash;Thu 6&ndash;19 &middot; Fri &ndash;18:30 &middot; Sat 6&ndash;13 &middot; Sun 7&ndash;13</div></div>
+  </div>
+
+  <div class="foot"><span>The Frame &middot; Studio for photo, video and advertising</span><span>Version 08/2026 &middot; 3 / 4</span></div>
+</div>
+
+<!-- ============ PAGE 3 ============ -->
+<div class="page">
+  <div class="head">
+    <img src="FRAME_V2.svg" alt="FRAME">
+    <div class="tag">Around the Studio &middot; 2026</div>
+  </div>
+
+  <div class="twocol">
+    <div>
+      <div class="cat">Hotels</div>
+      <div class="e"><div class="n">Max Brown 7th District</div><div class="s">Hotel with garage &middot; Schottenfeldgasse 74</div><div class="m">01 376 10 70 &middot; maxbrownhotels.com</div></div>
+      <div class="e"><div class="n">Schreiners Essen &amp; Wohnen</div><div class="s">Boutique hotel &middot; 4 rooms &middot; Westbahnstra&szlig;e 42</div><div class="m">0676 475 40 60 &middot; schreiners.cc</div></div>
+      <div class="e"><div class="n">Hotel The Weekend</div><div class="s">Hotel &middot; Halbgasse 3</div><div class="m">01 523 69 89 &middot; hotelweekend.at</div></div>
+      <div class="e"><div class="n">25hours Hotel</div><div class="s">by the MuseumsQuartier &middot; Lerchenfelder Str. 1&ndash;3</div><div class="m">01 521 51-0 &middot; 25hours-hotels.com</div></div>
+
+      <div class="cat">Groceries &amp; Supplies</div>
+      <div class="e"><div class="n">Billa</div><div class="s">Supermarket &middot; Schottenfeldgasse 87 &amp; Burggasse 90</div><div class="m">&nbsp;</div></div>
+      <div class="e"><div class="n">Spar</div><div class="s">Supermarket &middot; Schottenfeldgasse 66</div><div class="m">&nbsp;</div></div>
+      <div class="e"><div class="n">HOFER</div><div class="s">Supermarket &middot; Zieglergasse 58&ndash;64</div><div class="m">&nbsp;</div></div>
+      <div class="e"><div class="n">BIPA</div><div class="s">Beauty products &amp; drugstore &middot; Zieglergasse 72</div><div class="m">&nbsp;</div></div>
+    </div>
+    <div>
+      <div class="cat">Public Transport Nearby</div>
+      <div class="locrow"><span class="k">Zieglergasse/Neustiftgasse</span><span class="v">Bus 48A &middot; 1 min</span></div>
+      <div class="locrow"><span class="k">Zieglergasse/Burggasse</span><span class="v">Bus 48A</span></div>
+      <div class="locrow"><span class="k">Kaiserstra&szlig;e/Neustiftgasse</span><span class="v">Tram 5</span></div>
+      <div class="locrow"><span class="k">Kaiserstra&szlig;e/Burggasse</span><span class="v">Tram 5</span></div>
+      <div class="locrow"><span class="k">Westbahnstra&szlig;e/Zieglergasse</span><span class="v">Tram 49</span></div>
+      <div class="locrow"><span class="k">Schottenfeldgasse</span><span class="v">Tram 46</span></div>
+      <div class="locrow"><span class="k">Neubaugasse/Burggasse</span><span class="v">Bus 13A</span></div>
+      <div class="locrow"><span class="k">Burggasse-Stadthalle</span><span class="v">U6 &middot; 10 min</span></div>
+      <div class="locrow"><span class="k">Zieglergasse</span><span class="v">U3 &middot; 12 min</span></div>
+      <div class="locrow"><span class="k">Westbahnhof</span><span class="v">U3/U6 &middot; tram &middot; long-distance rail</span></div>
+
+      <div class="cat">Backdrops &amp; Restock</div>
+      <div class="e"><div class="s">We source new backdrops in good time from CameraUnited or Digitalkameraverleih &mdash; a colour overview is available at the studio.</div><div class="m">bdbackgrounds.com</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>theframe.at &middot; info@theframe.at &middot; Neustiftgasse 107/2 &middot; 1070 Vienna</span><span>Version 08/2026 &middot; 4 / 4</span></div>
+</div>
+
+</body>
+</html>
