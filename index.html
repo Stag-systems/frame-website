@@ -47,6 +47,11 @@
   @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
     header.inv{background:rgba(255,255,255,.93)}
   }
+  /* Ausnahme Kontakt: die Section ist selbst schwarz, dort steht die Leiste
+     wieder voll durch. Muss nach .inv stehen, gleiche Spezifitaet. */
+  header.solid{background:var(--ink);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
+  header.solid .L,header.solid .hnav,header.solid .hlang{color:#fff}
+  header.solid .burger span{background:#fff}
   .hbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:16px var(--heroPad,var(--frame));position:relative}
   .L{font-family:'IBM Plex Sans';font-weight:700;font-size:clamp(22px,3.1vw,40px);line-height:1;letter-spacing:.01em}
   .L.mir{display:inline-block;transform:scaleX(-1)}
@@ -926,7 +931,11 @@
   (function(){
     var hd=document.querySelector('header'), hero=document.querySelector('.hero');
     if(!hd||!hero) return;
-    function chk(){var hb=hero.offsetTop+hero.offsetHeight; hd.classList.toggle('inv', window.scrollY > hb - hd.offsetHeight);}
+    var kont=document.getElementById('kontakt');
+    function chk(){var hb=hero.offsetTop+hero.offsetHeight, h=hd.offsetHeight;
+      hd.classList.toggle('inv', window.scrollY > hb - h);
+      if(kont){var r=kont.getBoundingClientRect();
+        hd.classList.toggle('solid', r.top < h && r.bottom > 0);}}
     window.addEventListener('scroll',chk,{passive:true}); window.addEventListener('resize',chk); chk();
   })();
   function updLangFab(){var en=document.body.classList.contains('en');document.querySelectorAll('.langfab .lf').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-l')===(en?'en':'de'));});}
@@ -964,7 +973,6 @@
       ['bts-05.jpg','Hisu Park – Looks am Seamless'],
       ['bts-06.jpg','Hisu Park – Kleiddetail'],
       ['bts-07.jpg','Hisu Park – Look in der Totale'],
-      ['bts-08.jpg','Hisu Park – Porträt am Set'],
       ['bts-10.jpg','Hingabe – Garderobe im Gegenlicht'],
       ['bts-11.jpg','Hingabe – Pause im Studio'],
       ['bts-12.jpg','Hingabe – Equipment wird vorbereitet'],
