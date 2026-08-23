@@ -396,6 +396,9 @@
   .strip:hover .striprail,.strip:focus-within .striprail{animation-play-state:paused}
   .striprail figure{flex:none;margin-right:clamp(10px,1.4vw,22px)}
   .striprail img{display:block;height:clamp(200px,28vw,400px);width:auto}
+  /* Die fertigen Insta-Layouts laufen als gerahmte Karten mit, damit sie sich
+     von den Fotos absetzen und nicht als weisse Luecke im Streifen wirken. */
+  .striprail figure.sheet img{border:1px solid var(--line)}
   @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
   @media(prefers-reduced-motion:reduce){
     .striprail{animation:none}
@@ -745,7 +748,6 @@
   <div class="wrap">
     <div class="sechead">
       <h2 class="sectitle"><span class="sword">The Frame is yours</span></h2>
-      <p class="seclead"><span class="de">Echte Produktionen im Studio: Aufbau, Licht, Styling und der Moment vor dem Take.</span><span class="en">Real productions in the studio: rigging, light, styling and the moment before the take.</span></p>
     </div>
   </div>
   <div class="strip">
@@ -949,19 +951,25 @@
   /* Filmstreifen: Spur zweimal ausgeben, damit der Umlauf nahtlos schliesst */
   (function(){
     var rail=document.getElementById('btsrail'); if(!rail) return;
+    /* Fotos und gestaltete Karten im Wechsel; 'card' bekommt einen Rahmen */
     var SHOTS=[
-      ['bts-01.jpg','Hintergrund wird gerigged, kurz vor dem ersten Setup'],
-      ['bts-02.jpg','Kostüm wird am Set gerichtet'],
-      ['bts-03.jpg','Detail am Seamless, zwischen zwei Takes'],
-      ['bts-04.jpg','Kamera-Rig an der Fensterfront'],
-      ['bts-05.jpg','Label-Detail einer Modeproduktion'],
-      ['bts-06.jpg','Totale am Seamless, Leiter noch im Bild'],
-      ['bts-07.jpg','Blick auf den Monitor während des Takes'],
-      ['bts-08.jpg','Letzte Korrektur, bevor die Kamera läuft']
+      ['bts-01.jpg','Hintergrund wird gerigged, kurz vor dem ersten Setup',''],
+      ['card-01.png','FRAME – Creative Studio Space, ab jetzt buchbar','sheet'],
+      ['bts-02.jpg','Kostüm wird am Set gerichtet',''],
+      ['bts-03.jpg','Detail am Seamless, zwischen zwei Takes',''],
+      ['card-02.png','Die Basis ist inklusive – Equipment im Studio','sheet'],
+      ['bts-04.jpg','Kamera-Rig an der Fensterfront',''],
+      ['bts-05.jpg','Label-Detail einer Modeproduktion',''],
+      ['card-03.png','Vienna Photo District – Lage und Anreise','sheet'],
+      ['bts-06.jpg','Totale am Seamless, Leiter noch im Bild',''],
+      ['card-04.png','Mehr als die Fläche – Schminkplatz, Garderobe, Küche','sheet'],
+      ['bts-07.jpg','Blick auf den Monitor während des Takes',''],
+      ['card-05.png','In drei Schritten zum Set – Anfrage, Angebot, Shooting','sheet'],
+      ['bts-08.jpg','Letzte Korrektur, bevor die Kamera läuft','']
     ];
     var html='';
     for(var pass=0;pass<2;pass++) SHOTS.forEach(function(sh,i){
-      html+='<figure><img src="bts/'+sh[0]+'" alt="FRAME Studio – '+sh[1]+'"'
+      html+='<figure class="'+sh[2]+'"><img src="bts/'+sh[0]+'" alt="FRAME Studio – '+sh[1]+'"'
           + (pass||i>2?' loading="lazy"':'') + '></figure>';
     });
     rail.innerHTML=html;
