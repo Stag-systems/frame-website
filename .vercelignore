@@ -7,3 +7,7 @@ fonts/*.zip
 
 # Polaroid-Quellfotos: nur Arbeitsmaterial fuer den Generator, nicht deployen
 _wip/polaroid-src/
+
+# BTS-Prototyp: Nutzungsrechte an den Fotos noch nicht geklaert - nicht deployen
+_wip/bts-slider-prototyp.html
+_wip/bts-src/

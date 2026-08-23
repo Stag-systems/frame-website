@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>THE FRAME Studio Vienna — Creative Studio Space für Foto, Video & Content · 1070 Wien</title>
 <meta name="description" content="THE FRAME Studio Vienna — 220 m² Loftstudio im Vienna Photo District, 1070 Wien. Mieten für Foto, Video & Content: bis zu 3 Sets, Broncolor & Profoto im Haus, Tageslicht, voll abdunkelbar.">
-<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE3IiBoZWlnaHQ9IjExNyIgdmlld0JveD0iMCAwIDExNyAxMTciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgZmlsbD0iYmxhY2siLz4KPHJlY3QgeD0iMjYiIHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgMjYgMCkiIGZpbGw9ImJsYWNrIi8+CjxyZWN0IHg9IjExNyIgeT0iMTE3IiB3aWR0aD0iOTEiIGhlaWdodD0iMjYiIHRyYW5zZm9ybT0icm90YXRlKC0xODAgMTE3IDExNykiIGZpbGw9ImJsYWNrIi8+CjxyZWN0IHg9IjkxIiB5PSIxMTciIHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDkxIDExNykiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMjIuNSAtOTUgMjA1NCAyMDU0Ij48cGF0aCBkPSJNMTgwOSA1MzdWMTg2NEg0ODVWMTQ0Mi44NUgxMzkyLjE3VjUzN0gxODA5WiIgZmlsbD0iYmxhY2siLz48cGF0aCBkPSJNMTM0MCAwVjQyMi4wNjNINDIxLjc3MVYxMzQwSDBWMEgxMzQwWiIgZmlsbD0iYmxhY2siLz48L3N2Zz4=">
 <meta name="description" content="220 m² Loftstudio im Vienna Photo District — Creative Studio Space für Foto, Video & Content. Bis zu 3 Sets, Daylight & Blackout, Equipment im Haus. Jetzt buchen.">
 <meta property="og:title" content="THE FRAME Studio Vienna — 220 m² Loftstudio, 1070 Wien">
 <meta property="og:description" content="Creative Studio Space für Foto, Video & Content. Bis zu 3 Sets, Daylight & Blackout, Equipment im Haus.">
@@ -383,6 +383,24 @@
     #gear .gearcard{display:none;min-height:0}
     #gear .gearcard.gcon{display:flex}
   }
+  /* ---------- BEHIND THE SCENES: Filmstreifen, laeuft durchgehend ----------
+     Zwei identische Spuren hintereinander, die zweite uebernimmt nahtlos -
+     deshalb gibt es beim Umlauf keinen Sprung. Kein Bedienelement. */
+  #bts{border-bottom:0}
+  #bts .sechead{margin-bottom:clamp(22px,3vw,40px)}
+  .strip{position:relative;overflow:hidden;padding:2px 0}
+  .strip::before,.strip::after{content:'';position:absolute;top:0;bottom:0;width:clamp(40px,8vw,120px);z-index:2;pointer-events:none}
+  .strip::before{left:0;background:linear-gradient(90deg,#fff,rgba(255,255,255,0))}
+  .strip::after{right:0;background:linear-gradient(270deg,#fff,rgba(255,255,255,0))}
+  .striprail{display:flex;width:max-content;animation:drift 90s linear infinite}
+  .strip:hover .striprail,.strip:focus-within .striprail{animation-play-state:paused}
+  .striprail figure{flex:none;margin-right:clamp(10px,1.4vw,22px)}
+  .striprail img{display:block;height:clamp(200px,28vw,400px);width:auto}
+  @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+  @media(prefers-reduced-motion:reduce){
+    .striprail{animation:none}
+    .strip{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  }
   .studioimg{position:relative;aspect-ratio:3/2;overflow:hidden}
   .studiorow{display:grid;grid-template-columns:var(--g12);gap:var(--gutter);align-items:start;margin-top:0}
   .studiorow .studioimg{grid-column:span 6}
@@ -497,7 +515,7 @@
   .leaflet-popup-content .poisub{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.04em;color:var(--mut);margin-top:6px;line-height:1.55;text-transform:uppercase}
   .leaflet-popup-content .poilink{display:inline-block;margin-top:9px;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--ink);color:var(--ink)}
   .leaflet-popup-content .poilink:hover{opacity:.55}
-  .favmark{width:24px;height:24px;background:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE3IiBoZWlnaHQ9IjExNyIgdmlld0JveD0iMCAwIDExNyAxMTciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgZmlsbD0iYmxhY2siLz4KPHJlY3QgeD0iMjYiIHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgMjYgMCkiIGZpbGw9ImJsYWNrIi8+CjxyZWN0IHg9IjExNyIgeT0iMTE3IiB3aWR0aD0iOTEiIGhlaWdodD0iMjYiIHRyYW5zZm9ybT0icm90YXRlKC0xODAgMTE3IDExNykiIGZpbGw9ImJsYWNrIi8+CjxyZWN0IHg9IjkxIiB5PSIxMTciIHdpZHRoPSI5MSIgaGVpZ2h0PSIyNiIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDkxIDExNykiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=) center/contain no-repeat}
+  .favmark{width:24px;height:24px;background:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMjIuNSAtOTUgMjA1NCAyMDU0Ij48cGF0aCBkPSJNMTgwOSA1MzdWMTg2NEg0ODVWMTQ0Mi44NUgxMzkyLjE3VjUzN0gxODA5WiIgZmlsbD0iYmxhY2siLz48cGF0aCBkPSJNMTM0MCAwVjQyMi4wNjNINDIxLjc3MVYxMzQwSDBWMEgxMzQwWiIgZmlsbD0iYmxhY2siLz48L3N2Zz4=) center/contain no-repeat}
   .poimark{width:14px;height:14px;background:#000;border:2px solid #fff;border-radius:50%;box-shadow:0 0 0 1px #000}
   .ulink{border-bottom:1.5px solid var(--ink)}
   .leaflet-container{font-family:'IBM Plex Sans',sans-serif}
@@ -544,20 +562,14 @@
     <div class="lbar" id="ldbar"></div>
     <span class="lg" data-i="0">F</span><span class="lg" data-i="1">R</span><span class="lg" data-i="2">A</span><span class="lg" data-i="3">M</span><span class="lg mir" data-i="4"><span>E</span></span>
     <span class="ln" data-k="0">Studio</span><span class="ln" data-k="1">Booking</span><span class="ln" data-k="2">Location</span><span class="ln" data-k="3">Kontakt</span>
-    <div class="lbrk" id="ldbL"><svg viewBox="0 0 117 117" fill="currentColor"><rect width="91" height="26"/><rect x="26" width="91" height="26" transform="rotate(90 26 0)"/></svg></div>
-    <div class="lbrk" id="ldbR"><svg viewBox="0 0 117 117" fill="currentColor"><rect x="117" y="117" width="91" height="26" transform="rotate(-180 117 117)"/><rect x="91" y="117" width="91" height="26" transform="rotate(-90 91 117)"/></svg></div>
+    <div class="lbrk" id="ldbL"><svg viewBox="0 0 1340 1340" fill="currentColor"><path d="M1340 0V422.063H421.771V1340H0V0H1340Z"/></svg></div>
+    <div class="lbrk" id="ldbR"><svg viewBox="0 0 1340 1340" fill="currentColor"><path d="M0 1340V917.937H918.229V0H1340V1340H0Z"/></svg></div>
   </div>
 </div>
 
 <header>
   <div class="hbar">
-    <a class="favlogo" href="#top" aria-label="FRAME"><svg viewBox="0 0 117 117" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-<rect width="91" height="26"/>
-<rect x="26" width="91" height="26" transform="rotate(90 26 0)"/>
-<rect x="117" y="117" width="91" height="26" transform="rotate(-180 117 117)"/>
-<rect x="91" y="117" width="91" height="26" transform="rotate(-90 91 117)"/>
-</svg>
-</a>
+    <a class="favlogo" href="#top" aria-label="FRAME"><svg viewBox="-122.5 -95 2054 2054" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M1809 537V1864H485V1442.85H1392.17V537H1809Z"/><path d="M1340 0V422.063H421.771V1340H0V0H1340Z"/></svg></a>
     <a class="wordlogo" href="#top" aria-label="FRAME"><img src="plan-assets/FRAME_V2.svg" alt="FRAME"></a>
     <span class="L hfull">F</span>
     <span class="navgrp hfull"><a class="hnav hfull" href="#raum"><span class="de">Studio</span><span class="en">Space</span></a><span class="navsub"><a href="#raum"><span class="de">Der Raum</span><span class="en">The space</span></a><a href="#gear">Equipment</a></span></span>
@@ -652,8 +664,8 @@
       <div class="scount"><span class="scur">1</span> / <span class="stot">9</span></div>
     </div>
     <div class="factpanel factframe closed">
-      <span class="cnr tl"><svg viewBox="0 0 117 117" fill="currentColor" aria-hidden="true"><rect width="91" height="26"/><rect x="26" width="91" height="26" transform="rotate(90 26 0)"/></svg></span>
-      <span class="cnr br"><svg viewBox="0 0 117 117" fill="currentColor" aria-hidden="true"><rect x="117" y="117" width="91" height="26" transform="rotate(-180 117 117)"/><rect x="91" y="117" width="91" height="26" transform="rotate(-90 91 117)"/></svg></span>
+      <span class="cnr tl"><svg viewBox="0 0 1340 1340" fill="currentColor" aria-hidden="true"><path d="M1340 0V422.063H421.771V1340H0V0H1340Z"/></svg></span>
+      <span class="cnr br"><svg viewBox="0 0 1340 1340" fill="currentColor" aria-hidden="true"><path d="M0 1340V917.937H918.229V0H1340V1340H0Z"/></svg></span>
       <div class="fptabs">
         <button class="mfbtn on" data-v="facts" onclick="fpSwitch(this)"><span class="de">Fakten</span><span class="en">Facts</span></button>
         <button class="mfbtn" data-v="plan" onclick="fpSwitch(this)"><span class="de">Grundriss</span><span class="en">Floor plan</span></button>
@@ -726,6 +738,18 @@
           </div>
         </div>
     </div>
+  </div>
+</section>
+
+<section id="bts">
+  <div class="wrap">
+    <div class="sechead">
+      <h2 class="sectitle"><span class="sword">The Frame is yours</span></h2>
+      <p class="seclead"><span class="de">Echte Produktionen im Studio: Aufbau, Licht, Styling und der Moment vor dem Take.</span><span class="en">Real productions in the studio: rigging, light, styling and the moment before the take.</span></p>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="striprail" id="btsrail"></div>
   </div>
 </section>
 
@@ -922,6 +946,26 @@
     el.classList.toggle('open');}
   document.addEventListener('click',function(){document.querySelectorAll('.pinfo.open').forEach(function(x){x.classList.remove('open');});});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.pinfo.open').forEach(function(x){x.classList.remove('open');});});
+  /* Filmstreifen: Spur zweimal ausgeben, damit der Umlauf nahtlos schliesst */
+  (function(){
+    var rail=document.getElementById('btsrail'); if(!rail) return;
+    var SHOTS=[
+      ['bts-01.jpg','Hintergrund wird gerigged, kurz vor dem ersten Setup'],
+      ['bts-02.jpg','Kostüm wird am Set gerichtet'],
+      ['bts-03.jpg','Detail am Seamless, zwischen zwei Takes'],
+      ['bts-04.jpg','Kamera-Rig an der Fensterfront'],
+      ['bts-05.jpg','Label-Detail einer Modeproduktion'],
+      ['bts-06.jpg','Totale am Seamless, Leiter noch im Bild'],
+      ['bts-07.jpg','Blick auf den Monitor während des Takes'],
+      ['bts-08.jpg','Letzte Korrektur, bevor die Kamera läuft']
+    ];
+    var html='';
+    for(var pass=0;pass<2;pass++) SHOTS.forEach(function(sh,i){
+      html+='<figure><img src="bts/'+sh[0]+'" alt="FRAME Studio – '+sh[1]+'"'
+          + (pass||i>2?' loading="lazy"':'') + '></figure>';
+    });
+    rail.innerHTML=html;
+  })();
   function gearSwitch(b){document.querySelectorAll('.geartabs .mfbtn').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
     var v=b.getAttribute('data-gc');document.querySelectorAll('.gearcard').forEach(function(c){c.classList.toggle('gcon',c.classList.contains(v));});}
   function fpSwitch(b){document.querySelectorAll('.fptabs .mfbtn').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
