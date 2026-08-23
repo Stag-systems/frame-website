@@ -4,3 +4,6 @@ _website-plan.md
 
 fonts/_x/
 fonts/*.zip
+
+# Polaroid-Quellfotos: nur Arbeitsmaterial fuer den Generator, nicht deployen
+_wip/polaroid-src/

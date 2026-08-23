@@ -1,0 +1,50 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>FRAME · Polaroid-Generator</title>
+<!--
+  Erzeugt ein Polaroid-PNG in EXAKT der Geometrie von Tibis Scans
+  (plan-assets/polaroid01.png / 02.png), damit sich alle Polaroids auf der
+  Website gleich gross rendern.
+
+  Canvas 970x1212 · Karte 849x1062 bei (60,48) · Bildfenster 741x777 bei (113,112)
+
+  Nutzung (Foto per Query-Param, Pfad relativ zu dieser Datei):
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+    --headless --disable-gpu --hide-scrollbars --default-background-color=00000000 \
+    --window-size=970,1212 --screenshot=/pfad/polaroid03.png \
+    "file:///…/_wip/polaroid-generator.html?src=Gear-wagen.jpg&pos=50%25%2040%25"
+
+  Sobald echte Polaroid-Scans von Stefan da sind: einfach die PNGs in
+  plan-assets/ ueberschreiben, im HTML aendert sich nichts.
+-->
+<style>
+  html,body{margin:0;padding:0;background:transparent;width:970px;height:1212px;overflow:hidden}
+  /* KEIN Aussenschatten im PNG - der Kontaktschatten kommt per CSS auf der Website
+     (index.html: .pol{filter:drop-shadow(...)}), damit er sich mit der Rotation mitdreht. */
+  .card{position:absolute;left:60px;top:48px;width:849px;height:1062px;background:#eeeeee}
+  /* leichte Papier-Unruhe wie beim Scan */
+  .card::after{content:"";position:absolute;inset:0;pointer-events:none;
+        background:linear-gradient(115deg,rgba(255,255,255,.55),rgba(0,0,0,.035) 55%,rgba(0,0,0,.06));
+        mix-blend-mode:multiply;opacity:.5}
+  .win{position:absolute;left:53px;top:64px;width:741px;height:777px;background:#d8d8d8}
+  .win img{position:relative;z-index:0}
+  /* Innenrand: der Kartonrand wirft einen leichten Schatten auf das Foto */
+  .win::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+        box-shadow:inset 0 4px 9px -2px rgba(0,0,0,.30),
+                   inset 0 -2px 6px -2px rgba(0,0,0,.16),
+                   inset 4px 0 8px -4px rgba(0,0,0,.18),
+                   inset -4px 0 8px -4px rgba(0,0,0,.18),
+                   inset 0 0 0 1px rgba(0,0,0,.10)}
+  .win{overflow:hidden}
+  .win img{width:100%;height:100%;object-fit:cover;display:block;
+        filter:grayscale(1) contrast(1.06) brightness(1.02)}
+</style></head>
+<body>
+  <div class="card"><div class="win"><img id="ph" alt=""></div></div>
+<script>
+  var q=new URLSearchParams(location.search);
+  var img=document.getElementById('ph');
+  img.src=q.get('src')||'Gear-wagen.jpg';
+  img.style.objectPosition=q.get('pos')||'50% 50%';
+  if(q.get('scale')) img.style.transform='scale('+q.get('scale')+')';
+</script>
+</body></html>

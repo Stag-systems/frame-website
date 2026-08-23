@@ -31,6 +31,7 @@
   /* Preiszeilen */
   .prow{display:flex;justify-content:space-between;align-items:baseline;gap:5mm;padding:1.9mm 0;border-bottom:1px solid var(--line)}
   .prow .k{font-size:9pt}
+  .prow .k .nw{white-space:nowrap}
   .prow .k .q{font-family:'IBM Plex Mono',monospace;font-size:6.8pt;letter-spacing:.05em;color:var(--mut);text-transform:uppercase;margin-left:1.5mm;white-space:nowrap}
   .prow .k .d{display:block;font-size:8pt;color:#666;margin-top:.4mm}
   .prow .v{font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:.03em;color:var(--ink);white-space:nowrap;flex:none}
@@ -60,8 +61,8 @@
   .cover .csub{font-size:12.5pt;font-weight:300;color:#444;max-width:110mm;line-height:1.6}
   .cover .caddr{font-family:'IBM Plex Mono',monospace;font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-top:10mm}
   /* AGB-Anhang */
-  .agbcols{column-count:2;column-gap:9mm;font-size:7.6pt;line-height:1.5;color:#333}
-  .agbcols p{margin-bottom:1.8mm}
+  .agbcols{column-count:2;column-gap:9mm;font-size:7.3pt;line-height:1.42;color:#333}
+  .agbcols p{margin-bottom:1.4mm}
   .agbcols .agbli{padding-left:3mm}
   .agbh{font-family:var(--display);font-weight:400;font-size:9.5pt;text-transform:uppercase;letter-spacing:.02em;margin:3.5mm 0 1.5mm;break-after:avoid}
   .agbh:first-child{margin-top:0}
@@ -98,22 +99,21 @@
 
   <div class="twocol">
     <div>
-      <div class="cat">Normaltarif</div>
-      <div class="prow"><span class="k">½ Studiotag<span class="q">nur Sommer · 09–14 oder 13–18</span></span><span class="v">€ 300,–</span></div>
-      <div class="prow"><span class="k">1 Studiotag *<span class="q">09–18</span></span><span class="v">€ 500,– <span class="fn">ab 2 Tagen −10%</span></span></div>
+      <div class="cat">Commercial</div>
+      <div class="prow"><span class="k">½ Studiotag<span class="q">nur Sommer · 09–14 oder 13–18</span></span><span class="v">€ 400,–</span></div>
+      <div class="prow"><span class="k">1 Studiotag *<span class="q">09–18</span></span><span class="v">€ 600,– <span class="fn">ab 2 Tagen −10%</span></span></div>
 
-      <div class="cat">Editorial-Tarif (werktags)</div>
-      <div class="prow"><span class="k">½ Studiotag<span class="q">nur Sommer · 09–14 oder 13–18</span></span><span class="v">€ 200,–</span></div>
-      <div class="prow"><span class="k">1 Studiotag *<span class="q">09–18</span></span><span class="v">€ 300,–</span></div>
+      <div class="cat">Editorial (werktags)</div>
+      <div class="prow"><span class="k">1 Studiotag *<span class="q">09–18</span></span><span class="v">€ 350,–</span></div>
 
-      <div class="cat">Wochenende &amp; Feiertage (kein Editorial)</div>
-      <div class="prow"><span class="k">½ Studiotag<span class="q">nur Sommer · 09–14 oder 13–18</span></span><span class="v">€ 380,–</span></div>
-      <div class="prow"><span class="k">1 Studiotag *<span class="q">09–18</span></span><span class="v">€ 600,–</span></div>
+      <div class="cat">Wochenende &amp; Feiertage</div>
+      <div class="prow"><span class="k">Aufschlag auf alle Tarife</span><span class="v">+ 20 %</span></div>
 
       <div class="cat">Workshops &amp; Events</div>
-      <div class="prow"><span class="k">Workshop-Tag<span class="q">09–18</span></span><span class="v">€ 350,–</span></div>
-      <div class="prow"><span class="k">Workshop-Wochenende<span class="q">Sa + So · 2 Tage</span></span><span class="v">€ 650,–</span></div>
+      <div class="prow"><span class="k">Workshop-Tag<span class="q">09–18</span></span><span class="v">ab € 300,–</span></div>
+      <div class="prow"><span class="k">Workshop-Wochenende<span class="q">Sa + So · 2 Tage</span></span><span class="v">ab € 550,–</span></div>
       <div class="prow"><span class="k">Ausstellung · Pop-up · Event</span><span class="v">auf Anfrage</span></div>
+      <div class="catnote">Bei mehrtägigen Buchungen erstellen wir gerne ein individuelles Angebot.</div>
 
       <div class="cat">Filmproduktionen</div>
       <div class="prow"><span class="k">Studiokosten Filmproduktionen</span><span class="v">auf Anfrage</span></div>
@@ -124,7 +124,7 @@
       <div class="cat">Extras</div>
       <div class="prow"><span class="k">Overtime<span class="q">pro Std.</span></span><span class="v">10% des Tagestarifs</span></div>
       <div class="prow"><span class="k">Assistent<span class="q">1 Tag</span></span><span class="v">€ 250,–</span></div>
-      <div class="prow"><span class="k">Endreinigung<span class="q">ggf.</span></span><span class="v">€ 50,–</span></div>
+      <div class="prow"><span class="k">Endreinigung<span class="q">ggf.</span></span><span class="v">ab € 50,–</span></div>
 
       <div class="cat">Inkludiert bei Fotoshootings</div>
       <div class="note">Strom, Grip &amp; Hilfsmaterial, Stative (058er).<br>
@@ -233,10 +233,13 @@
       <div class="cat">Kunstlicht · Halogen/Tungsten</div>
       <div class="prow"><span class="k">Dedolight 3er-Set DLH4 mit Trafo<span class="q">inkl. Stative · 2 Stk.</span></span><span class="v">á € 50,–</span></div>
 
-      <div class="cat">Monitor</div>
-      <div class="prow"><span class="k">ASUS ProArt PA27JCV</span><span class="v">€ 60,–</span></div>
+      <div class="cat">Kunstlicht · Röhre/Daylight</div>
+      <div class="catnote">Kino Flo · Dauerlicht, flickerfrei · je 4 Röhren · inkl. Stative</div>
+      <div class="prow"><span class="k"><span class="nw">Cineflo D-Lite 400</span><span class="q">5500 K · dimmbar</span></span><span class="v">€ 40,– <span class="fn">2er € 75,–</span></span></div>
+      <div class="prow"><span class="k"><span class="nw">4ft 4Bank Select</span><span class="q">5600 K</span></span><span class="v">€ 45,– <span class="fn">2er € 80,–</span></span></div>
 
-      <div class="cat">Powerbanks &amp; Farbe</div>
+      <div class="cat">Monitor, Powerbanks &amp; Farbe</div>
+      <div class="prow"><span class="k">ASUS ProArt PA27JCV<span class="q">Monitor</span></span><span class="v">€ 60,–</span></div>
       <div class="prow"><span class="k">HyperJuice 1.5 222 Pro Akku<span class="q">f. MacBook bis 2015!</span></span><span class="v">€ 15,–</span></div>
       <div class="prow"><span class="k">HyperJuice 245B USB-C 100 Wh<span class="q">f. MacBook ab 2016</span></span><span class="v">€ 10,–</span></div>
       <div class="prow"><span class="k">X-Rite ColorChecker Passport</span><span class="v">€ 8,–</span></div>
@@ -300,7 +303,7 @@
     <p>Bis zu 7 Tage vor Produktionsbeginn: kostenfrei</p>
     <p class="agbli">&middot; 6 bis 3 Tage vor Produktionsbeginn: 50 % des Tarifs</p>
     <p class="agbli">&middot; Ab 48 Stunden vor Produktionsbeginn oder bei Nichterscheinen: 100 % des Tarifs</p>
-    <p>Das Studio wird besenrein übergeben. Bei Bedarf und mehrtägigen Buchungen wird eine Endreinigung in der Höhe von € 60,- verrechnet. Bei außergewöhnlicher Verschmutzung (z. B. durch den Einsatz von Glitzer, Konfetti, Flüssigkeiten oder Bodypaint) oder einer Set-Größe von mehr als 8 Personen (Crew, Kunden, Models etc.) aufgrund des erhöhten Reinigungs- und Infrastrukturaufwands eine einmalige Pauschale von 150,00 € verrechnet</p>
+    <p>Das Studio wird besenrein übergeben. Bei Bedarf und mehrtägigen Buchungen wird eine Endreinigung ab € 50,– verrechnet. Bei außergewöhnlicher Verschmutzung (z. B. durch den Einsatz von Glitzer, Konfetti, Flüssigkeiten oder Bodypaint) oder einer Set-Größe von mehr als 8 Personen (Crew, Kunden, Models etc.) aufgrund des erhöhten Reinigungs- und Infrastrukturaufwands eine einmalige Pauschale von 150,00 € verrechnet</p>
     <p>Die Stornierung muss schriftlich (per E-Mail ausreichend) erfolgen.</p>
   </div>
   <div class="foot"><span>Allgemeine Gesch&auml;ftsbedingungen &middot; Stand 08/2026</span><span>5 / 6</span></div>
@@ -324,6 +327,9 @@
     <div class="agbh">§ 8 Haftung und Schäden</div>
     <p>Haftung des Mieters: Der Mieter haftet unbeschränkt für alle von ihm, seinen Mitarbeitern, Models, Visagisten, Gästen oder Besuchern verursachten Schäden oder Verluste (z. B. Diebstahl) an den Studioräumen, den Einrichtungsgegenständen, Möbeln sowie am überlassenen Licht- und Fotoequipment.</p>
     <p>Schäden, Fehlfunktionen oder Defekte an Geräten sind dem Vermieter unverzüglich, spätestens jedoch bei der Übergabe am Ende der Mietzeit, anzuzeigen. Das Verschweigen von Schäden verpflichtet zum Ersatz des daraus resultierenden Folgeschadens (z. B. Mietausfall beim Folgemieter).</p>
+    <p>Ersatz und Reparatur: Beschädigte Geräte und Einrichtungsgegenstände werden auf Kosten des Mieters fachgerecht repariert. Ist eine Reparatur nicht möglich oder wirtschaftlich nicht sinnvoll, ist der Wiederbeschaffungswert zu ersetzen.</p>
+    <p>Fremdequipment aus externem Verleih: Wird auf Wunsch des Mieters Equipment bei einem externen Verleih angemietet, insbesondere beim Digitalkameraverleih, tritt der Vermieter ausschließlich als Vermittler auf. Haftung, Versicherung und fristgerechte Rückgabe richten sich nach den Bedingungen des jeweiligen Verleihs und liegen beim Mieter. Der Mieter bestätigt die Übernahme mit dem gesonderten Formular „Haftungsübernahme". Kosten aus Beschädigung, Verlust oder verspäteter Rückgabe trägt der Mieter.</p>
+    <p>Garderobe und Wertgegenstände: Für eingebrachte Sachen des Mieters, seiner Crew, Models, Kunden und Gäste, insbesondere Garderobe, Kleidung, Taschen, Kameras und Laptops, wird keine Haftung übernommen. Garderobe und Ablagen sind unbewacht; für Verlust oder Diebstahl haftet der Vermieter nicht. Der Mieter hat selbst für ausreichenden Versicherungsschutz zu sorgen.</p>
     <p>Haftung des Vermieters: Der Vermieter haftet nach den gesetzlichen Bestimmungen für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit. Für sonstige Schäden haftet der Vermieter nur bei Vorsatz oder grober Fahrlässigkeit. Die Haftung für leichte Fahrlässigkeit, entgangenen Gewinn oder Folgeschäden ist – soweit gesetzlich zulässig (insb. im B2B-Bereich) – ausgeschlossen.</p>
     <div class="agbh">§ 9 Urheberrecht bei Fotodienstleistungen</div>
     <p>(Gilt, sofern der Vermieter selbst als Fotograf tätig wird)</p>

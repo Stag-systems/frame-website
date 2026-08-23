@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>FRAME · Haftungsübernahme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!--
+  FRAME · Haftungsübernahme (Equipment-Verleih) · eigenes Blatt, KEIN AGB-Anhang.
+  Vorlage: Stefans Blatt „Mietvertrag / Digitalkameraverleih" vom 22.8.2026.
+
+  Zwei Wege, das Blatt auszufüllen:
+  1) Am Rechner: diese HTML im Browser öffnen, in die Felder tippen, dann Cmd+P
+     → „Als PDF sichern". Die getippten Werte werden mitgedruckt.
+  2) Leer drucken und handschriftlich ausfüllen.
+
+  Blanko-PDF erzeugen (wie die anderen FRAME-Dokumente):
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless \
+    --no-pdf-header-footer --print-to-pdf=…/haftungsuebernahme.pdf file://…/haftungsuebernahme-pdf.html
+
+  Die Seite ist auf genau eine A4-Seite gerechnet. Wenn Zeilen dazukommen, vorher
+  die Höhe prüfen - sonst fällt der Unterschriftsblock hinten runter.
+-->
+<style>
+  @font-face{font-family:'Century Gothic';src:url('../fonts/century-gothic.woff2') format('woff2');font-weight:400;font-style:normal}
+  @font-face{font-family:'Century Gothic';src:url('../fonts/century-gothic-bold.woff2') format('woff2');font-weight:700;font-style:normal}
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--ink:#0a0a0a;--mut:#8a8a8a;--line:#e6e6e6;--display:'Century Gothic','Helvetica Neue',Arial,sans-serif}
+  body{font-family:'IBM Plex Sans',sans-serif;font-weight:300;color:var(--ink);background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:296mm;padding:15mm 15mm 18mm;position:relative;overflow:hidden}
+
+  .head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7mm}
+  .head img{height:5.5mm;display:block}
+  .head .tag{font-family:'IBM Plex Mono',monospace;font-size:8.5pt;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);padding-top:1mm}
+
+  h1{font-family:var(--display);font-weight:400;font-size:24pt;line-height:1.1;margin-bottom:1.5mm}
+  .sub{font-size:9.5pt;color:#444;line-height:1.5;max-width:125mm}
+
+  .cat{font-family:'IBM Plex Mono',monospace;font-size:8.5pt;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:1.8mm;margin:6mm 0 3mm}
+
+  /* Eingabefelder: am Bildschirm tippbar, gedruckt eine Schreiblinie.
+     Label laeuft im Fluss mit, damit es nie in die naechste Zeile ragt. */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5mm 8mm}
+  .f input{width:100%;height:6.5mm;border:0;border-bottom:.35mm solid var(--ink);background:transparent;
+           font-family:'IBM Plex Sans',sans-serif;font-weight:400;font-size:10.5pt;color:var(--ink);
+           padding:0 0 1mm;outline:none;border-radius:0;display:block}
+  .f label{display:block;margin-top:1.3mm;font-family:'IBM Plex Mono',monospace;font-size:6.8pt;
+           letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+
+  .note{font-size:9pt;color:#333;line-height:1.55}
+  .note b{font-weight:600}
+  .mono-note{font-family:'IBM Plex Mono',monospace;font-size:7pt;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);line-height:1.6}
+
+  /* Geraeteliste */
+  .ihead,.irow{display:grid;grid-template-columns:7mm 1fr 20mm;gap:0 4mm}
+  .ihead{font-family:'IBM Plex Mono',monospace;font-size:6.8pt;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);padding-bottom:1.2mm}
+  .ihead .r{text-align:right}
+  .irow{align-items:end;border-bottom:1px solid var(--line);padding:1.2mm 0}
+  .irow .n{font-family:'IBM Plex Mono',monospace;font-size:8pt;color:var(--mut);padding-bottom:1.2mm}
+  .irow input{width:100%;height:6mm;border:0;background:transparent;font-family:'IBM Plex Sans',sans-serif;
+              font-weight:400;font-size:10pt;color:var(--ink);padding:0 0 .8mm;outline:none}
+  .irow .qty input{text-align:right;font-family:'IBM Plex Mono',monospace;font-size:9pt}
+
+  /* Auswahlfelder: eigenes Quadrat statt System-Checkbox, damit es gedruckt zur Marke passt */
+  .opt{display:flex;align-items:flex-start;gap:3.5mm;padding:1.7mm 0}
+  .opt input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:none;
+       width:3.8mm;height:3.8mm;margin-top:.4mm;border:.35mm solid var(--ink);background:#fff;
+       border-radius:0;outline:none;cursor:pointer;position:relative}
+  .opt input[type=checkbox]:checked::after{content:"";position:absolute;inset:.7mm;background:var(--ink)}
+  .opt span{font-size:9pt;line-height:1.4;color:#222}
+
+  .sig{margin-top:6mm;border-top:1px solid var(--ink);padding-top:4mm}
+  .sig .sigtext{font-size:8.5pt;color:#333;line-height:1.5;margin-bottom:8mm}
+  .siggrid{display:grid;grid-template-columns:1fr 1fr;gap:0 12mm}
+  .sigfield{border-bottom:.4mm solid var(--ink);height:10mm}
+  .sigcell span{display:block;margin-top:1.5mm;font-family:'IBM Plex Mono',monospace;font-size:6.8pt;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+
+  .foot{position:absolute;left:15mm;right:15mm;bottom:9mm;display:flex;justify-content:space-between;
+        font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="head">
+    <img src="FRAME_V2.svg" alt="FRAME">
+    <div class="tag">Haftungsübernahme</div>
+  </div>
+
+  <h1>Haftungsübernahme.</h1>
+
+  <div class="cat">Empfänger:in &amp; Mietzeitraum</div>
+  <div class="grid">
+    <div class="f"><input type="text" name="firma"><label>Name / Unternehmen</label></div>
+    <div class="f"><input type="text" name="person"><label>Ansprechperson</label></div>
+    <div class="f"><input type="text" name="mail"><label>E-Mail</label></div>
+    <div class="f"><input type="text" name="tel"><label>Telefon</label></div>
+    <div class="f"><input type="text" name="von"><label>Übernahme · Datum &amp; Uhrzeit</label></div>
+    <div class="f"><input type="text" name="bis"><label>Rückgabe · Datum &amp; Uhrzeit</label></div>
+  </div>
+
+  <p class="note" style="margin-top:6mm">Hiermit bestätige ich in meinem Namen bzw. im Namen des oben genannten Unternehmens den Empfang der unten gelisteten, in meinem Auftrag angemieteten Geräte für den vereinbarten Zeitraum. Ich übernehme die Mietbedingungen samt Haftungs- und Versicherungsbedingungen wie im Mietvertrag ersichtlich. <b>Die Haftung gilt ebenso für Beschädigungen, die durch Dritte in meinem Umfeld entstehen</b>: Kund:innen, Models, Assistenz oder andere beteiligte Personen.</p>
+
+  <div class="cat">Geräte · Kameras · Zubehör</div>
+  <div class="ihead"><div></div><div>Bezeichnung</div><div class="r">Anzahl</div></div>
+  <div class="irow"><div class="n">01</div><div><input type="text"></div><div class="qty"><input type="text"></div></div>
+  <div class="irow"><div class="n">02</div><div><input type="text"></div><div class="qty"><input type="text"></div></div>
+  <div class="irow"><div class="n">03</div><div><input type="text"></div><div class="qty"><input type="text"></div></div>
+  <div class="irow"><div class="n">04</div><div><input type="text"></div><div class="qty"><input type="text"></div></div>
+  <div class="mono-note" style="margin-top:2mm">Zubehör jeweils wie im Mietvertrag gelistet.</div>
+
+  <div class="cat">Abholung &amp; Rückgabe</div>
+  <div class="opt"><input type="checkbox"><span>Die Geräte wurden von mir beim Verleih abgeholt.</span></div>
+  <div class="opt"><input type="checkbox"><span>Die Geräte werden von mir an den Verleih retourniert.</span></div>
+  <div class="opt"><input type="checkbox"><span>Die Geräte werden durch FRAME an den Verleih retourniert.</span></div>
+  <p class="note" style="margin-top:2.5mm">Die Rückgabe hat täglich bis spätestens 18:00 Uhr zu erfolgen, spätestens am Folgetag zwischen 09:00 und 11:00 Uhr. Kosten, die durch verspätete Rückgabe oder eine Verlängerung der Mietzeit entstehen, übernehme ich bzw. das oben genannte Unternehmen.</p>
+
+  <div class="sig">
+    <p class="sigtext">Mit meiner Unterschrift bestätige ich Empfang und Haftungsübernahme für den angegebenen Zeitraum.</p>
+    <div class="siggrid">
+      <div class="sigcell"><div class="sigfield"></div><span>Ort, Datum</span></div>
+      <div class="sigcell"><div class="sigfield"></div><span>Unterschrift Mieter:in</span></div>
+    </div>
+  </div>
+
+  <div class="foot"><span>Haftungsübernahme · Stand 08/2026</span><span>Neustiftgasse 107/2 · 1070 Wien · theframe.at</span></div>
+</div>
+
+</body>
+</html>

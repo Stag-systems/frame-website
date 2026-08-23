@@ -196,11 +196,40 @@
   .ptile::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.26) 46%,rgba(0,0,0,.44) 100%)}
   .ptile .aitag{position:absolute;bottom:10px;right:12px;font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);pointer-events:none}
   .ptile .pname{font-family:var(--display);font-weight:400;font-size:22px;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.4)}
-  .ptile .pdesc{font-family:'IBM Plex Mono',monospace;font-size:var(--t-data);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75);margin:0 0 14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.22)}
+  /* gleiche Schriftstufe wie .punit („/ Studiotag") */
+  .ptile .pdesc{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.04em;text-transform:none;color:rgba(255,255,255,.72);margin:0 0 14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.22)}
   .ptile .pprice{font-family:var(--display);font-weight:400;font-size:40px;letter-spacing:-.01em;line-height:1}
   .ptile .punit{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.04em;color:rgba(255,255,255,.72);margin-left:7px}
   .ptile .pmeta{font-size:var(--fs-body);line-height:1.55;font-weight:300;color:rgba(255,255,255,.85);margin-top:9px}
   .ptile .pmeta b{font-weight:400;color:#fff}
+  .ptile .pfrom{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-right:8px;vertical-align:.32em}
+  /* i-Button: kleiner Kreis am Preis, Desktop Hover / Touch Klick.
+     Tooltip oeffnet nach OBEN, weil .ptile overflow:hidden hat. */
+  .pinfo{position:relative;display:inline-flex;align-items:center;justify-content:center;
+         width:21px;height:21px;margin-left:10px;vertical-align:.34em;border:1.4px solid rgba(255,255,255,.7);
+         border-radius:50%;cursor:pointer;transition:.14s;-webkit-tap-highlight-color:transparent}
+  /* Das „i" wird optisch zentriert, nicht nur seine Textbox: die Tinte der Plex-Mono-
+     Glyphe sitzt im 11px-Rendering 0,63px zu hoch und 0,31px zu weit rechts im Kreis
+     (an den gerenderten Pixeln ausgemessen). Werte gelten fuer font-size:11px. */
+  .pinfo .pi{font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1;color:#fff;transform:translate(-.31px,.63px)}
+  .pinfo:hover,.pinfo:focus-visible,.pinfo.open{background:#fff;border-color:#fff;outline:none}
+  .pinfo:hover .pi,.pinfo:focus-visible .pi,.pinfo.open .pi{color:var(--ink)}
+  .pitip{position:absolute;right:-7px;left:auto;bottom:calc(100% + 11px);width:236px;max-width:64vw;
+         background:#fff;color:var(--ink);border:1.4px solid var(--ink);padding:13px 15px;
+         font-family:'IBM Plex Sans',sans-serif;font-size:var(--fs-body);font-weight:300;line-height:1.5;
+         letter-spacing:0;text-transform:none;text-align:left;
+         opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .16s,transform .16s,visibility .16s;z-index:5}
+  @media(hover:hover){.pinfo:hover .pitip{opacity:1;visibility:visible;transform:none}}
+  .pinfo:focus-visible .pitip,.pinfo.open .pitip{opacity:1;visibility:visible;transform:none}
+  @media(prefers-reduced-motion:reduce){.pitip{transition:none}}
+  /* Mobil: Kachel ist voll breit, der i-Button sitzt weit rechts -> Tooltip an der
+     Preiszeile verankern und ueber die volle Kachelbreite ziehen, sonst schneidet
+     das overflow:hidden der Kachel links ab. */
+  @media(max-width:820px){
+    .ptile .pprice{position:relative}
+    .pinfo{position:static}
+    .pitip{left:0;right:0;width:auto;max-width:none;bottom:calc(100% + 13px)}
+  }
   .kontaktcols{display:grid;grid-template-columns:var(--g12);gap:var(--gutter);align-items:start;margin-top:30px}
   .kontaktcols>div:first-child{grid-column:span 5}
   .kontaktcols>div:last-child{grid-column:span 7}
@@ -219,6 +248,17 @@
   .fixcard .fixcta{margin-top:auto;padding-top:10px}
   .fc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
   .fc-t{font-family:var(--display);font-size:22px;line-height:1.2;letter-spacing:.02em;font-weight:400;text-transform:uppercase}
+  /* Erste Lead-Zeile der Intro-Section auf Kartentitel-Stufe (wie „Create"/„Focus").
+     Nur Desktop - mobil bleibt sie normale Lead-Zeile, sonst kippt die Hierarchie
+     gegen den Section-Titel darueber. */
+  @media(min-width:821px){
+    /* Oberkante der Zeile buendig mit der Oberkante von „220 m² Loftstudio":
+       gemessen an den Versalhoehen (34px-Titel vs. 22px-Zeile), nicht an den Boxen. */
+    section.intro .sechead .seclead{margin-top:2.65px}
+    .intro .seclead .leadhl{font-family:var(--display);font-size:22px;line-height:1.25;
+      letter-spacing:.02em;font-weight:400;text-transform:uppercase;color:var(--ink);
+      display:inline-block;margin-bottom:10px}
+  }
   .fc-n{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);color:var(--mut);letter-spacing:.08em;white-space:nowrap}
   .fc-body{font-size:var(--fs-body);color:#444;line-height:1.55;margin-top:auto;font-weight:300}
   .fc-tags{margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:var(--t-data);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);line-height:1.9}
@@ -264,13 +304,22 @@
   @media(prefers-reduced-motion:reduce){.factframe.closed .specrows{opacity:1;transform:none}.factframe.closed .cnr{transform:none!important}}
   #raum{border-bottom:0}
   .gearrow{display:grid;grid-template-columns:var(--g12);gap:var(--gutter);align-items:start}
-  .gearrow .polaroids{grid-column:span 6;justify-self:center}
+  .gearrow .polaroids{grid-column:span 6;justify-self:center;align-self:center}
   .gearrow .geartext{grid-column:span 6}
   .geartext{max-width:46ch;flex:0 1 auto}/* Text rechts */
-  .polaroids{position:relative;flex:0 0 auto;width:min(500px,86vw);aspect-ratio:1/1}/* Tibis Polaroid-Scans, überlappend */
-  .pol{position:absolute;width:70%;height:auto;display:block}
-  .pol-back{left:0;bottom:0;transform:rotate(-5deg)}
-  .pol-front{right:0;top:0;transform:rotate(3.5deg);z-index:2}
+  /* Polaroid-Cluster: 6 Scans, lose gestreut und ueberlappend.
+     Bilder tauschen = PNGs in plan-assets/ ersetzen (Generator: _wip/polaroid-generator.html).
+     Schatten: NUR Kontaktschatten (eng, direkt unter der Kante) - kein weicher
+     Umgebungsschatten. Dreht sich mit der Rotation mit. */
+  .polaroids{position:relative;flex:0 0 auto;width:min(560px,88vw);aspect-ratio:1/.86}
+  .pol{position:absolute;width:35%;height:auto;display:block;
+       filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.34))}
+  .pol-1{left:0;top:0;transform:rotate(-6deg);z-index:1}
+  .pol-2{left:34%;top:4%;transform:rotate(3deg);z-index:3}
+  .pol-3{right:0;top:1%;transform:rotate(-3.5deg);z-index:2}
+  .pol-4{left:3%;bottom:0;transform:rotate(4.5deg);z-index:4}
+  .pol-5{left:33%;bottom:3%;transform:rotate(-5deg);z-index:6}
+  .pol-6{right:0;bottom:1%;transform:rotate(5.5deg);z-index:5}
   .gearrow .gearcards{grid-column:span 6;display:grid;grid-template-columns:1fr;gap:var(--gutter);align-self:stretch;grid-auto-rows:1fr}
   .gearcard{border:1px solid var(--line);padding:24px;display:flex;flex-direction:column;min-height:0}
   .gearcard .gc-body,.bextra .gc-body{font-size:var(--fs-body);color:#444;line-height:1.55;font-weight:300;margin-top:16px}
@@ -282,6 +331,14 @@
   .gearlinks{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:11px;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.06em}
   .gearsoon{color:var(--mut)}
   /* Zwei gleichrangige Buttons: PDF gefüllt, Verleih als Outline */
+  .inlink{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;transition:opacity .15s}
+  .leadlink{display:inline-block;margin-top:12px;color:var(--ink)}
+  /* Umbruch nur mobil, und zwar nach „und" - sonst haengt „planen" allein in Zeile 2 */
+  .brm{display:none}
+  /* .sepd = Trenner, der beim mobilen Umbruch verschwindet, damit das „·" nicht
+     allein am Anfang der zweiten Zeile steht */
+  @media(max-width:820px){.brm{display:inline}.sepd{display:none}}
+  .inlink:hover{opacity:.6}
   a.primary{display:inline-block;white-space:nowrap;background:var(--ink);color:#fff;border:1.4px solid var(--ink);padding:11px 18px;text-transform:uppercase;letter-spacing:.14em;font-size:var(--fs-label);transition:.15s}
   a.primary:hover{background:#fff;color:var(--ink)}
   a.secondary{display:inline-block;white-space:nowrap;background:none;color:var(--ink);border:1.4px solid var(--ink);padding:11px 18px;text-transform:uppercase;letter-spacing:.14em;font-size:var(--fs-label);transition:.15s}
@@ -307,9 +364,10 @@
     #gear .sechead,#gear .gearrow{display:contents}
     #gear .wrap{display:flex;flex-direction:column}
     #gear .sectitle{order:0;margin-bottom:24px}
-    #gear .polaroids{order:1;margin:0 auto 28px}
+    #gear .polaroids{order:1;margin:0 auto 30px;width:min(470px,92vw)}
     #gear .seclead{order:2;margin:0 0 22px}
-    #gear .fptabs.geartabs{order:3;display:flex;margin-bottom:18px}
+    #gear .fptabs.geartabs{order:3;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    #gear .fptabs.geartabs .mfbtn{padding:11px 13px 10px;letter-spacing:.12em}
     #gear .gearcards{order:4;display:grid}
     #gear .gearcard{display:none;min-height:0}
     #gear .gearcard.gcon{display:flex}
@@ -544,7 +602,7 @@
   <div class="wrap">
     <div class="sechead">
       <h1 class="sectitle"><span class="sword"><span class="de">220&nbsp;m² Loftstudio</span><span class="en">220&nbsp;m² loft studio</span></span></h1>
-      <p class="seclead"><span class="de">Mitten im Vienna Photo District.<br>Hell, wandelbar und bei Bedarf komplett dunkel.<br>Der Raum für Produktionen, Workshops und kreative Projekte.</span><span class="en">In the heart of the Vienna Photo District.<br>Bright, adaptable and fully dark when needed.<br>The space for productions, workshops and creative projects.</span></p>
+      <p class="seclead"><span class="de"><span class="leadhl">Im Herzen des Vienna Photo District.</span><br>Hell, wandelbar und bei Bedarf komplett dunkel.<br>Der Raum für Produktionen, Workshops und kreative Projekte.<br><a class="inlink leadlink" href="#lage">Umgebung erkunden und<span class="brm"><br></span> den Produktionstag planen</a></span><span class="en"><span class="leadhl">In the heart of the Vienna Photo District.</span><br>Bright, adaptable and fully dark when needed.<br>The space for productions, workshops and creative projects.<br><a class="inlink leadlink" href="#lage">Explore the neighbourhood and<span class="brm"><br></span> plan your production day</a></span></p>
     </div>
   </div>
 </section>
@@ -595,7 +653,7 @@
       <div class="specrow"><span class="lab"><span class="de">Fläche</span><span class="en">Floor space</span></span><span class="val">220 m²</span></div>
       <div class="specrow"><span class="lab">Sets</span><span class="val"><span class="de">bis zu 3</span><span class="en">up to 3</span></span></div>
       <div class="specrow"><span class="lab"><span class="de">Raumhöhe</span><span class="en">Ceiling height</span></span><span class="val"><span class="de">3,40 – 3,70 m</span><span class="en">3.40 – 3.70 m</span></span></div>
-      <div class="specrow"><span class="lab"><span class="de">Equipment-Verleih</span><span class="en">Equipment rental</span></span><span class="val">5 Min</span></div>
+      <div class="specrow"><span class="lab"><span class="de">Kameraverleih ums Eck</span><span class="en">Camera rental nearby</span></span><span class="val">5 Min</span></div>
       <div class="specrow"><span class="lab">Location</span><span class="val">1070 Wien</span></div>
         </div>
       </div>
@@ -615,8 +673,8 @@
       <div class="fixcard"><div class="fc-head"><span class="fc-t">Get ready</span><span class="fc-n">01.</span></div><div class="fc-tags"><span class="de">Styling &amp; Vorbereitung</span><span class="en">Styling &amp; prep</span></div><div class="fc-body"><span class="de">Perfekt vorbereitet ins Shooting: Tageslicht-Schminkplatz mit Spiegel für zwei, Steamer, Bügelbrett und eine erweiterbare Garderobe stehen direkt im Studio zur Verfügung.</span><span class="en">Perfectly prepped for the shoot: a daylight make-up station with mirror for two, steamer, iron and an expandable wardrobe are right in the studio.</span></div></div>
       <div class="fixcard"><div class="fc-head"><span class="fc-t">Take a break</span><span class="fc-n">02.</span></div><div class="fc-tags"><span class="de">Pause &amp; Komfort</span><span class="en">Break &amp; comfort</span></div><div class="fc-body"><span class="de">Zwischen den Sets Platz nehmen, durchatmen und weiterarbeiten: Sitzbereich, Küche mit Espressomaschine, Toaster, Mikrowelle und Milchschäumer, WLAN und Bluetooth-Musikanlage sorgen für eine angenehme Studioatmosphäre.</span><span class="en">Take a seat between sets, breathe and keep going: lounge, kitchen with espresso machine, toaster, microwave and milk frother, WiFi and a Bluetooth sound system make for a relaxed studio atmosphere.</span></div></div>
       <div class="fixcard"><div class="fc-head"><span class="fc-t">Feel at home</span><span class="fc-n">03.</span></div><div class="fc-tags"><span class="de">Bad &amp; Refresh</span><span class="en">Bath &amp; refresh</span></div><div class="fc-body"><span class="de">Für längere Produktionen und entspannte Shootingtage gibt es für Models ein Badezimmer mit Dusche zur freien Nutzung.</span><span class="en">For longer productions and relaxed shoot days, models have a bathroom with shower at their free disposal.</span></div></div>
-      <div class="fixcard"><div class="fc-head"><span class="fc-t">Create</span><span class="fc-n">04.</span></div><div class="fc-tags"><span class="de">Equipment &amp; Verleih</span><span class="en">Equipment &amp; rental</span></div><div class="fc-body"><span class="de">Alles, was du für den Start brauchst, ist vor Ort – und was darüber hinaus fehlt, lässt sich unkompliziert direkt im Studio dazumieten.</span><span class="en">Everything you need to get started is on site – and whatever else is missing can easily be rented right in the studio.</span></div><a class="primary" href="#gear" style="margin-top:14px;align-self:flex-start"><span class="de">Zur Equipmentliste</span><span class="en">To the equipment list</span></a></div>
-      <div class="fixcard"><div class="fc-head"><span class="fc-t">Focus</span><span class="fc-n">05.</span></div><div class="fc-tags"><span class="de">Office &amp; Production Space</span><span class="en">Office &amp; production space</span></div><div class="fc-body"><span class="de">Bei Bedarf buchbar: ein separater Raum mit Bildschirmen, Besprechungstisch und Klimaanlage – ideal für Vorbereitungen, Kundentermine, Postproduktion oder Pausen zwischendurch.</span><span class="en">Bookable on demand: a separate room with screens, meeting table and air conditioning – ideal for prep, client meetings, post-production or breaks in between.</span></div></div>
+      <div class="fixcard"><div class="fc-head"><span class="fc-t">Create</span><span class="fc-n">04.</span></div><div class="fc-tags"><span class="de">Equipment &amp; Verleih</span><span class="en">Equipment &amp; rental</span></div><div class="fc-body"><span class="de">Die Grundausstattung ist im Studiopreis dabei. Licht und Ausstattung mietest du direkt bei uns dazu, Kameras und Objektive kommen aus dem Verleih ums Eck.</span><span class="en">The basics are part of the studio rate. Lighting and gear are rented directly from us, cameras and lenses come from the rental house around the corner.</span></div><a class="primary" href="#gear" style="margin-top:14px;align-self:flex-start"><span class="de">Zur Equipmentliste</span><span class="en">To the equipment list</span></a></div>
+      <div class="fixcard"><div class="fc-head"><span class="fc-t">Focus</span><span class="fc-n">05.</span></div><div class="fc-tags"><span class="de">Office &amp; Production Space</span><span class="en">Office &amp; production space</span></div><div class="fc-body"><span class="de">Bei Bedarf buchbar: ein separater Raum mit Bildschirmen, Besprechungstisch und Klimaanlage, ideal für Vorbereitungen, Kundentermine, Postproduktion oder Pausen zwischendurch.</span><span class="en">Bookable on demand: a separate room with screens, meeting table and air conditioning, ideal for prep, client meetings, post-production or breaks in between.</span></div></div>
       </div>
     </div>
   </div>
@@ -626,29 +684,33 @@
   <div class="wrap">
     <div class="sechead">
       <h2 class="sectitle"><span class="sword">Equipment</span></h2>
-      <p class="seclead"><span class="de">Du möchtest, dass am Shootingtag alles bereitsteht? Wir kümmern uns darum. Das Studio verfügt über umfangreiches Basis-Equipment – und was fehlt, kann unkompliziert über den Digitalkameraverleih gleich ums Eck organisiert werden.</span><span class="en">Want everything ready on shoot day? We'll take care of it. The studio comes with extensive basic equipment – and whatever is missing can easily be sourced from Digitalkameraverleih around the corner.</span></p>
+      <p class="seclead"><span class="de">Im Studiopreis sind der rollbare 3-Meter-Aufnahmetisch, der rollbare Herd für Foodshootings, Strom inklusive Starkstromanschluss sowie Stativ-, Grip- und Hilfsmaterial enthalten.</span><span class="en">The studio rate covers the rollable 3-metre shooting table, the rollable stove for food shoots, power including a high-voltage outlet plus stands, grip and consumables.</span></p>
     </div>
     <div class="fptabs geartabs">
-      <button class="mfbtn on" data-gc="basis" onclick="gearSwitch(this)"><span class="de">Basis</span><span class="en">Basics</span></button>
-      <button class="mfbtn" data-gc="miet" onclick="gearSwitch(this)"><span class="de">Mietbar</span><span class="en">For rent</span></button>
+      <button class="mfbtn on" data-gc="miet" onclick="gearSwitch(this)"><span class="de">Im Studio</span><span class="en">In-house</span></button>
+      <button class="mfbtn" data-gc="eck" onclick="gearSwitch(this)"><span class="de">Ums Eck</span><span class="en">Nearby</span></button>
     </div>
     <div class="gearrow">
       <div class="polaroids">
-        <img class="pol pol-back" src="plan-assets/polaroid01.png" alt="FRAME Studio" loading="lazy">
-        <img class="pol pol-front" src="plan-assets/polaroid02.png" alt="FRAME Studio – Aufnahmetisch" loading="lazy">
+        <img class="pol pol-1" src="plan-assets/polaroid-gear-01.png" alt="Reflektor-Lichtformer im FRAME Studio" loading="lazy">
+        <img class="pol pol-2" src="plan-assets/polaroid-gear-02.png" alt="Broncolor-Lichtformer im FRAME Studio" loading="lazy">
+        <img class="pol pol-3" src="plan-assets/polaroid-gear-03.png" alt="Softbox auf Rollstativ im FRAME Studio" loading="lazy">
+        <img class="pol pol-4" src="plan-assets/polaroid-gear-04.png" alt="Kabelmaterial im FRAME Studio" loading="lazy">
+        <img class="pol pol-5" src="plan-assets/polaroid-gear-05.png" alt="Stativpark im FRAME Studio" loading="lazy">
+        <img class="pol pol-6" src="plan-assets/polaroid-gear-06.png" alt="Windmaschine im FRAME Studio" loading="lazy">
       </div>
-      
+
       <div class="gearcards">
-          <div class="gearcard basis gcon">
-            <div class="fc-head"><span class="fc-t"><span class="de">Basis-Equipment</span><span class="en">Basic equipment</span></span></div>
-            <div class="fc-tags"><span class="de">Inklusive</span><span class="en">Included</span></div>
-            <p class="gc-body"><span class="de">Rollbarer 3-Meter-Aufnahmetisch, rollbarer Backofen/Herd für Foodshootings, Strom inklusive Starkstromanschluss sowie Grip- und Stativequipment sind im Studiopreis enthalten. Papierhintergründe werden nach Verbrauch verrechnet (15&nbsp;€/lfm).</span><span class="en">A rollable 3-metre shooting table, a rollable oven/stove for food shoots, power including a high-voltage outlet plus grip and stand equipment are part of the studio rate. Paper backdrops are charged by usage (€&nbsp;15/rm).</span></p>
-            <div class="gc-cta"><a class="primary" href="preisliste-2026.pdf" target="_blank" rel="noopener"><span class="de">Preisliste Studio &amp; Equipment (PDF)</span><span class="en">Price list studio &amp; equipment (PDF)</span></a></div>
+          <div class="gearcard miet gcon">
+            <div class="fc-head"><span class="fc-t"><span class="de">Verleih im Studio</span><span class="en">Rental in-house</span></span></div>
+            <div class="fc-tags"><span class="de">Licht &amp; Ausstattung</span><span class="en">Lighting &amp; gear</span></div>
+            <p class="gc-body"><span class="de">Unser eigener Bestand, direkt im Studio: Blitz von Broncolor und Profoto, LED von Aputure, Kino-Flo-Daylight-Röhren, Dedolight-Kunstlicht, Lichtformer, Stativ- und Hintergrundsets, Monitor, Powerbanks und Faltreflektoren. Alles einzeln zubuchbar, Hintergrundpapier wird nach Verbrauch verrechnet (15&nbsp;€/lfm). <b>Kameras und Objektive haben wir nicht im Haus.</b></span><span class="en">Our own inventory, right in the studio: flash by Broncolor and Profoto, LED by Aputure, Kino Flo daylight tubes, Dedolight tungsten, light shapers, stand and backdrop sets, monitor, powerbanks and reflectors. All bookable per item, backdrop paper is charged by usage (€&nbsp;15/rm). <b>Cameras and lenses are not part of our stock.</b></span></p>
+            <div class="gc-cta"><a class="primary" href="preisliste-2026.pdf" target="_blank" rel="noopener"><span class="de">Preis- &amp; Equipmentliste (PDF)</span><span class="en">Price &amp; equipment list (PDF)</span></a></div>
           </div>
-          <div class="gearcard miet">
-            <div class="fc-head"><span class="fc-t"><span class="de">Verleih &amp; Zusatz</span><span class="en">Rental &amp; extras</span></span></div>
-            <div class="fc-tags"><span class="de">Mietbar im Studio</span><span class="en">For rent in the studio</span></div>
-            <p class="gc-body"><span class="de">Blitz- und Dauerlicht von Broncolor, Profoto, Aputure und Dedolight sowie Powerbanks stehen direkt im Studio bereit – Tagespreise findest du in der Preisliste. Kameras und Spezialtechnik organisieren wir über den Digitalkameraverleih gleich ums Eck.</span><span class="en">Flash and continuous light by Broncolor, Profoto, Aputure and Dedolight plus powerbanks are ready right in the studio – day rates are in the price list. Cameras and specialty gear are sourced via Digitalkameraverleih around the corner.</span></p>
+          <div class="gearcard eck">
+            <div class="fc-head"><span class="fc-t"><span class="de">Verleih ums Eck</span><span class="en">Rental around the corner</span></span></div>
+            <div class="fc-tags"><span class="de">Digitalkameraverleih<span class="sepd"> · </span><span class="brm"><br></span>5 Minuten zu Fuß</span><span class="en">Digitalkameraverleih<span class="sepd"> · </span><span class="brm"><br></span>5 minutes on foot</span></div>
+            <p class="gc-body"><span class="de">Kameras, Objektive und Spezialtechnik kommen vom Digitalkameraverleih gleich ums Eck. Sag uns einfach vorab, was du brauchst. Auf Wunsch leihen wir es für dich aus und stellen es bereit, damit am Shootingtag alles im Studio steht. Das gilt auch für zusätzliche Profoto- und Aputure-Ausrüstung oder neue Hintergrundrollen.</span><span class="en">Cameras, lenses and specialty gear come from Digitalkameraverleih just around the corner. Simply tell us in advance what you need. On request we’ll rent it for you and have it set up, so everything is in place on shoot day. The same goes for extra Profoto and Aputure gear or fresh backdrop rolls.</span></p>
             <div class="gc-cta"><a class="secondary" href="https://www.digitalkameraverleih.com" target="_blank" rel="noopener"><span class="de">Zum Digitalkameraverleih</span><span class="en">To Digitalkameraverleih</span></a></div>
           </div>
         </div>
@@ -660,7 +722,7 @@
   <div class="wrap">
     <div class="sechead">
       <h2 class="sectitle"><span class="sword">Booking</span></h2>
-      <p class="seclead"><span class="de">Studio mieten — Tagespreise für Commercial, Editorial und Workshops.<br>Alle Preise verstehen sich netto zzgl. 20&nbsp;% MwSt.<br>Der Mietpreis umfasst die Nutzung der Studiofläche. Zusatzleistungen und Equipment können nach Bedarf ergänzt werden.<br>Bei mehrtägigen Buchungen erstellen wir gerne ein individuelles Angebot.</span><span class="en">Rent the studio — day rates for commercial, editorial and workshops.<br>All prices are net plus 20&nbsp;% VAT.<br>The rental price covers use of the studio space. Additional services and equipment can be added as needed.<br>For multi-day bookings we're happy to prepare an individual offer.</span></p>
+      <p class="seclead"><span class="de">Hier sind alle Tagespreise für Commercial, Editorial und Workshops aufgelistet.<br>Alle Preise verstehen sich netto zzgl. 20&nbsp;% MwSt.<br>Der Mietpreis umfasst die Nutzung der Studiofläche + Basis-Equipment (<a class="inlink" href="#gear">siehe Equipment</a>). Zusatzleistungen können nach Bedarf ergänzt werden.<br>An Wochenenden und Feiertagen gilt ein Aufschlag von 20&nbsp;%.</span><span class="en">All day rates for commercial, editorial and workshops are listed here.<br>All prices are net plus 20&nbsp;% VAT.<br>The rental price covers use of the studio space + basic equipment (<a class="inlink" href="#gear">see equipment</a>). Additional services can be added as needed.<br>Weekends and public holidays carry a 20&nbsp;% surcharge.</span></p>
       <p class="bookcta-top"><a class="primary" href="#kontakt"><span class="de">Studio buchen</span><span class="en">Book the studio</span></a></p>
     </div>
     </div>
@@ -671,8 +733,8 @@
         <div class="pname" onclick="pToggle(this)"><span>Commercial</span><svg class="pchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></div>
         <div class="pbot">
           <div class="pdesc"><span class="de">Kampagnen · Lookbooks · Stills</span><span class="en">Campaigns · lookbooks · stills</span></div>
-          <div class="pprice">&euro; 500<span class="punit"><span class="de">/ Studiotag</span><span class="en">/ studio day</span></span></div>
-          <div class="pmeta"><span class="de">09–18 Uhr · <b>½ Tag &euro; 300</b> (nur Sommer)</span><span class="en">09–18 · <b>½ day &euro; 300</b> (summer only)</span></div>
+          <div class="pprice">&euro; 600<span class="punit"><span class="de">/ Studiotag</span><span class="en">/ studio day</span></span></div>
+          <div class="pmeta"><span class="de">09–18 Uhr · <b>½ Tag &euro; 400</b> (nur Sommer)</span><span class="en">09–18 · <b>½ day &euro; 400</b> (summer only)</span></div>
         </div>
       </div>
       <div class="ptile">
@@ -681,7 +743,7 @@
         <div class="pname" onclick="pToggle(this)"><span>Editorial</span><svg class="pchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></div>
         <div class="pbot">
           <div class="pdesc"><span class="de">Magazine · Stories · freie Arbeiten</span><span class="en">Magazines · stories · personal work</span></div>
-          <div class="pprice">&euro; 300<span class="punit"><span class="de">/ Tag</span><span class="en">/ day</span></span></div>
+          <div class="pprice">&euro; 350<span class="punit"><span class="de">/ Tag</span><span class="en">/ day</span></span></div>
           <div class="pmeta"><span class="de">Werktags · 09–18 Uhr</span><span class="en">Weekdays · 09–18</span></div>
         </div>
       </div>
@@ -691,8 +753,8 @@
         <div class="pname" onclick="pToggle(this)"><span>Workshops</span><svg class="pchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></div>
         <div class="pbot">
           <div class="pdesc"><span class="de">Kurse · Talks · kreative Formate</span><span class="en">Classes · talks · creative formats</span></div>
-          <div class="pprice">&euro; 350<span class="punit"><span class="de">/ Tag</span><span class="en">/ day</span></span></div>
-          <div class="pmeta"><span class="de"><b>2 Tage WE &euro; 650</b> (Sa + So) · ideal für 10–15 Personen · Bildschirm &amp; Beamer</span><span class="en"><b>2-day WE &euro; 650</b> (Sat + Sun) · ideal for 10–15 people · screen &amp; projector</span></div>
+          <div class="pprice"><span class="pfrom"><span class="de">ab</span><span class="en">from</span></span>&euro; 300<span class="punit"><span class="de">/ Tag</span><span class="en">/ day</span></span><span class="pinfo" tabindex="0" role="button" aria-label="Hinweis zu mehrtägigen Buchungen" onclick="infoToggle(event,this)"><span class="pi">i</span><span class="pitip"><span class="de">Bei mehrtägigen Buchungen erstellen wir gerne ein individuelles Angebot.</span><span class="en">For multi-day bookings we’re happy to prepare an individual offer.</span></span></span></div>
+          <div class="pmeta"><span class="de">ideal für 10–15 Personen · Bildschirm &amp; Beamer</span><span class="en">ideal for 10–15 people · screen &amp; projector</span></div>
         </div>
       </div>
       <div class="ptile pidea">
@@ -700,7 +762,7 @@
         <div class="pbot">
           <div class="pdesc"><span class="de">Ausstellung · Pop-up · Event</span><span class="en">Exhibition · pop-up · event</span></div>
           <div class="pprice pfree"><span class="de">auf Anfrage</span><span class="en">on request</span></div>
-          <div class="pmeta"><span class="de">Erzähl uns, was du vorhast — wir machen den Raum passend.</span><span class="en">Tell us what you're planning — we'll shape the space to fit.</span></div>
+          <div class="pmeta"><span class="de">Erzähl uns, was du vorhast. Wir machen den Raum passend.</span><span class="en">Tell us what you're planning. We'll shape the space to fit.</span></div>
         </div>
       </div>
     </div>
@@ -709,7 +771,7 @@
     <div class="bextra">
       <div class="fc-head"><span class="fc-t"><span class="de">Office &amp; Production Space</span><span class="en">Office &amp; Production Space</span></span></div>
       <div class="fc-tags"><span class="de">Zubuchbar</span><span class="en">Bookable add-on</span></div>
-      <p class="gc-body"><span class="de">Bei Bedarf buchbar: ein separater Raum mit Bildschirmen, Besprechungstisch und Klimaanlage – ideal für Vorbereitungen, Kundentermine, Postproduktion oder Pausen zwischen den Sets. Am besten direkt bei der Anfrage mit einplanen.</span><span class="en">Bookable on demand: a separate room with screens, meeting table and air conditioning – ideal for prep, client meetings, post-production or breaks between sets. Best planned in with your enquiry.</span></p>
+      <p class="gc-body"><span class="de">Bei Bedarf buchbar: ein separater Raum mit Bildschirmen, Besprechungstisch und Klimaanlage, ideal für Vorbereitungen, Kundentermine, Postproduktion oder Pausen zwischen den Sets. Am besten direkt bei der Anfrage mit einplanen.</span><span class="en">Bookable on demand: a separate room with screens, meeting table and air conditioning, ideal for prep, client meetings, post-production or breaks between sets. Best planned in with your enquiry.</span></p>
     </div>
     
     </div>
@@ -719,7 +781,7 @@
   <div class="wrap">
     <div class="sechead">
       <h2 class="sectitle"><span class="sword">Location</span></h2>
-      <p class="seclead"><span class="de">Neustiftgasse 107/2 &middot; 1070 Wien &middot; Vienna Photo District.<br>Bestens gelegen mitten im Vienna Photo District: Kameraverleih, Fotolabore, Hotels und gute Lokale liegen ums Eck.<br>Alles, was die Produktionsplanung leichter macht, ist unten auf der Karte markiert.</span><span class="en">Neustiftgasse 107/2 &middot; 1070 Vienna &middot; Vienna Photo District.<br>Perfectly placed in the heart of the Vienna Photo District: camera rental, photo labs, hotels and great food are all around the corner.<br>Everything that makes production planning easier is marked on the map below.</span></p>
+      <p class="seclead"><span class="de">Neustiftgasse 107/2 &middot; 1070 Wien.<br>Das Studio liegt im Herzen des Vienna Photo District zwischen Ziegler- und Schottenfeldgasse.<br>Alles, was die Produktionsplanung leichter macht, ist unten auf der Karte markiert.</span><span class="en">Neustiftgasse 107/2 &middot; 1070 Vienna.<br>The studio sits in the heart of the Vienna Photo District, between Zieglergasse and Schottenfeldgasse.<br>Everything that makes production planning easier is marked on the map below.</span></p>
     </div>
     <div class="locgrid">
       <div class="locblk">
@@ -761,7 +823,7 @@
   <div class="wrap">
     <div class="sechead">
       <h2 class="sectitle"><span class="sword"><span class="de">Kontakt</span><span class="en">Contact</span></span></h2>
-      <p class="seclead"><span class="de">Interesse am Studio? Schreib uns – wir prüfen die Verfügbarkeit und senden dir ein individuelles Angebot.</span><span class="en">Interested in the studio? Write to us – we'll check availability and send you an individual offer.</span></p>
+      <p class="seclead"><span class="de">Interesse am Studio? Schreib uns, wir prüfen die Verfügbarkeit und senden dir ein individuelles Angebot.</span><span class="en">Interested in the studio? Write to us, we'll check availability and send you an individual offer.</span></p>
     </div>
     <div class="kontaktcols">
     <div>
@@ -841,6 +903,11 @@
   function pbToggle(e){var b=document.getElementById('planbox');if(e.target.tagName==='IMG'){b.classList.toggle('zoomed');}else{pbClose(e);}}
   document.addEventListener('keydown',function(e){if(e.key==='Escape')pbClose();});
   function pToggle(el){if(window.matchMedia('(max-width:820px)').matches){el.parentNode.classList.toggle('open');}}
+  function infoToggle(e,el){e.stopPropagation();
+    document.querySelectorAll('.pinfo.open').forEach(function(x){if(x!==el)x.classList.remove('open');});
+    el.classList.toggle('open');}
+  document.addEventListener('click',function(){document.querySelectorAll('.pinfo.open').forEach(function(x){x.classList.remove('open');});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.pinfo.open').forEach(function(x){x.classList.remove('open');});});
   function gearSwitch(b){document.querySelectorAll('.geartabs .mfbtn').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
     var v=b.getAttribute('data-gc');document.querySelectorAll('.gearcard').forEach(function(c){c.classList.toggle('gcon',c.classList.contains(v));});}
   function fpSwitch(b){document.querySelectorAll('.fptabs .mfbtn').forEach(function(x){x.classList.remove('on');});b.classList.add('on');

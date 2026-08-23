@@ -31,6 +31,7 @@
   /* Preiszeilen */
   .prow{display:flex;justify-content:space-between;align-items:baseline;gap:5mm;padding:1.9mm 0;border-bottom:1px solid var(--line)}
   .prow .k{font-size:9pt}
+  .prow .k .nw{white-space:nowrap}
   .prow .k .q{font-family:'IBM Plex Mono',monospace;font-size:6.8pt;letter-spacing:.05em;color:var(--mut);text-transform:uppercase;margin-left:1.5mm;white-space:nowrap}
   .prow .k .d{display:block;font-size:8pt;color:#666;margin-top:.4mm}
   .prow .v{font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:.03em;color:var(--ink);white-space:nowrap;flex:none}
@@ -60,8 +61,8 @@
   .cover .csub{font-size:12.5pt;font-weight:300;color:#444;max-width:110mm;line-height:1.6}
   .cover .caddr{font-family:'IBM Plex Mono',monospace;font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-top:10mm}
   /* AGB-Anhang */
-  .agbcols{column-count:2;column-gap:9mm;font-size:7.6pt;line-height:1.5;color:#333}
-  .agbcols p{margin-bottom:1.8mm}
+  .agbcols{column-count:2;column-gap:9mm;font-size:7.3pt;line-height:1.42;color:#333}
+  .agbcols p{margin-bottom:1.4mm}
   .agbcols .agbli{padding-left:3mm}
   .agbh{font-family:var(--display);font-weight:400;font-size:9.5pt;text-transform:uppercase;letter-spacing:.02em;margin:3.5mm 0 1.5mm;break-after:avoid}
   .agbh:first-child{margin-top:0}
@@ -98,22 +99,21 @@
 
   <div class="twocol">
     <div>
-      <div class="cat">Standard Rate</div>
-      <div class="prow"><span class="k">½ studio day<span class="q">summer only · 09–14 or 13–18</span></span><span class="v">€ 300,–</span></div>
-      <div class="prow"><span class="k">1 studio day *<span class="q">09–18</span></span><span class="v">€ 500,– <span class="fn">from 2 days −10%</span></span></div>
+      <div class="cat">Commercial</div>
+      <div class="prow"><span class="k">½ studio day<span class="q">summer only · 09–14 or 13–18</span></span><span class="v">€ 400,–</span></div>
+      <div class="prow"><span class="k">1 studio day *<span class="q">09–18</span></span><span class="v">€ 600,– <span class="fn">from 2 days −10%</span></span></div>
 
-      <div class="cat">Editorial Rate (weekdays)</div>
-      <div class="prow"><span class="k">½ studio day<span class="q">summer only · 09–14 or 13–18</span></span><span class="v">€ 200,–</span></div>
-      <div class="prow"><span class="k">1 studio day *<span class="q">09–18</span></span><span class="v">€ 300,–</span></div>
+      <div class="cat">Editorial (weekdays)</div>
+      <div class="prow"><span class="k">1 studio day *<span class="q">09–18</span></span><span class="v">€ 350,–</span></div>
 
-      <div class="cat">Weekends &amp; Public Holidays (no editorial)</div>
-      <div class="prow"><span class="k">½ studio day<span class="q">summer only · 09–14 or 13–18</span></span><span class="v">€ 380,–</span></div>
-      <div class="prow"><span class="k">1 studio day *<span class="q">09–18</span></span><span class="v">€ 600,–</span></div>
+      <div class="cat">Weekends &amp; Public Holidays</div>
+      <div class="prow"><span class="k">Surcharge on all rates</span><span class="v">+ 20 %</span></div>
 
       <div class="cat">Workshops &amp; Events</div>
-      <div class="prow"><span class="k">Workshop day<span class="q">09–18</span></span><span class="v">€ 350,–</span></div>
-      <div class="prow"><span class="k">Workshop weekend<span class="q">Sat + Sun · 2 days</span></span><span class="v">€ 650,–</span></div>
+      <div class="prow"><span class="k">Workshop day<span class="q">09–18</span></span><span class="v">from € 300,–</span></div>
+      <div class="prow"><span class="k">Workshop weekend<span class="q">Sat + Sun · 2 days</span></span><span class="v">from € 550,–</span></div>
       <div class="prow"><span class="k">Exhibition · Pop-up · Event</span><span class="v">on request</span></div>
+      <div class="catnote">For multi-day bookings we are happy to prepare an individual offer.</div>
 
       <div class="cat">Film Productions</div>
       <div class="prow"><span class="k">Studio cost for film productions</span><span class="v">on request</span></div>
@@ -124,7 +124,7 @@
       <div class="cat">Extras</div>
       <div class="prow"><span class="k">Overtime<span class="q">per hr</span></span><span class="v">10% of day rate</span></div>
       <div class="prow"><span class="k">Assistant<span class="q">1 day</span></span><span class="v">€ 250,–</span></div>
-      <div class="prow"><span class="k">Final cleaning<span class="q">if req.</span></span><span class="v">€ 50,–</span></div>
+      <div class="prow"><span class="k">Final cleaning<span class="q">if req.</span></span><span class="v">from € 50,–</span></div>
 
       <div class="cat">Included with Photo Shoots</div>
       <div class="note">Electricity, grip &amp; consumables, stands (058).<br>
@@ -233,10 +233,13 @@
       <div class="cat">Tungsten · Halogen</div>
       <div class="prow"><span class="k">Dedolight 3-piece set DLH4 with transformer<span class="q">incl. stands · 2 units</span></span><span class="v">á € 50,–</span></div>
 
-      <div class="cat">Monitor</div>
-      <div class="prow"><span class="k">ASUS ProArt PA27JCV</span><span class="v">€ 60,–</span></div>
+      <div class="cat">Fluorescent · Daylight</div>
+      <div class="catnote">Kino Flo · continuous, flicker-free · 4 tubes each · incl. stands</div>
+      <div class="prow"><span class="k"><span class="nw">Cineflo D-Lite 400</span><span class="q">5500 K · dimmable</span></span><span class="v">€ 40,– <span class="fn">2 pcs € 75,–</span></span></div>
+      <div class="prow"><span class="k"><span class="nw">4ft 4Bank Select</span><span class="q">5600 K</span></span><span class="v">€ 45,– <span class="fn">2 pcs € 80,–</span></span></div>
 
-      <div class="cat">Power Banks &amp; Colour</div>
+      <div class="cat">Monitor, Power Banks &amp; Colour</div>
+      <div class="prow"><span class="k">ASUS ProArt PA27JCV<span class="q">monitor</span></span><span class="v">€ 60,–</span></div>
       <div class="prow"><span class="k">HyperJuice 1.5 222 Pro battery<span class="q">for MacBook up to 2015!</span></span><span class="v">€ 15,–</span></div>
       <div class="prow"><span class="k">HyperJuice 245B USB-C 100 Wh<span class="q">for MacBook 2016+</span></span><span class="v">€ 10,–</span></div>
       <div class="prow"><span class="k">X-Rite ColorChecker Passport</span><span class="v">€ 8,–</span></div>
@@ -300,7 +303,7 @@
     <p>Up to 7 days before the start of production: free of charge</p>
     <p class="agbli">&middot; 6 to 3 days before the start of production: 50% of the rate</p>
     <p class="agbli">&middot; From 48 hours before the start of production, or in the event of no-show: 100% of the rate</p>
-    <p>The studio is handed over broom-clean. If required, and for multi-day bookings, a final cleaning fee of &euro;&nbsp;60 will be charged. In the event of exceptional soiling (e.g. through the use of glitter, confetti, liquids or body paint) or a set size of more than 8 persons (crew, clients, models, etc.), a one-off fee of &euro;&nbsp;150 will be charged due to the increased cleaning and infrastructure effort.</p>
+    <p>The studio is handed over broom-clean. If required, and for multi-day bookings, a final cleaning fee from €&nbsp;50 will be charged. In the event of exceptional soiling (e.g. through the use of glitter, confetti, liquids or body paint) or a set size of more than 8 persons (crew, clients, models, etc.), a one-off fee of &euro;&nbsp;150 will be charged due to the increased cleaning and infrastructure effort.</p>
     <p>Cancellations must be made in writing (e-mail is sufficient).</p>
   </div>
   <div class="foot"><span>General Terms &amp; Conditions &middot; Version 08/2026</span><span>5 / 6</span></div>
@@ -323,6 +326,9 @@
     <div class="agbh">&sect; 8 Liability and Damages</div>
     <p>Liability of the Renter: The Renter is liable without limitation for all damage or losses (e.g. theft) caused by the Renter, their employees, models, make-up artists, guests or visitors to the studio premises, the furnishings, furniture, and the provided lighting and photography equipment.</p>
     <p>Damage, malfunctions or defects to equipment must be reported to the Lessor immediately, at the latest upon handover at the end of the rental period. Concealment of damage creates an obligation to compensate for any resulting consequential damage (e.g. loss of rental income from the subsequent renter).</p>
+    <p>Replacement and Repair: Damaged equipment and furnishings are repaired professionally at the Renter's expense. If a repair is not possible or not economically reasonable, the replacement value is to be reimbursed.</p>
+    <p>Third-Party Equipment: If, at the Renter's request, equipment is hired from an external rental house, in particular from Digitalkameraverleih, the Lessor acts solely as an intermediary. Liability, insurance and timely return are governed by the terms of the respective rental house and rest with the Renter. The Renter confirms the handover with the separate form &bdquo;Haftungs&uuml;bernahme&ldquo;. Costs arising from damage, loss or late return are borne by the Renter.</p>
+    <p>Wardrobe and Valuables: No liability is accepted for items brought in by the Renter, their crew, models, clients or guests, in particular wardrobe, clothing, bags, cameras and laptops. Wardrobe areas and storage are unattended; the Lessor is not liable for loss or theft. The Renter is responsible for arranging adequate insurance cover.</p>
     <p>Liability of the Lessor: The Lessor is liable in accordance with statutory provisions for damage resulting from injury to life, body or health. For other damage, the Lessor is only liable in cases of intent or gross negligence. Liability for slight negligence, loss of profit or consequential damage is excluded to the extent permitted by law (in particular in the B2B context).</p>
     <div class="agbh">&sect; 9 Copyright for Photography Services</div>
     <p>(Applies where the Lessor acts as photographer)</p>
