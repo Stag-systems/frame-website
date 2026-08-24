@@ -404,8 +404,12 @@
   .strip::before,.strip::after{content:'';position:absolute;top:0;bottom:0;width:clamp(40px,8vw,120px);z-index:2;pointer-events:none}
   .strip::before{left:0;background:linear-gradient(90deg,#fff,rgba(255,255,255,0))}
   .strip::after{right:0;background:linear-gradient(270deg,#fff,rgba(255,255,255,0))}
-  .striprail{display:flex;width:max-content;animation:drift 90s linear infinite}
-  .strip:hover .striprail,.strip:focus-within .striprail{animation-play-state:paused}
+  .striprail{display:flex;width:max-content;animation:drift 90s linear infinite;will-change:transform}
+  /* Pause nur dort, wo es echten Hover gibt. Auf Touch bleibt :hover nach dem
+     Antippen haengen - der Streifen stuende dann dauerhaft still. */
+  @media(hover:hover){
+    .strip:hover .striprail,.strip:focus-within .striprail{animation-play-state:paused}
+  }
   .striprail figure{flex:none;margin-right:clamp(10px,1.4vw,22px)}
   .striprail img{display:block;height:clamp(200px,28vw,400px);width:auto}
   @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
@@ -413,6 +417,12 @@
     .striprail{animation:none}
     .strip{overflow-x:auto;-webkit-overflow-scrolling:touch}
   }
+  /* Touch-Modus (per JS gesetzt): eigener Scroll-Container, damit man wischen
+     kann. Die Verlaufskanten sitzen auf .strip und bleiben dadurch stehen. */
+  .strip.swipe{overflow-x:hidden}
+  .strip.swipe .stripscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain}
+  .strip.swipe .stripscroll::-webkit-scrollbar{display:none}
+  .strip.swipe .striprail{animation:none;will-change:auto}
   .studioimg{position:relative;aspect-ratio:3/2;overflow:hidden}
   .studiorow{display:grid;grid-template-columns:var(--g12);gap:var(--gutter);align-items:start;margin-top:0}
   .studiorow .studioimg{grid-column:span 6}
@@ -545,7 +555,7 @@
   .flinks .cpr{color:var(--mut)}
   @media(max-width:720px){.flinks{gap:12px 20px;font-size:var(--fs-micro);justify-content:flex-start}}
   @media(max-width:1040px){
-    .hfull{display:none!important} .favlogo{display:none} .wordlogo{display:flex;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)} .hlang{display:block!important;position:static;transform:none;order:-1;padding:6px 8px 6px 0;font-size:13px;letter-spacing:.08em;color:var(--ink)} .burger{display:flex;margin-left:auto;width:auto;height:auto;align-items:center} .burger span{display:none} .burger::after{content:"MENU";font-family:IBM Plex Mono,monospace;font-size:13px;letter-spacing:.08em;color:var(--ink)} header.inv .burger::after{color:#fff} header.inv .wordlogo img{filter:invert(1)} header.inv .hlang{color:#fff}
+    .hfull{display:none!important} .favlogo{display:none} .wordlogo{display:flex;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)} .hlang{display:block!important;position:static;transform:none;order:-1;padding:6px 8px 6px 0;font-size:13px;letter-spacing:.08em;color:var(--ink)} .burger{display:flex;margin-left:auto;width:auto;height:auto;align-items:center} .burger span{display:none} .burger::after{content:"MENU";font-family:IBM Plex Mono,monospace;font-size:13px;letter-spacing:.08em;color:var(--ink)} /* Milchglas: alle Leisten-Elemente bleiben dunkel, sonst Weiss auf Weiss. Nur ueber der schwarzen Kontakt-Section drehen sie auf Weiss. */ header.solid .burger::after{color:#fff} header.solid .wordlogo img{filter:invert(1)} header.solid .hlang{color:#fff}
   }
   @media(max-width:860px){
     .precision{grid-template-columns:1fr;gap:30px} .cards{grid-template-columns:1fr} .twocol{grid-template-columns:1fr}
@@ -983,10 +993,45 @@
     ];
     var html='';
     for(var pass=0;pass<2;pass++) SHOTS.forEach(function(sh,i){
-      html+='<figure><img src="bts/'+sh[0]+'" alt="FRAME Studio – '+sh[1]+'"'
+      /* width/height mitgeben: sonst sind noch nicht geladene Lazy-Bilder
+         0 px breit, die Spur misst falsch und der Umlauf springt. */
+      html+='<figure><img src="bts/'+sh[0]+'" width="694" height="900" alt="FRAME Studio – '+sh[1]+'"'
           + (pass||i>2?' loading="lazy"':'') + '></figure>';
     });
     rail.innerHTML=html;
+
+    /* Auf Touch-Geraeten laeuft die CSS-Schleife zwar, laesst sich aber nicht
+       wischen - und genau das erwartet man dort. Deshalb dort: eigener
+       Scroll-Container, Drift per rAF, Pause solange der Finger drauf ist. */
+    if(!window.matchMedia('(hover:none)').matches) return;
+    var strip=rail.parentNode;
+    var scroller=document.createElement('div');
+    scroller.className='stripscroll';
+    strip.insertBefore(scroller,rail);
+    scroller.appendChild(rail);
+    strip.classList.add('swipe');
+
+    var SPEED=45, paused=false, resume=null, last=0;
+    var slow=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    function hold(){paused=true; if(resume)clearTimeout(resume);}
+    function release(){if(resume)clearTimeout(resume); resume=setTimeout(function(){paused=false;},2500);}
+    ['touchstart','pointerdown'].forEach(function(ev){scroller.addEventListener(ev,hold,{passive:true});});
+    ['touchend','touchcancel','pointerup','pointercancel'].forEach(function(ev){scroller.addEventListener(ev,release,{passive:true});});
+
+    function step(t){
+      if(!last)last=t;
+      var dt=Math.min((t-last)/1000,.05); last=t;
+      if(!paused&&!slow){
+        var half=rail.scrollWidth/2;
+        if(half>0){
+          var x=scroller.scrollLeft+SPEED*dt;
+          if(x>=half)x-=half;
+          scroller.scrollLeft=x;
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   })();
   function gearSwitch(b){document.querySelectorAll('.geartabs .mfbtn').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
     var v=b.getAttribute('data-gc');document.querySelectorAll('.gearcard').forEach(function(c){c.classList.toggle('gcon',c.classList.contains(v));});}
