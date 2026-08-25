@@ -7,3 +7,6 @@ fonts/_x/
 fonts/*.zip
 .DS_Store
 ChatGPT Image*.png
+
+# Cloudflare-Build-Output
+dist/
