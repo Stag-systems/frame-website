@@ -53,8 +53,13 @@ export async function onRequestPost({ request, env }) {
   }
 
   if (!env.RESEND_API_KEY) {
-    console.error('RESEND_API_KEY fehlt');
-    return json({ ok: false, error: 'not_configured' }, 500);
+    // Diagnose: nur Namen der sichtbaren Variablen, niemals Werte.
+    // Findet Tippfehler und falsches Environment. Nach der Einrichtung entfernen.
+    const sichtbar = Object.keys(env || {})
+      .filter((k) => typeof env[k] === 'string')
+      .sort();
+    console.error('RESEND_API_KEY fehlt. Sichtbar:', sichtbar.join(', '));
+    return json({ ok: false, error: 'not_configured', vars: sichtbar }, 500);
   }
 
   const to   = env.MAIL_TO   || 'info@theframe.at';
