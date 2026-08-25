@@ -9,6 +9,8 @@ mkdir -p dist
 
 EXCLUDES=(
   '.git'  'dist'  'build.sh'  '.DS_Store'
+  'functions'               # Pages Functions: liest Cloudflare aus dem Repo-Root,
+                            # nicht aus dist/ — sonst laege der Quellcode oeffentlich rum
   '.gitignore'  '.vercelignore'
   '_wip'                    # Arbeitsmaterial: PDF-Quellen, Generatoren, Prototypen
                             # darin u.a. bts-src/ (Nutzungsrechte ungeklaert!) + polaroid-src/

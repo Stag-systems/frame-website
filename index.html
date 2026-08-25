@@ -89,9 +89,14 @@
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:26px}
   .cform label{display:block;margin-bottom:24px}
   .agbnote{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.08em;color:var(--mut);margin:4px 0 14px}
+  .hpot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .fstat{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-micro);letter-spacing:.08em;margin:12px 0 0;min-height:1.2em}
+  .fstat.err{color:#c0392b}
   .agbnote a{color:inherit;text-decoration:underline}
   #kontakt .agbnote a{color:rgba(255,255,255,.7)}
   #kontakt .agbnote{color:rgba(255,255,255,.45)}
+  #kontakt .fstat{color:rgba(255,255,255,.75)}
+  #kontakt .fstat.err{color:#ff9b8a}
   .fl{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
   .cform input,.cform select,.cform textarea{width:100%;border:0;border-bottom:1.5px solid var(--ink);background:none;font-family:'IBM Plex Sans';font-size:var(--t-lead);font-weight:300;padding:9px 0;color:var(--ink)}
   .cform textarea{resize:vertical}
@@ -330,14 +335,17 @@
      Schatten: NUR Kontaktschatten (eng, direkt unter der Kante) - kein weicher
      Umgebungsschatten. Dreht sich mit der Rotation mit. */
   .polaroids{position:relative;flex:0 0 auto;width:min(560px,100%);aspect-ratio:1/.86}
-  .pol{position:absolute;width:35%;height:auto;display:block;
+  .pol{position:absolute;width:41%;height:auto;display:block;
        filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.34))}
-  .pol-1{left:0;top:0;transform:rotate(-6deg);z-index:1}
-  .pol-2{left:34%;top:4%;transform:rotate(3deg);z-index:3}
-  .pol-3{right:0;top:1%;transform:rotate(-3.5deg);z-index:2}
-  .pol-4{left:3%;bottom:0;transform:rotate(4.5deg);z-index:4}
-  .pol-5{left:33%;bottom:3%;transform:rotate(-5deg);z-index:6}
-  .pol-6{right:0;bottom:1%;transform:rotate(5.5deg);z-index:5}
+  /* Stapel laeuft diagonal von links oben nach rechts unten. Polaroid 1 traegt
+     die FRAME-Handschrift und liegt deshalb ganz oben - sonst verdeckt sie der
+     Kabel-Ausschnitt, sobald die Bilder ueberlappen. */
+  .pol-1{left:1%;top:0;transform:rotate(-7deg);z-index:6}
+  .pol-2{left:30%;top:11%;transform:rotate(5deg);z-index:4}
+  .pol-3{right:0;top:3%;transform:rotate(-10deg);z-index:2}
+  .pol-4{left:0;bottom:2%;transform:rotate(6deg);z-index:3}
+  .pol-5{left:31%;bottom:0;transform:rotate(-4deg);z-index:5}
+  .pol-6{right:3%;bottom:7%;transform:rotate(11deg);z-index:1}
   .gearrow .gearcards{grid-column:span 6;display:grid;grid-template-columns:1fr;gap:var(--gutter);align-self:stretch;grid-auto-rows:1fr}
   .gearcard{border:1px solid var(--line);padding:24px;display:flex;flex-direction:column;min-height:0}
   .gearcard .gc-body,.bextra .gc-body{font-size:var(--fs-body);color:#444;line-height:1.55;font-weight:300;margin-top:16px}
@@ -738,7 +746,7 @@
     <div class="gearrow">
       <div class="polaroids">
         <img class="pol pol-1" src="plan-assets/polaroid-gear-01.png" alt="Reflektor-Lichtformer im FRAME Studio" loading="lazy">
-        <img class="pol pol-2" src="plan-assets/polaroid-gear-02.png" alt="Broncolor-Lichtformer im FRAME Studio" loading="lazy">
+        <img class="pol pol-2" src="plan-assets/polaroid-gear-02.png" alt="Blitzgenerator im FRAME Studio" loading="lazy">
         <img class="pol pol-3" src="plan-assets/polaroid-gear-03.png" alt="Softbox auf Rollstativ im FRAME Studio" loading="lazy">
         <img class="pol pol-4" src="plan-assets/polaroid-gear-04.png" alt="Kabelmaterial im FRAME Studio" loading="lazy">
         <img class="pol pol-5" src="plan-assets/polaroid-gear-05.png" alt="Stativpark im FRAME Studio" loading="lazy">
@@ -903,7 +911,9 @@
       <label><span class="fl"><span class="de">Equipment benötigt?</span><span class="en">Equipment needed?</span></span><input name="equip" placeholder="Profoto-Set, Hintergrund, Tether …"></label>
       <label><span class="fl"><span class="de">Nachricht</span><span class="en">Message</span></span><textarea name="msg" rows="4"></textarea></label>
       <p class="agbnote"><a data-doc data-de="agb.html" data-en="agb-en.html" href="agb.html"><span class="de">Zu den AGB</span><span class="en">Terms &amp; conditions</span></a></p>
+      <div class="hpot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
       <button class="btn" type="submit"><span class="de">ANFRAGE SENDEN</span><span class="en">SEND INQUIRY</span></button>
+      <p class="fstat" id="fstat" role="status" aria-live="polite"></p>
     </form>
     </div>
     </div>
@@ -1043,9 +1053,27 @@
   function toggleLoc(b){var blk=b.parentNode;blk.classList.toggle('open');b.querySelector('.ti').textContent=blk.classList.contains('open')?'−':'+';}
   function toggleFix(el){var open=el.classList.contains('open');document.querySelectorAll('.fixcell.open').forEach(function(c){c.classList.remove('open');});if(!open)el.classList.add('open');}
   function slideFix(dir){var s=document.getElementById('fixslider');if(!s)return;var c=s.querySelector('.fixcard');var w=c?c.getBoundingClientRect().width:240;s.scrollBy({left:dir*w,behavior:'smooth'});}
-  function sendForm(e){e.preventDefault();var f=e.target;
-    var body='Name: '+f.name.value+'\nE-Mail: '+f.email.value+'\nArt: '+f.art.value+'\nWunschtermin: '+f.datum.value+'\nEquipment: '+f.equip.value+'\n\n'+f.msg.value;
-    location.href='mailto:info@theframe.at?subject='+encodeURIComponent('FRAME · '+f.art.value+' · '+f.name.value)+'&body='+encodeURIComponent(body);
+  function sendForm(e){e.preventDefault();
+    var f=e.target, btn=f.querySelector('button[type=submit]'), out=document.getElementById('fstat');
+    var en=document.documentElement.lang==='en';
+    function say(t,bad){if(!out)return;out.textContent=t;out.className='fstat'+(bad?' err':'');}
+    var data={};['name','email','art','datum','equip','msg','website'].forEach(function(k){
+      if(f[k]) data[k]=f[k].value;});
+    btn.disabled=true; say(en?'Sending …':'Wird gesendet …');
+    fetch('/api/contact',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json().catch(function(){return {ok:r.ok};});})
+      .then(function(res){
+        if(res && res.ok){
+          f.reset(); btn.disabled=false;
+          say(en?'Thank you — your inquiry is on its way. We will get back to you shortly.'
+                :'Danke — deine Anfrage ist unterwegs. Wir melden uns in Kürze.');
+        } else { throw new Error((res&&res.error)||'failed'); }
+      })
+      .catch(function(){
+        btn.disabled=false;
+        say(en?'Sending failed. Please write to info@theframe.at directly.'
+              :'Senden hat nicht geklappt. Bitte schreib uns direkt an info@theframe.at.',true);
+      });
     return false;}
   (function(){
     if(!window.L) return;
@@ -1301,6 +1329,37 @@
   if(nx)nx.addEventListener('click',function(){go(1);});
   if(pv)pv.addEventListener('click',function(){go(-1);});
   track.addEventListener('scroll',function(){var i=Math.round(track.scrollLeft/w());if(cur)cur.textContent=(i+1);});
+
+  /* Automatischer Durchlauf, auf Handy wie am Rechner.
+     Pausiert, sobald jemand selbst bedient, solange die Maus draufsteht,
+     wenn das Bild nicht sichtbar ist, im Hintergrund-Tab und wenn im System
+     "Bewegung reduzieren" gesetzt ist. */
+  /* seen startet auf true: laeuft auch dann, wenn der IntersectionObserver
+     nichts meldet. Er darf pausieren, aber nicht Voraussetzung zum Starten sein. */
+  var DELAY=5000, timer=null, held=false, hover=false, seen=true, wake=null;
+  var still=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function stop(){if(timer){clearInterval(timer);timer=null;}}
+  function start(){if(still||held||hover||!seen||document.hidden||timer)return;
+                   timer=setInterval(function(){go(1);},DELAY);}
+  function pause(ms){held=true;stop();if(wake)clearTimeout(wake);
+                     wake=setTimeout(function(){held=false;start();},ms||9000);}
+
+  ['pointerdown','touchstart','wheel'].forEach(function(ev){
+    box.addEventListener(ev,function(){pause();},{passive:true});});
+  if(nx)nx.addEventListener('click',function(){pause();});
+  if(pv)pv.addEventListener('click',function(){pause();});
+
+  if(window.matchMedia('(hover:hover)').matches){
+    box.addEventListener('mouseenter',function(){hover=true;stop();});
+    box.addEventListener('mouseleave',function(){hover=false;start();});
+  }
+  document.addEventListener('visibilitychange',function(){document.hidden?stop():start();});
+
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){seen=es[0].isIntersecting;seen?start():stop();},
+                             {threshold:.35}).observe(box);
+  }
+  start();
 })();
 </script>
 <div class="planbox" id="planbox" onclick="pbToggle(event)">
