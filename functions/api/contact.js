@@ -6,9 +6,8 @@
  * Environment Variables (Cloudflare → Pages → Settings → Variables and Secrets):
  *   RESEND_API_KEY   Pflicht. Als Secret anlegen, nicht als Plaintext.
  *   MAIL_TO          optional, Default info@theframe.at
- *   MAIL_FROM        optional, Default onboarding@resend.dev
- *                    Sobald send.theframe.at bei Resend verifiziert ist:
- *                    "FRAME <anfrage@send.theframe.at>"
+ *   MAIL_FROM        optional, Default "FRAME Website <anfrage@send.theframe.at>"
+ *                    (send.theframe.at ist bei Resend verifiziert)
  */
 
 const LIMITS = { name: 120, email: 200, art: 80, datum: 120, equip: 400, msg: 4000 };
@@ -58,7 +57,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   const to   = env.MAIL_TO   || 'info@theframe.at';
-  const from = env.MAIL_FROM || 'FRAME Website <onboarding@resend.dev>';
+  const from = env.MAIL_FROM || 'FRAME Website <anfrage@send.theframe.at>';
 
   const zeilen = [
     ['Name',         name],
