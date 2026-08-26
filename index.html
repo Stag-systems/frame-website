@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Die Seite gibt es nur hell. Ohne dieses Tag faerben Browser mit erzwungenem
+     Dunkelmodus (z.B. Brave) den Hintergrund schwarz — das CSS-color-scheme bei
+     :root allein reicht ihnen nicht, sie werten das Meta-Tag frueher aus. -->
+<meta name="color-scheme" content="light">
 <meta name="google-site-verification" content="TEeKmAcq0Yko7SSLCWTSs_Hxm8mNIuBHTMCa3zfbpQA">
 <title>THE FRAME Studio Vienna — Creative Studio Space für Foto, Video & Content · 1070 Wien</title>
 <meta name="description" content="THE FRAME Studio Vienna — 220 m² Loftstudio im Vienna Photo District, 1070 Wien. Mieten für Foto, Video & Content: bis zu 3 Sets, Broncolor & Profoto im Haus, Tageslicht, voll abdunkelbar.">
@@ -30,6 +34,9 @@
     --t-data:14px}     /* Mono-Data */
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
+  /* Weiss ausdruecklich auch auf html, nicht nur auf body: manche Browser malen
+     den Bereich hinter der Seite selbst aus, wenn html keinen Hintergrund hat. */
+  html{background:#fff}
   html,body{overflow-x:clip}
   body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:var(--t-body);line-height:1.6;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}

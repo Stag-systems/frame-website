@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Die Seite gibt es nur hell. Ohne dieses Tag faerben Browser mit erzwungenem
+     Dunkelmodus (z.B. Brave) den Hintergrund schwarz. -->
+<meta name="color-scheme" content="light">
 <title>AGB — THE FRAME Studio Vienna</title>
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMjIuNSAtOTUgMjA1NCAyMDU0Ij48cGF0aCBkPSJNMTgwOSA1MzdWMTg2NEg0ODVWMTQ0Mi44NUgxMzkyLjE3VjUzN0gxODA5WiIgZmlsbD0iYmxhY2siLz48cGF0aCBkPSJNMTM0MCAwVjQyMi4wNjNINDIxLjc3MVYxMzQwSDBWMEgxMzQwWiIgZmlsbD0iYmxhY2siLz48L3N2Zz4=">
 <link href="fonts/fonts.css" rel="stylesheet">
@@ -10,6 +13,7 @@
   @font-face{font-family:'Century Gothic';src:url('fonts/century-gothic.woff2') format('woff2');font-weight:400}
   *{box-sizing:border-box;margin:0;padding:0}
   :root{color-scheme:light;--ink:#0a0a0a;--mut:#8a8a8a;--line:#e6e6e6}
+  html{background:#fff}
   body{background:#fff;color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
   header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:10}
   .hbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px clamp(20px,3.2vw,52px)}
