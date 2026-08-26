@@ -1076,9 +1076,19 @@
     }
     requestAnimationFrame(step);
   })();
-  function gearSwitch(b){document.querySelectorAll('.geartabs .mfbtn').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
+  /* Eine Tab-Leiste schaltet immer nur INNERHALB ihrer eigenen Gruppe um.
+     Vorher raeumte fpSwitch ueber '.fptabs .mfbtn' die ganze Seite ab — und die
+     Equipment-Leiste ("Im Studio / Ums Eck") traegt beide Klassen, fptabs UND
+     geartabs. Ein Tipp auf Fakten/Grundriss loeschte ihr also die Markierung weg:
+     beide Knoepfe weiss, waehrend unten weiter "Verleih im Studio" stand. */
+  function setActive(b){
+    var grp=b.closest('.fptabs')||b.parentNode;
+    grp.querySelectorAll('.mfbtn').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on');
+  }
+  function gearSwitch(b){setActive(b);
     var v=b.getAttribute('data-gc');document.querySelectorAll('.gearcard').forEach(function(c){c.classList.toggle('gcon',c.classList.contains(v));});}
-  function fpSwitch(b){document.querySelectorAll('.fptabs .mfbtn').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
+  function fpSwitch(b){setActive(b);
     var v=b.getAttribute('data-v');
     document.getElementById('fp-facts').classList.toggle('off', v!=='facts');
     document.getElementById('fp-plan').classList.toggle('off', v!=='plan');}
