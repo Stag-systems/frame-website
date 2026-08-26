@@ -1,4 +1,5 @@
-User-agent: *
-Allow: /
+# Die Regeln fuer Crawler und KI-Bots setzt Cloudflare selbst davor
+# (Zone-Einstellung "AI training & search policies"). Hier steht nur,
+# wo die Sitemap liegt.
 
 Sitemap: https://www.theframe.at/sitemap.xml
