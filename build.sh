@@ -16,6 +16,7 @@ EXCLUDES=(
                             # darin u.a. bts-src/ (Nutzungsrechte ungeklaert!) + polaroid-src/
   'fonts/_x'  'fonts/*.zip' # Font-Rohmaterial
   '_loading-preview.html'  '_plan-preview.html'  '_website-plan.md'
+  '00-LIESMICH.md'          # Ordner-Hinweis fuer den Finder, nicht fuer die Seite
 )
 
 if command -v rsync >/dev/null 2>&1; then
